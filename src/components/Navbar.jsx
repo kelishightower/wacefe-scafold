@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 
-// Navigation items are centralized here so you only update one list
-// when adding/removing major sections in the page.
-//
-// How to edit:
-// 1) Add a new object with { id, label }.
-// 2) Ensure `id` matches the target section's `id` in WacefePage.jsx.
-// 3) Keep labels short so the side rail stays clean.
 const sections = [
-  { id: 'introduction', label: 'Introduction' },
-  { id: 'current-state', label: 'Current State' },
-  { id: 'history', label: 'History' },
-  { id: 'comparison', label: 'Comparison' },
-  { id: 'toolkit', label: 'Toolkit' }
+  { id: 'introduction', label: 'overview' },
+  { id: 'current-state', label: 'current state' },
+  { id: 'history', label: 'histories' },
+  { id: 'comparison', label: 'future reality' },
+  { id: 'toolkit', label: 'toolkit' }
 ];
 
 export default function Navbar() {
-  const [expanded, setExpanded] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
   function handleClick(id) {
     const element = document.getElementById(id);
     if (element) {
@@ -24,56 +18,45 @@ export default function Navbar() {
     }
   }
 
-  function renderNavLinks() {
-    return sections.map(function (sec) {
-      const displayedText = expanded ? sec.label : sec.label.charAt(0);
-      return (
-        <button
-          key={sec.id}
-          onClick={function () {
-            handleClick(sec.id);
-          }}
-          className="wacefe-pill"
-          aria-label={`Go to ${sec.label}`}
-          title={sec.label}
-        >
-          {displayedText}
-        </button>
-      );
+  function toggleNav() {
+    setIsCollapsed(function (previousValue) {
+      return !previousValue;
     });
   }
 
   return (
-    <nav className={`wacefe-nav ${expanded ? 'expanded' : 'collapsed'}`} aria-label="Secondary navigation">
-      <div className="wacefe-nav-inner">
-        {!expanded && (
-          <button
-            className="wacefe-nav-circle"
-            onClick={function () {
-              setExpanded(true);
-            }}
-            aria-label="Click to open navigation"
-          >
-            Nav
-          </button>
-        )}
-
-        {expanded && (
-          <>
-            <button
-              className="wacefe-nav-close"
-              onClick={function () {
-                setExpanded(false);
-              }}
-              aria-label="Close navigation"
-            >
-              ×
-            </button>
-
-            <div className="wacefe-nav-links">{renderNavLinks()}</div>
-          </>
-        )}
+    <nav className={`wacefe-nav ${isCollapsed ? 'is-collapsed' : ''}`} aria-label="Section navigation">
+      <div className="wacefe-nav-header">
+        <span className="wacefe-nav-label">Nav</span>
+        <button
+          type="button"
+          className="wacefe-nav-toggle"
+          onClick={toggleNav}
+          aria-expanded={!isCollapsed}
+        >
+          {isCollapsed ? 'expand' : 'collapse'}
+        </button>
       </div>
+      {!isCollapsed && (
+        <div className="wacefe-nav-inner">
+          <div className="wacefe-nav-links">
+            {sections.map(function (section) {
+              return (
+                <button
+                  key={section.id}
+                  type="button"
+                  className="wacefe-pill"
+                  onClick={function () {
+                    handleClick(section.id);
+                  }}
+                >
+                  {section.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

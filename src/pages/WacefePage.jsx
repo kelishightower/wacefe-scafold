@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Map from '../components/Map';
 import ComparisonTool from '../components/ComparisonTool';
@@ -6,258 +6,346 @@ import Toolkit from '../components/Toolkit';
 import ExpandableSection from '../components/ExpandableSection';
 import QuickFactsFlow from '../components/QuickFactsFlow';
 
-// The WacefePage component renders the main landing page of the app.
-// It's intentionally verbose and heavily commented so that beginners can
-// read through every piece of logic, understand where things live, and make
-// edits without getting lost in terse syntax.
-//
-// Key notes for maintainers:
-// 1. Each `<section>` represents a major page block. The `id` on the section
-//    must match the corresponding link in `<Navbar>` so scrolling works.
-// 2. We avoid using shorthand operators (like `?:` or `&&`) when rendering
-//    content; instead, we compute intermediate variables or use simple `if`
-//    statements. This makes control flow explicit and easier to follow.
-// 3. The page is essentially static markup with a single piece of state
-//    (`incomeEstimate`) used by the slider. Everything else is plain JSX.
-//
-export default function WacefePage() {
-  // React state hook for the interactive slider value. Starts at 270000.
+const studentPrompts = [
+  'What becomes easier for a family when they have savings, home equity, or inherited wealth?',
+  'If two counties have very different school funding and incomes, what opportunities might students experience differently?',
+  'When a statistic looks abstract, who in real life could be affected by that number?'
+];
+
+function ReflectionPrompts() {
+  return (
+    <div className="panel reflection-panel">
+      <div className="panel-header">
+        <h3 className="panel-title">reflection questions</h3>
+      </div>
+      <div className="prompt-list">
+        {studentPrompts.map(function (prompt) {
+          return (
+            <div key={prompt} className="prompt-card">
+              <span className="prompt-label">think about this</span>
+              <p>{prompt}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function IncomeGuessCard() {
   const [incomeEstimate, setIncomeEstimate] = useState(270000);
+  const [showAnswer, setShowAnswer] = useState(false);
+  const actualTopTenIncome = 400000;
 
-  // Handler called when the user moves the input range. We parse the event
-  // value and store it as a number in component state. The handler is defined
-  // as a named function instead of an inline arrow so newcomers can find it
-  // easily and modify it.
-  function handleIncomeChange(event) {
-    // event.target.value is a string; convert to number before storing.
-    const rawValue = event.target.value;
-    const parsed = Number(rawValue);
-    setIncomeEstimate(parsed);
-  }
-
-  // Compute the percentage across the 0‑500k range so the label can be
-  // positioned above the thumb. This separates logic from JSX.
   const sliderPercent = (incomeEstimate / 500000) * 100;
 
-  // The value used in the disabled "real stats" slider. We keep it in its
-  // own constant to make it easy to change later.
-  const actualMedianIncome = 400000;
+  function handleIncomeChange(event) {
+    setIncomeEstimate(Number(event.target.value));
+  }
 
-  // Render the component tree.
+  return (
+    <div className="panel guess-panel">
+      <div className="stack-sm">
+        <p className="eyebrow">student estimate</p>
+        <h3 className="panel-title">
+          What do you think the average income is for the top 10% of Washington residents?
+        </h3>
+        <p className="section-copy compact-copy">
+          Let students guess first, then reveal the real comparison. Placeholder numbers are here so you can swap in confirmed data later.
+        </p>
+      </div>
+
+      <div className="slider-container">
+        <input
+          type="range"
+          min="0"
+          max="500000"
+          step="5000"
+          value={incomeEstimate}
+          onChange={handleIncomeChange}
+          className="slider"
+          aria-label="Income estimate"
+        />
+        <span className="slider-value" style={{ left: sliderPercent + '%' }}>
+          ${incomeEstimate.toLocaleString()}
+        </span>
+      </div>
+
+      <div className="range-labels">
+        <span>$0</span>
+        <span>$500,000</span>
+      </div>
+
+      <button
+        type="button"
+        className="accent-button"
+        onClick={function () {
+          setShowAnswer(function (previousValue) {
+            return !previousValue;
+          });
+        }}
+      >
+        {showAnswer ? 'hide comparison' : 'reveal real comparison'}
+      </button>
+
+      {showAnswer && (
+        <div className="mini-stat-card">
+          <span className="mini-stat-label">top 10%</span>
+          <strong>${actualTopTenIncome.toLocaleString()}</strong>
+          <p>placeholder value for the higher-income group</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function OtherNinetyGuessCard() {
+  const [incomeEstimate, setIncomeEstimate] = useState(62000);
+  const [showAnswer, setShowAnswer] = useState(false);
+  const actualOtherIncome = 62000;
+  const sliderPercent = (incomeEstimate / 200000) * 100;
+
+  function handleIncomeChange(event) {
+    setIncomeEstimate(Number(event.target.value));
+  }
+
+  return (
+    <div className="panel guess-panel">
+      <div className="stack-sm">
+        <p className="eyebrow">student estimate</p>
+        <h3 className="panel-title">
+          What do you think the average income is for the other 90% of Washington residents?
+        </h3>
+        <p className="section-copy compact-copy">
+          This interaction is separate from the top 10% slider so each estimate and reveal stands on its own.
+        </p>
+      </div>
+
+      <div className="slider-container">
+        <input
+          type="range"
+          min="0"
+          max="200000"
+          step="2500"
+          value={incomeEstimate}
+          onChange={handleIncomeChange}
+          className="slider"
+          aria-label="Other 90 percent income estimate"
+        />
+        <span className="slider-value" style={{ left: sliderPercent + '%' }}>
+          ${incomeEstimate.toLocaleString()}
+        </span>
+      </div>
+
+      <div className="range-labels">
+        <span>$0</span>
+        <span>$200,000</span>
+      </div>
+
+      <button
+        type="button"
+        className="accent-button"
+        onClick={function () {
+          setShowAnswer(function (previousValue) {
+            return !previousValue;
+          });
+        }}
+      >
+        {showAnswer ? 'hide comparison' : 'reveal real comparison'}
+      </button>
+
+      {showAnswer && (
+        <div className="mini-stat-card muted-card">
+          <span className="mini-stat-label">other 90%</span>
+          <strong>${actualOtherIncome.toLocaleString()}</strong>
+          <p>placeholder value for the broader group</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function EssentialsStatCard() {
+  return (
+    <div className="panel essentials-panel">
+      <div className="essentials-graphic" aria-hidden="true">
+        <div className="cart-icon">cart</div>
+        <div className="cart-items">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+      </div>
+      <div className="stack-sm">
+        <p className="eyebrow">basic expenses</p>
+        <h3 className="panel-title">How many households struggle to cover essentials?</h3>
+        <p className="spotlight-number">31%</p>
+        <p className="section-copy compact-copy">
+          Placeholder graphic for the "Overlooked and Undercounted" stat. Swap the number and wording once your team confirms the exact source language.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function RacialIncomeComparison() {
+  return (
+    <div className="panel">
+      <div className="stack-sm">
+        <p className="eyebrow">income by race and ethnicity</p>
+        <h3 className="panel-title">placeholder for racial income comparison</h3>
+        <p className="section-copy compact-copy">
+          This section can later hold the horizontal bar chart and statewide comparison once your team finalizes the real data.
+        </p>
+      </div>
+
+      <div className="simple-placeholder">
+        <span className="placeholder-tag">income by race chart will go here</span>
+      </div>
+    </div>
+  );
+}
+
+function HistoryTimeline() {
+  return (
+    <div className="panel">
+      <div className="stack-sm">
+        <p className="eyebrow">income and wealth gaps over time</p>
+        <h3 className="panel-title">placeholder for inequality timeline</h3>
+        <p className="section-copy compact-copy">
+          This section can later hold the scrollable timeline or line graph once your team decides what exact measure and years to show.
+        </p>
+      </div>
+
+      <div className="simple-placeholder">
+        <span className="placeholder-tag">scrollable timeline will go here</span>
+      </div>
+    </div>
+  );
+}
+
+export default function WacefePage() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(function () {
+    function handleScroll() {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+      if (scrollHeight <= 0) {
+        setScrollProgress(0);
+        return;
+      }
+
+      const nextProgress = Math.min((scrollTop / scrollHeight) * 100, 100);
+      setScrollProgress(nextProgress);
+    }
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+
+    return function cleanupScrollListener() {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div className="wacefe-page">
-      {/* The primary navigation is now a discreet top bar to fit the existing homepage style. */}
+      <div className="scroll-progress" aria-hidden="true">
+        <span style={{ width: scrollProgress + '%' }} />
+      </div>
+
       <Navbar />
 
-      {/* Content shell is offset from top nav (no left sidebar margin). */}
       <div className="wacefe-content-shell">
         <main>
-          {/* ===== Introduction section ===== */}
           <section id="introduction" className="hero section-pad">
-            <div className="container">
-              <p className="eyebrow">WACEFE Prototyping</p>
-              <h1>Data-driven visualizations for financial literacy</h1>
-              <p className="lead">
-                Financial learning is not just about budgeting. It is about
-                understanding the economic landscape you are navigating.
-              </p>
+            <div className="container hero-simple">
+              <div className="stack-sm">
+                {/* <p className="eyebrow">wacefe dashboard</p> */}
+                <h1>Foundations of wealth</h1>
+                <p className="lead">
+                  Empowering students to understand not just money—but the systems that shape it.                </p>
+              </div>
             </div>
           </section>
 
-          {/* ===== Current state with map and guess slider ===== */}
-          <section id="current-state" className="section-purple section-pad">
+          <section id="current-state" className="section-surface section-pad">
             <div className="container stack-lg">
               <div className="stack-sm">
-                <p className="eyebrow">Current State</p>
-
+                <p className="eyebrow">the current state</p>
+                <h2>what students should notice right now</h2>
                 <p className="section-copy">
-                  Data helps us see patterns that are hard to notice in everyday
-                  life. It shows where incomes are higher or lower, where home
-                  ownership is common or rare, and where educational investment
-                  vary. When we can see these patterns we can better understand
-                  the challenges, and advantages, that different communities are
-                  given.
-                </p>
-
-                <h2>How wealth is distributed in Washington</h2>
-                <p className="section-copy">
-                  Explore county-level patterns in income, education, race and
-                  ethnicity, homeownership, and school funding.
+                  This section now matches your plan more closely: a guess-and-reveal interaction, a single-stat spotlight, a county comparison map, a race and ethnicity income comparison, and reflection prompts that help students connect numbers to lived outcomes.
                 </p>
               </div>
 
-              {/* Map visualization component. */}
+              <div className="two-column-grid">
+                <IncomeGuessCard />
+                <OtherNinetyGuessCard />
+              </div>
+
+              <div className="two-column-grid">
+                <EssentialsStatCard />
+                <RacialIncomeComparison />
+              </div>
+
               <Map />
-
-              {/* Panel containing slider that lets user guess a number. */}
-              <div className="panel guess-panel">
-                <p className="panel-title">
-                  What do you think the median income is for the wealthiest 10%
-                  of WA residents?
-                </p>
-
-                {/* Slider plus value label. */}
-                <div className="slider-container">
-                  <input
-                    type="range"
-                    min="0"
-                    max="500000"
-                    value={incomeEstimate}
-                    onChange={handleIncomeChange}
-                    className="slider"
-                    aria-label="Income estimate"
-                  />
-
-                  {/* The floating value above the thumb is just a span positioned
-                      using inline `left` style. We compute `sliderPercent` above. */}
-                  <span
-                    className="slider-value"
-                    style={{ left: sliderPercent + '%' }}
-                  >
-                    ${incomeEstimate.toLocaleString()}
-                  </span>
-                </div>
-
-                {/* Static labels under the slider. */}
-                <div className="range-labels">
-                  <span>$0</span>
-                  <span>$500,000</span>
-                </div>
-
-                {/* Expandable section shows the actual value when opened. This
-                    uses the generic <ExpandableSection> component. */}
-                <ExpandableSection title="See Real Stats">
-                  <p className="mb-2">
-                    Actual median income for the wealthiest 10% of WA residents:
-                  </p>
-
-                  <div className="slider-container">
-                    <input
-                      type="range"
-                      min="0"
-                      max="500000"
-                      value={actualMedianIncome}
-                      disabled
-                      className="slider"
-                      aria-label="Actual median income"
-                    />
-                    <span
-                      className="slider-value"
-                      style={{ left: (actualMedianIncome / 500000) * 100 + '%' }}
-                    >
-                      ${actualMedianIncome.toLocaleString()}
-                    </span>
-                  </div>
-
-                  <div className="range-labels">
-                    <span>$0</span>
-                    <span>$500,000</span>
-                  </div>
-                </ExpandableSection>
-
-                {/* Additional explanatory text below the panel. This is just
-                    plain paragraphs, which are easy to edit or remove. */}
-                <p className="mb-3">
-                  what can we tell from looking at these disparities?
-                </p>
-
-                <p className="mb-3">
-                  clearly, money is not spread equally among WA residents. there
-                  are notable differences in measures ‘wealth’ across many
-                  different groups... geographic communities, income percentiles,
-                  racial/ethnic identities, and more! [many of which to be detailed
-                  beyond initial prototype & MVP stage].
-                </p>
-              </div>
+              <ReflectionPrompts />
             </div>
           </section>
 
-          {/* ===== History section ===== */}
-          <section id="history" className="section-yellow section-pad">
+          <section id="history" className="section-tinted section-pad">
             <div className="container stack-lg">
               <div className="stack-sm">
-                <p className="eyebrow">Context</p>
-                <h2>Economic and social histories</h2>
+                <p className="eyebrow">economic and social histories</p>
+                <h2>how the past shaped the present</h2>
                 <p className="section-copy">
-                  the history of Washington’s finances -- on both individual and
-                  group levels -- do not exist in a bubble. to truly understand
-                  the economy, we also need to understand the past and present
-                  social contexts that have influenced the state of things today.
-                </p>
-
-                <p className="section-copy">
-                  the current disparities we observe are not accidental -- they
-                  are product of historical and systemic forces....
+                  This area now has two distinct jobs: show change over time, and explain the systems that created those changes. Both are still lightweight so your team can swap in the final evidence later.
                 </p>
               </div>
 
-              {/* QuickFactsFlow renders a small interactive flow chart. No logic
-                  here, just include the component. */}
+              <HistoryTimeline />
               <QuickFactsFlow />
+
+              <ExpandableSection title="questions to answer before this section is final">
+                <ul className="simple-list">
+                  <li>What exact unit is the existing inequality chart measuring?</li>
+                  <li>Which historical policies do you want to feature as the core chain of causes?</li>
+                  <li>Do you want this section to compare Washington to the U.S. in every graphic, or only in one anchor graphic?</li>
+                </ul>
+              </ExpandableSection>
             </div>
           </section>
 
-          {/* ===== Comparison simulator section ===== */}
-          <section id="comparison" className="section-light section-pad">
+          <section id="comparison" className="section-surface section-pad">
             <div className="container stack-lg">
               <div className="stack-sm">
-                <p className="eyebrow">the great wealth transfer</p>
-                <h2>our future reality: the great wealth transfer</h2>
+                <p className="eyebrow">our future reality</p>
+                <h2>the great wealth transfer</h2>
                 <p className="section-copy">
-                  The great wealth transfer refers to the large amount of money
-                  and property that older generations are expected to pass down to
-                  younger generations over the next several years.
-                </p>
-                <p className="section-copy">
-                  It is happening now because many people from the baby boomer
-                  generation are reaching older age. As this large generation
-                  retires and eventually passes on their assets, such as homes,
-                  savings, businesses, and investments, those assets will be
-                  transferred to their children and grandchildren.
-                </p>
-                <p className="section-copy">
-                  This shift is one of the largest transfers of wealth in U.S.
-                  history. Many believe it could help younger generations build
-                  financial stability, while others worry it may increase the gap
-                  between wealthy and lower-income families.
+                  The logic here is broken into three pieces: explain what it is, reveal the projected scale, and let students test how different backgrounds and decisions can change who benefits.
                 </p>
               </div>
 
-              {/* Embed the interactive comparison tool component. */}
               <ComparisonTool />
             </div>
           </section>
 
-          {/* ===== Toolkit section ===== */}
-          <section id="toolkit" className="section-mint section-pad">
+          <section id="toolkit" className="section-tinted section-pad">
             <div className="container stack-lg">
               <div className="stack-sm">
-                <p className="eyebrow">Action</p>
-                <h2>Your toolkit for an equitable future</h2>
+                <p className="eyebrow">your toolkit for an equitable future</p>
+                <h2>what students can do with this information</h2>
                 <p className="section-copy">
-                  We are entering a future that will not be equal, yet it remains
-                  full of opportunity. Financial education isn’t just about
-                  budgeting. It’s about understanding how money moves, how wealth
-                  grows, and how our financial choices impact our communities. This
-                  toolkit provides useful tools and resources to build your own
-                  future while thinking beyond your own economic standing.
+                  The toolkit now splits into two clearer parts: policies and programs that support wealth-building, and a student-facing resource table built around real worries instead of generic "learn more" buttons.
                 </p>
               </div>
               <Toolkit />
             </div>
           </section>
         </main>
-
-        {/* ===== Footer ===== */}
-        <footer className="wacefe-footer section-pad">
-          <div className="container footer-inner">
-            <h3>WACEFE</h3>
-            <p>
-              Stay up to date on ways to help provide economic and financial
-              education to students across the state.
-            </p>
-          </div>
-        </footer>
       </div>
     </div>
   );
