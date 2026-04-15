@@ -99,29 +99,39 @@ export default function Toolkit() {
         </div>
       </div>
 
-      <div className="panel">
-        <div className="resource-table" role="table" aria-label="Student worries and resources">
-          {worryRows.map(function (row, index) {
-            const isOpen = Boolean(expandedRows[index]);
+      <div className="showcase-item showcase-item-reverse toolkit-resource-showcase">
+        <div className="panel showcase-panel">
+          <div className="resource-table" role="table" aria-label="Student worries and resources">
+            {worryRows.map(function (row, index) {
+              const isOpen = Boolean(expandedRows[index]);
 
-            return (
-              <div key={row.worry} className="resource-row" role="rowgroup">
-                <button
-                  type="button"
-                  className="resource-row-trigger"
-                  onClick={function () {
-                    toggleRow(index);
-                  }}
-                >
-                  <span>{row.worry}</span>
-                  <small>{isOpen ? 'hide' : 'open'}</small>
-                </button>
-                <div className={isOpen ? 'resource-answer is-open' : 'resource-answer'}>
-                  <p>{row.tools}</p>
+              return (
+                <div key={row.worry} className="resource-row" role="rowgroup">
+                  <button
+                    type="button"
+                    className="resource-row-trigger"
+                    onClick={function () {
+                      toggleRow(index);
+                    }}
+                  >
+                    <span>{row.worry}</span>
+                    <small>{isOpen ? 'hide' : 'open'}</small>
+                  </button>
+                  <div className={isOpen ? 'resource-answer is-open' : 'resource-answer'}>
+                    <p>{row.tools}</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="stack-sm showcase-copy">
+          <p className="eyebrow">how to guide this section</p>
+          <h3 className="panel-title">Use these questions to move from worry toward action</h3>
+          <p className="section-copy compact-copy">
+            A filled version of this note could remind students that these concerns are common and worth naming out loud. It can also model how to use each dropdown as a starting point for discussion, planning, and finding practical tools rather than as a perfect answer to a complicated problem.
+          </p>
         </div>
       </div>
 

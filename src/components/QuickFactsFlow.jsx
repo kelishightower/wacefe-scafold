@@ -147,29 +147,31 @@ export default function QuickFactsFlow() {
   }
 
   return (
-    <section
-      className="panel quickfacts-panel"
-      aria-labelledby="quickfacts-title"
-    >
-      <div className="quickfacts-header">
-        <h3 id="quickfacts-title" className="panel-title">
-          How Has Our System Shaped Inequalities?
-        </h3>
-        <span className="quickfacts-badge">Quick Facts</span>
-      </div>
-
-      {/* diagram area: rows of buttons */}
-      <div
-        className="quickfacts-tree"
-        role="group"
-        aria-label="Inequality factors flow diagram"
+    <div className="quickfacts-shell">
+      <section
+        className="panel quickfacts-panel"
+        aria-labelledby="quickfacts-title"
       >
-        {flowRows.map(function (row, idx) {
-          return renderRow(row, idx);
-        })}
-      </div>
+        <div className="quickfacts-main">
+          <div className="quickfacts-header">
+            <h3 id="quickfacts-title" className="panel-title">
+              How Has Our System Shaped Inequalities?
+            </h3>
+            <span className="quickfacts-badge">Quick Facts</span>
+          </div>
 
-      {/* popup showing selected node details */}
+          <div
+            className="quickfacts-tree"
+            role="group"
+            aria-label="Inequality factors flow diagram"
+          >
+            {flowRows.map(function (row, idx) {
+              return renderRow(row, idx);
+            })}
+          </div>
+        </div>
+      </section>
+
       <aside className="quickfacts-popup" aria-live="polite">
         <p className="eyebrow">Selected Topic</p>
         <h4>{activeFact.label}</h4>
@@ -180,6 +182,6 @@ export default function QuickFactsFlow() {
           <strong>Why it matters:</strong> {activeFact.whyItMatters}
         </p>
       </aside>
-    </section>
+    </div>
   );
 }

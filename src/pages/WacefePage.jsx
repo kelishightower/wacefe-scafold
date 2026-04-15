@@ -44,7 +44,7 @@ function IncomeGuessCard() {
   }
 
   return (
-    <div className="panel guess-panel">
+    <div className="panel guess-panel estimate-card estimate-card-high">
       <div className="stack-sm">
         <p className="eyebrow">student estimate</p>
         <h3 className="panel-title">
@@ -110,7 +110,7 @@ function OtherNinetyGuessCard() {
   }
 
   return (
-    <div className="panel guess-panel">
+    <div className="panel guess-panel align-right estimate-card estimate-card-low">
       <div className="stack-sm">
         <p className="eyebrow">student estimate</p>
         <h3 className="panel-title">
@@ -165,25 +165,35 @@ function OtherNinetyGuessCard() {
   );
 }
 
-function EssentialsStatCard() {
+function DataDisclaimer() {
   return (
-    <div className="panel essentials-panel">
-      <div className="essentials-graphic" aria-hidden="true">
-        <div className="cart-icon">cart</div>
-        <div className="cart-items">
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
+    <div className="panel disclaimer-panel">
+      <p className="eyebrow">data note</p>
+      <p className="section-copy">
+        Some of these figures may undercount people and communities who are less visible in standard surveys or public data. Treat the visuals as a directional view while source details are being finalized.
+      </p>
+    </div>
+  );
+}
+
+function SmallStatsRow() {
+  return (
+    <div className="small-stats-row">
+      <div className="mini-stat-card highlight-teal">
+        <div className="stat-icon" aria-hidden="true">🛒</div>
+        <span className="mini-stat-label">basic expenses</span>
+        <strong>31%</strong>
+        <p>Households reporting trouble covering essentials like food, utilities, or childcare.</p>
       </div>
-      <div className="stack-sm">
-        <p className="eyebrow">basic expenses</p>
-        <h3 className="panel-title">How many households struggle to cover essentials?</h3>
-        <p className="spotlight-number">31%</p>
-        <p className="section-copy compact-copy">
-          Placeholder graphic for the "Overlooked and Undercounted" stat. Swap the number and wording once your team confirms the exact source language.
-        </p>
+      <div className="mini-stat-card highlight-yellow">
+        <span className="mini-stat-label">housing access</span>
+        <strong>45%</strong>
+        <p>Estimated share of families facing limited paths to stable homeownership.</p>
+      </div>
+      <div className="mini-stat-card muted-card">
+        <span className="mini-stat-label">savings buffer</span>
+        <strong>2 months</strong>
+        <p>Typical emergency savings for many households in this broader group.</p>
       </div>
     </div>
   );
@@ -191,35 +201,201 @@ function EssentialsStatCard() {
 
 function RacialIncomeComparison() {
   return (
-    <div className="panel">
-      <div className="stack-sm">
-        <p className="eyebrow">income by race and ethnicity</p>
-        <h3 className="panel-title">placeholder for racial income comparison</h3>
-        <p className="section-copy compact-copy">
-          This section can later hold the horizontal bar chart and statewide comparison once your team finalizes the real data.
-        </p>
+    <div className="showcase-item racial-income-showcase">
+      <div className="panel showcase-panel">
+        <div className="stack-sm">
+          <p className="eyebrow">income by race and ethnicity</p>
+          <h3 className="panel-title">Washington and U.S. median income in one view</h3>
+          <p className="section-copy compact-copy">
+            This combined chart helps students compare the Washington numbers against the national pattern in the same frame.
+          </p>
+        </div>
+
+        <RacialIncomeComparisonGraphic />
       </div>
 
-      <div className="simple-placeholder">
-        <span className="placeholder-tag">income by race chart will go here</span>
+      <div className="stack-sm showcase-copy">
+        <p className="eyebrow">what to notice</p>
+        <h3 className="panel-title">Guide students toward patterns before they jump to conclusions</h3>
+        <p className="section-copy compact-copy">
+          This note could remind students to look for overall patterns, not just the highest or lowest bar. It is a useful place to ask which communities have historically had fewer opportunities to build wealth and what systems, policies, or barriers might be shaping the differences they see in the chart.
+        </p>
       </div>
+    </div>
+  );
+}
+
+function RacialIncomeComparisonGraphic() {
+  return (
+    <div className="racial-income-graphic" aria-label="Median income by race and ethnicity comparing Washington and the United States">
+      <svg viewBox="0 0 1040 640" role="img" aria-hidden="true">
+        <rect x="0" y="0" width="1040" height="640" rx="18" fill="#ffffff" />
+
+        <text x="28" y="42" className="timeline-svg-title">
+          Median Income by Race and Ethnicity
+        </text>
+        <text x="28" y="70" className="timeline-svg-subtitle">
+          Washington compared with the United States
+        </text>
+
+        <g className="timeline-axis-labels">
+          <text x="32" y="150">140K</text>
+          <text x="32" y="220">120K</text>
+          <text x="40" y="290">100K</text>
+          <text x="40" y="360">80K</text>
+          <text x="40" y="430">60K</text>
+          <text x="40" y="500">40K</text>
+          <text x="40" y="570">20K</text>
+        </g>
+
+        <g className="timeline-grid">
+          <line x1="90" y1="140" x2="975" y2="140" />
+          <line x1="90" y1="210" x2="975" y2="210" />
+          <line x1="90" y1="280" x2="975" y2="280" />
+          <line x1="90" y1="350" x2="975" y2="350" />
+          <line x1="90" y1="420" x2="975" y2="420" />
+          <line x1="90" y1="490" x2="975" y2="490" />
+          <line x1="90" y1="560" x2="975" y2="560" />
+        </g>
+
+        <g className="income-bars">
+          <rect x="118" y="288" width="38" height="272" fill="#ffd07a" rx="6" />
+          <rect x="164" y="322" width="38" height="238" fill="#ffe4b4" rx="6" />
+
+          <rect x="278" y="356" width="38" height="204" fill="#79bfe3" rx="6" />
+          <rect x="324" y="398" width="38" height="162" fill="#b8def0" rx="6" />
+
+          <rect x="438" y="372" width="38" height="188" fill="#2b86a7" rx="6" />
+          <rect x="484" y="385" width="38" height="175" fill="#79b8cc" rx="6" />
+
+          <rect x="598" y="140" width="38" height="420" fill="#1fb5a2" rx="6" />
+          <rect x="644" y="214" width="38" height="346" fill="#9fe6dc" rx="6" />
+
+          <rect x="758" y="286" width="38" height="274" fill="#6f86c2" rx="6" />
+          <rect x="804" y="327" width="38" height="233" fill="#bcc8e8" rx="6" />
+
+          <rect x="918" y="345" width="38" height="215" fill="#ff9100" rx="6" />
+          <rect x="964" y="377" width="38" height="183" fill="#ffd08c" rx="6" />
+        </g>
+
+        <g className="income-value-labels">
+          <text x="112" y="276">100.2K</text>
+          <text x="158" y="310">87.6K</text>
+
+          <text x="272" y="344">75.9K</text>
+          <text x="318" y="386">56.7K</text>
+
+          <text x="432" y="360">69.3K</text>
+          <text x="478" y="373">63.6K</text>
+
+          <text x="594" y="128">143K</text>
+          <text x="636" y="202">117.3K</text>
+
+          <text x="748" y="274">100.8K</text>
+          <text x="798" y="315">82.7K</text>
+
+          <text x="908" y="333">79.5K</text>
+          <text x="956" y="365">72.6K</text>
+        </g>
+
+        <g className="timeline-axis-labels">
+          <text x="106" y="592">White</text>
+          <text x="252" y="592">Black or African American</text>
+          <text x="444" y="592">Native American</text>
+          <text x="606" y="592">Asian</text>
+          <text x="730" y="592">Native Hawaiian / Pacific Islander</text>
+          <text x="914" y="592">Hispanic or Latino</text>
+        </g>
+
+        <g className="income-legend">
+          <rect x="740" y="32" width="18" height="18" rx="4" fill="#1fb5a2" />
+          <text x="766" y="46">Washington</text>
+          <rect x="860" y="32" width="18" height="18" rx="4" fill="#9fe6dc" />
+          <text x="886" y="46">United States</text>
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function InequalityTimelineGraphic() {
+  return (
+    <div className="timeline-graphic" aria-label="Income inequality chart for Washington and the United States over time">
+      <svg viewBox="0 0 900 520" role="img" aria-hidden="true">
+        <rect x="0" y="0" width="900" height="520" rx="18" fill="#ffffff" />
+
+        <text x="28" y="42" className="timeline-svg-title">
+          How Income Inequality Has Changed in Washington State
+        </text>
+        <text x="28" y="74" className="timeline-svg-title">
+          Over Time
+        </text>
+
+        <g className="timeline-grid">
+          <line x1="80" y1="120" x2="785" y2="120" />
+          <line x1="80" y1="170" x2="785" y2="170" />
+          <line x1="80" y1="220" x2="785" y2="220" />
+          <line x1="80" y1="270" x2="785" y2="270" />
+          <line x1="80" y1="320" x2="785" y2="320" />
+          <line x1="80" y1="370" x2="785" y2="370" />
+          <line x1="80" y1="420" x2="785" y2="420" />
+          <line x1="80" y1="470" x2="785" y2="470" />
+        </g>
+
+        <g className="timeline-axis-labels">
+          <text x="28" y="112">0.49</text>
+          <text x="22" y="162">0.485</text>
+          <text x="30" y="212">0.48</text>
+          <text x="22" y="262">0.475</text>
+          <text x="30" y="312">0.47</text>
+          <text x="22" y="362">0.465</text>
+          <text x="30" y="412">0.46</text>
+          <text x="22" y="462">0.455</text>
+          <text x="110" y="495">2008</text>
+          <text x="185" y="495">2010</text>
+          <text x="260" y="495">2012</text>
+          <text x="335" y="495">2014</text>
+          <text x="410" y="495">2016</text>
+          <text x="485" y="495">2018</text>
+          <text x="560" y="495">2020</text>
+          <text x="635" y="495">2022</text>
+          <text x="710" y="495">2024</text>
+        </g>
+
+        <polyline
+          fill="none"
+          stroke="#23a6d5"
+          strokeWidth="3"
+          points="90,300 165,300 240,300 280,200 360,200 400,120 438,185 480,180 520,182 560,150 600,190 640,165 680,142 720,170 772,190"
+        />
+        <polyline
+          fill="none"
+          stroke="#125f8c"
+          strokeWidth="3"
+          points="90,470 165,470 240,470 320,300 360,390 400,325 440,295 480,325 520,312 560,310 600,240 640,170 680,135 720,170 772,145"
+        />
+
+        <text x="785" y="198" className="timeline-series-label">United</text>
+        <text x="785" y="222" className="timeline-series-label">States</text>
+        <text x="785" y="180" className="timeline-series-label timeline-series-label-secondary">Washington</text>
+      </svg>
     </div>
   );
 }
 
 function HistoryTimeline() {
   return (
-    <div className="panel">
-      <div className="stack-sm">
-        <p className="eyebrow">income and wealth gaps over time</p>
-        <h3 className="panel-title">placeholder for inequality timeline</h3>
-        <p className="section-copy compact-copy">
-          This section can later hold the scrollable timeline or line graph once your team decides what exact measure and years to show.
-        </p>
+    <div className="showcase-item showcase-item-reverse history-showcase">
+      <div className="panel showcase-panel">
+        <InequalityTimelineGraphic />
       </div>
 
-      <div className="simple-placeholder">
-        <span className="placeholder-tag">scrollable timeline will go here</span>
+      <div className="stack-sm showcase-copy">
+        <p className="eyebrow">why this matters over time</p>
+        <h3 className="panel-title">Use this space to connect past decisions to present outcomes</h3>
+        <p className="section-copy compact-copy">
+          A filled version of this text could introduce the timeline by explaining that wealth gaps are not random or recent. As students scroll, they should be watching for how housing policy, school access, labor systems, and public investment build on each other across generations.
+        </p>
       </div>
     </div>
   );
@@ -271,27 +447,38 @@ export default function WacefePage() {
             </div>
           </section>
 
-          <section id="current-state" className="section-surface section-pad">
+          <section id="current-state" className="section-surface section-pad section-align-left">
             <div className="container stack-lg">
               <div className="stack-sm">
                 <p className="eyebrow">the current state</p>
                 <h2>what students should notice right now</h2>
                 <p className="section-copy">
-                  This section now matches your plan more closely: a guess-and-reveal interaction, a single-stat spotlight, a county comparison map, a race and ethnicity income comparison, and reflection prompts that help students connect numbers to lived outcomes.
+                  This section shows how current income gaps, basic costs, and access to resources are linked. A mix of interactions, stats, and visuals helps students follow the story.
                 </p>
               </div>
 
-              <div className="two-column-grid">
-                <IncomeGuessCard />
-                <OtherNinetyGuessCard />
+              <div className="estimate-activity-grid">
+                <div className="stack-sm estimate-guide-copy">
+                  <p className="eyebrow">teacher setup</p>
+                  <h3 className="panel-title">Ask students to predict the gap before they see the answer</h3>
+                  <p className="section-copy compact-copy">
+                    Before students move the sliders, invite them to explain what they think a high-income household and a more typical household in Washington might earn. Once both estimates are on the screen, ask what surprised them, what assumptions shaped their guesses, and what this gap could mean for housing, savings, and everyday stability.
+                  </p>
+                </div>
+
+                <div className="estimate-card-stack">
+                  <IncomeGuessCard />
+                  <OtherNinetyGuessCard />
+                </div>
               </div>
 
-              <div className="two-column-grid">
-                <EssentialsStatCard />
-                <RacialIncomeComparison />
-              </div>
+              <SmallStatsRow />
 
+              <DataDisclaimer />
+
+              <RacialIncomeComparison />
               <Map />
+
               <ReflectionPrompts />
             </div>
           </section>
