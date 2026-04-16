@@ -27,14 +27,15 @@ export default function Navbar() {
   return (
     <nav className={`wacefe-nav ${isCollapsed ? 'is-collapsed' : ''}`} aria-label="Section navigation">
       <div className="wacefe-nav-header">
-        <span className="wacefe-nav-label">Nav</span>
+        {!isCollapsed && <span className="wacefe-nav-label">Nav</span>}
         <button
           type="button"
           className="wacefe-nav-toggle"
           onClick={toggleNav}
           aria-expanded={!isCollapsed}
+          aria-label={isCollapsed ? 'Expand navigation' : 'Collapse navigation'}
         >
-          {isCollapsed ? 'expand' : 'collapse'}
+          {isCollapsed ? '≡' : 'collapse'}
         </button>
       </div>
       {!isCollapsed && (

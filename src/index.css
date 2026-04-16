@@ -878,7 +878,8 @@ h3 {
 }
 
 .wacefe-nav.is-collapsed {
-  padding-bottom: 0.8rem;
+  width: 58px;
+  padding: 0.45rem;
 }
 
 .wacefe-nav-header {
@@ -909,6 +910,18 @@ h3 {
   font-size: 0.75rem;
   padding: 0.5rem 0.9rem;
   cursor: pointer;
+}
+
+.wacefe-nav.is-collapsed .wacefe-nav-header {
+  justify-content: center;
+}
+
+.wacefe-nav.is-collapsed .wacefe-nav-toggle {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .wacefe-nav-toggle:hover,
