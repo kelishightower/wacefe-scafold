@@ -12,6 +12,121 @@ const studentPrompts = [
   'When a statistic looks abstract, who in real life could be affected by that number?'
 ];
 
+const expandableVisuals = [
+  {
+    id: 'rent-burden',
+    eyebrow: 'quick expand',
+    title: 'County rent burden snapshot',
+    summary: 'A fast look at how housing pressure might vary across places.',
+    note:
+      'Teachers could use this graphic to ask where cost pressure seems highest and what that might mean for saving, moving, or staying in one community.',
+    thumbnail: function Thumbnail() {
+      return (
+        <svg viewBox="0 0 240 120" aria-hidden="true">
+          <rect x="20" y="72" width="26" height="28" rx="6" fill="#bcc8e8" />
+          <rect x="58" y="54" width="26" height="46" rx="6" fill="#9fe6dc" />
+          <rect x="96" y="40" width="26" height="60" rx="6" fill="#ffd08c" />
+          <rect x="134" y="30" width="26" height="70" rx="6" fill="#79bfe3" />
+          <rect x="172" y="18" width="26" height="82" rx="6" fill="#1fb5a2" />
+          <line x1="18" y1="100" x2="210" y2="100" stroke="rgba(31,22,51,0.18)" strokeWidth="2" />
+        </svg>
+      );
+    },
+    expanded: function Expanded() {
+      return (
+        <svg viewBox="0 0 520 260" aria-hidden="true">
+          <g stroke="rgba(31,22,51,0.12)" strokeWidth="1">
+            <line x1="48" y1="48" x2="480" y2="48" />
+            <line x1="48" y1="96" x2="480" y2="96" />
+            <line x1="48" y1="144" x2="480" y2="144" />
+            <line x1="48" y1="192" x2="480" y2="192" />
+            <line x1="48" y1="228" x2="480" y2="228" />
+          </g>
+          <rect x="74" y="164" width="46" height="64" rx="8" fill="#bcc8e8" />
+          <rect x="144" y="132" width="46" height="96" rx="8" fill="#9fe6dc" />
+          <rect x="214" y="104" width="46" height="124" rx="8" fill="#ffd08c" />
+          <rect x="284" y="82" width="46" height="146" rx="8" fill="#79bfe3" />
+          <rect x="354" y="52" width="46" height="176" rx="8" fill="#1fb5a2" />
+          <text x="72" y="246" className="mini-chart-label">Yakima</text>
+          <text x="139" y="246" className="mini-chart-label">Spokane</text>
+          <text x="208" y="246" className="mini-chart-label">Pierce</text>
+          <text x="282" y="246" className="mini-chart-label">King</text>
+          <text x="344" y="246" className="mini-chart-label">Whatcom</text>
+        </svg>
+      );
+    }
+  },
+  {
+    id: 'wealth-ladder',
+    eyebrow: 'quick expand',
+    title: 'Wealth-building ladder',
+    summary: 'A simple staircase view of what helps families move from income to assets.',
+    note:
+      'This could help students talk through which steps are easier when a family already has support, savings, or inherited stability.',
+    thumbnail: function Thumbnail() {
+      return (
+        <svg viewBox="0 0 240 120" aria-hidden="true">
+          <rect x="26" y="78" width="34" height="22" rx="6" fill="#ffd08c" />
+          <rect x="66" y="62" width="34" height="38" rx="6" fill="#bcc8e8" />
+          <rect x="106" y="46" width="34" height="54" rx="6" fill="#9fe6dc" />
+          <rect x="146" y="30" width="34" height="70" rx="6" fill="#79bfe3" />
+          <rect x="186" y="14" width="34" height="86" rx="6" fill="#1fb5a2" />
+        </svg>
+      );
+    },
+    expanded: function Expanded() {
+      return (
+        <svg viewBox="0 0 520 260" aria-hidden="true">
+          <rect x="38" y="180" width="72" height="46" rx="10" fill="#ffd08c" />
+          <rect x="124" y="148" width="72" height="78" rx="10" fill="#bcc8e8" />
+          <rect x="210" y="116" width="72" height="110" rx="10" fill="#9fe6dc" />
+          <rect x="296" y="84" width="72" height="142" rx="10" fill="#79bfe3" />
+          <rect x="382" y="52" width="72" height="174" rx="10" fill="#1fb5a2" />
+          <text x="54" y="206" className="mini-chart-label">income</text>
+          <text x="131" y="174" className="mini-chart-label">savings</text>
+          <text x="224" y="142" className="mini-chart-label">credit</text>
+          <text x="304" y="110" className="mini-chart-label">ownership</text>
+          <text x="399" y="78" className="mini-chart-label">assets</text>
+        </svg>
+      );
+    }
+  },
+  {
+    id: 'savings-gap',
+    eyebrow: 'quick expand',
+    title: 'Emergency savings comparison',
+    summary: 'A quick visual for how many months of cushion families may have.',
+    note:
+      'Students could use this to discuss how one unexpected bill feels different when a household has no buffer versus a few months of savings.',
+    thumbnail: function Thumbnail() {
+      return (
+        <svg viewBox="0 0 240 120" aria-hidden="true">
+          <circle cx="54" cy="62" r="18" fill="#ffd08c" />
+          <circle cx="104" cy="62" r="18" fill="#ffd08c" />
+          <circle cx="154" cy="62" r="18" fill="#bcc8e8" />
+          <circle cx="204" cy="62" r="18" fill="#1fb5a2" />
+        </svg>
+      );
+    },
+    expanded: function Expanded() {
+      return (
+        <svg viewBox="0 0 520 260" aria-hidden="true">
+          <g>
+            <circle cx="86" cy="132" r="30" fill="#ffd08c" />
+            <circle cx="158" cy="132" r="30" fill="#ffd08c" />
+            <circle cx="278" cy="132" r="30" fill="#bcc8e8" />
+            <circle cx="350" cy="132" r="30" fill="#9fe6dc" />
+            <circle cx="422" cy="132" r="30" fill="#1fb5a2" />
+          </g>
+          <text x="60" y="196" className="mini-chart-label">1 month</text>
+          <text x="238" y="196" className="mini-chart-label">2 months</text>
+          <text x="382" y="196" className="mini-chart-label">3+ months</text>
+        </svg>
+      );
+    }
+  }
+];
+
 function ReflectionPrompts() {
   return (
     <div className="panel reflection-panel">
@@ -28,6 +143,93 @@ function ReflectionPrompts() {
           );
         })}
       </div>
+    </div>
+  );
+}
+
+function QuickExpandVisualGallery() {
+  const [openVisualId, setOpenVisualId] = useState('');
+  const openVisual = expandableVisuals.find(function (visual) {
+    return visual.id === openVisualId;
+  });
+
+  return (
+    <div className="panel quick-expand-panel">
+      <div className="panel-header align-start">
+        <div className="stack-sm">
+          <p className="eyebrow">more quick visuals</p>
+          <h3 className="panel-title">Tap a small chart to open a larger classroom discussion view</h3>
+          <p className="section-copy compact-copy">
+            This section can hold lightweight graph cards that expand when teachers or students want a closer look without crowding the main page.
+          </p>
+        </div>
+      </div>
+
+      <div className="quick-expand-layout">
+        <div className="quick-expand-card-grid">
+          {expandableVisuals.map(function (visual) {
+            const ThumbnailGraphic = visual.thumbnail;
+
+            return (
+              <button
+                key={visual.id}
+                type="button"
+                className="quick-expand-card"
+                onClick={function () {
+                  setOpenVisualId(visual.id);
+                }}
+              >
+                <div className="quick-expand-thumb">
+                  <ThumbnailGraphic />
+                </div>
+                <div className="stack-sm">
+                  <p className="eyebrow">{visual.eyebrow}</p>
+                  <h4>{visual.title}</h4>
+                  <p className="section-copy compact-copy">{visual.summary}</p>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {openVisual && (
+        <div
+          className="modal-overlay"
+          onClick={function () {
+            setOpenVisualId('');
+          }}
+        >
+          <div
+            className="modal-content quick-expand-modal"
+            onClick={function (event) {
+              event.stopPropagation();
+            }}
+          >
+            <div className="modal-header">
+              <div className="stack-sm">
+                <p className="eyebrow">expanded view</p>
+                <h3>{openVisual.title}</h3>
+              </div>
+              <button
+                type="button"
+                className="modal-close"
+                onClick={function () {
+                  setOpenVisualId('');
+                }}
+              >
+                ×
+              </button>
+            </div>
+            <div className="modal-body quick-expand-modal-body">
+              <div className="quick-expand-graphic">
+                <openVisual.expanded />
+              </div>
+              <p className="section-copy">{openVisual.note}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -444,6 +646,24 @@ export default function WacefePage() {
                 <p className="lead">
                   Empowering students to understand not just money—but the systems that shape it.                </p>
               </div>
+
+              <div className="teacher-guide-callout">
+                <div className="stack-sm">
+                  <p className="eyebrow">for teachers</p>
+                  <h3 className="panel-title">How to implement this in the classroom</h3>
+                  <p className="section-copy compact-copy">
+                    A short step-by-step guide for using the dashboard before, during, and after class.
+                  </p>
+                </div>
+                <a
+                  className="ghost-button teacher-guide-link"
+                  href="/teacher-classroom-guide.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  open pdf guide
+                </a>
+              </div>
             </div>
           </section>
 
@@ -478,6 +698,8 @@ export default function WacefePage() {
 
               <RacialIncomeComparison />
               <Map />
+
+              <QuickExpandVisualGallery />
 
               <ReflectionPrompts />
             </div>

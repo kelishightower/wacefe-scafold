@@ -180,6 +180,32 @@ h3 {
   grid-template-columns: 1fr;
 }
 
+.teacher-guide-callout {
+  width: min(100%, 34rem);
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(93, 58, 140, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  display: grid;
+  gap: 0.9rem;
+}
+
+.teacher-guide-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  text-decoration: none;
+}
+
+@media (min-width: 981px) {
+  .hero-simple {
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    align-items: start;
+    gap: 1.5rem;
+  }
+}
+
 .panel {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -573,6 +599,81 @@ h3 {
   gap: 1rem;
 }
 
+.quick-expand-panel {
+  gap: 1.25rem;
+}
+
+.quick-expand-layout {
+  display: block;
+}
+
+.quick-expand-card-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.quick-expand-card {
+  width: 100%;
+  border: 1px solid rgba(93, 58, 140, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  display: grid;
+  gap: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.quick-expand-card h4,
+.quick-expand-view h4 {
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.quick-expand-thumb {
+  min-height: 120px;
+  border-radius: 14px;
+  background: #f6f2fd;
+  border: 1px solid rgba(93, 58, 140, 0.12);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.quick-expand-thumb svg,
+.quick-expand-graphic svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.quick-expand-view {
+  display: none;
+}
+
+.quick-expand-graphic {
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(93, 58, 140, 0.1);
+  overflow: hidden;
+}
+
+.quick-expand-modal {
+  width: min(920px, 100%);
+}
+
+.quick-expand-modal-body {
+  display: grid;
+  gap: 1rem;
+}
+
+.mini-chart-label {
+  font-family: 'Sedan', Georgia, serif;
+  font-size: 14px;
+  fill: #3b344b;
+}
+
 .disclaimer-panel {
   background: var(--bg-light);
   border-color: var(--accent-yellow);
@@ -649,22 +750,20 @@ h3 {
   gap: 1rem;
 }
 
-.transfer-flow {
+.transfer-card-grid {
   display: grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
-  align-items: center;
 }
 
-.transfer-step p {
+.transfer-step-card {
+  display: grid;
+  gap: 0.75rem;
+  min-height: 100%;
+}
+
+.transfer-step-card p {
   color: var(--muted);
-}
-
-.transfer-arrow {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--accent-purple);
-  text-align: center;
 }
 
 .wealth-reveal-content {
@@ -1115,6 +1214,14 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .quick-expand-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-expand-card-grid {
+    grid-template-columns: 1fr;
+  }
+
   .quickfacts-shell {
     grid-template-columns: 1fr;
   }
@@ -1148,12 +1255,8 @@ h3 {
     margin-top: 0;
   }
 
-  .transfer-flow {
+  .transfer-card-grid {
     grid-template-columns: 1fr;
-  }
-
-  .transfer-arrow {
-    transform: rotate(90deg);
   }
 
   .wacefe-nav {

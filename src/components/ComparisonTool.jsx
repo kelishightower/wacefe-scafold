@@ -185,23 +185,21 @@ export default function ComparisonTool() {
 
   return (
     <section className="comparison-stack">
-      <div className="panel">
-        <div className="stack-sm">
-          <p className="eyebrow">short explanation flow</p>
-          <h3 className="panel-title">A simple way to explain the Great Wealth Transfer</h3>
+      <div className="stack-sm">
+        <div className="panel">
+          <div className="stack-sm">
+            <p className="eyebrow">short explanation flow</p>
+            <h3 className="panel-title">A simple way to explain the Great Wealth Transfer</h3>
+          </div>
         </div>
-        <div className="transfer-flow">
-          {wealthTransferSteps.map(function (step, index) {
-            const isLast = index === wealthTransferSteps.length - 1;
 
+        <div className="transfer-card-grid">
+          {wealthTransferSteps.map(function (step) {
             return (
-              <React.Fragment key={step.title}>
-                <article className="transfer-step">
-                  <span className="transfer-step-label">{step.title}</span>
-                  <p>{step.text}</p>
-                </article>
-                {!isLast && <div className="transfer-arrow" aria-hidden="true">~&gt;</div>}
-              </React.Fragment>
+              <article key={step.title} className="panel transfer-step-card">
+                <span className="transfer-step-label">{step.title}</span>
+                <p>{step.text}</p>
+              </article>
             );
           })}
         </div>
