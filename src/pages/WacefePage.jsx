@@ -611,6 +611,10 @@ function HistoryTimeline() {
   );
 }
 
+function SectionSpacing({ children }) {
+  return <div style={{ paddingTop: '1.75rem', paddingBottom: '1.75rem' }}>{children}</div>;
+}
+
 export default function WacefePage() {
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -685,31 +689,46 @@ export default function WacefePage() {
                 </p>
               </div>
 
-              <div className="estimate-activity-grid">
-                <div className="stack-sm estimate-guide-copy">
-                  <p className="eyebrow">teacher setup</p>
-                  <h3 className="panel-title">Ask students to predict the gap before they see the answer</h3>
-                  <p className="section-copy compact-copy">
-                    Before students move the sliders, invite them to explain what they think a high-income household and a more typical household in Washington might earn. Once both estimates are on the screen, ask what surprised them, what assumptions shaped their guesses, and what this gap could mean for housing, savings, and everyday stability.
-                  </p>
+              <SectionSpacing>
+                <div className="estimate-activity-grid">
+                  <div className="stack-sm estimate-guide-copy">
+                    <p className="eyebrow">teacher setup</p>
+                    <h3 className="panel-title">Ask students to predict the gap before they see the answer</h3>
+                    <p className="section-copy compact-copy">
+                      Before students move the sliders, invite them to explain what they think a high-income household and a more typical household in Washington might earn. Once both estimates are on the screen, ask what surprised them, what assumptions shaped their guesses, and what this gap could mean for housing, savings, and everyday stability.
+                    </p>
+                  </div>
+
+                  <div className="estimate-card-stack">
+                    <IncomeGuessCard />
+                    <OtherNinetyGuessCard />
+                  </div>
                 </div>
+              </SectionSpacing>
 
-                <div className="estimate-card-stack">
-                  <IncomeGuessCard />
-                  <OtherNinetyGuessCard />
-                </div>
-              </div>
+              <SectionSpacing>
+                <SmallStatsRow />
+              </SectionSpacing>
 
-              <SmallStatsRow />
+              <SectionSpacing>
+                <DataDisclaimer />
+              </SectionSpacing>
 
-              <DataDisclaimer />
+              <SectionSpacing>
+                <RacialIncomeComparison />
+              </SectionSpacing>
 
-              <RacialIncomeComparison />
-              <Map />
+              <SectionSpacing>
+                <Map />
+              </SectionSpacing>
 
-              <QuickExpandVisualGallery />
+              <SectionSpacing>
+                <QuickExpandVisualGallery />
+              </SectionSpacing>
 
-              <ReflectionPrompts />
+              <SectionSpacing>
+                <ReflectionPrompts />
+              </SectionSpacing>
             </div>
           </section>
 
@@ -723,16 +742,23 @@ export default function WacefePage() {
                 </p>
               </div>
 
-              <HistoryTimeline />
-              <QuickFactsFlow />
+              <SectionSpacing>
+                <HistoryTimeline />
+              </SectionSpacing>
 
-              <ExpandableSection title="questions to answer before this section is final">
-                <ul className="simple-list">
-                  <li>What exact unit is the existing inequality chart measuring?</li>
-                  <li>Which historical policies do you want to feature as the core chain of causes?</li>
-                  <li>Do you want this section to compare Washington to the U.S. in every graphic, or only in one anchor graphic?</li>
-                </ul>
-              </ExpandableSection>
+              <SectionSpacing>
+                <QuickFactsFlow />
+              </SectionSpacing>
+
+              <SectionSpacing>
+                <ExpandableSection title="questions to answer before this section is final">
+                  <ul className="simple-list">
+                    <li>What exact unit is the existing inequality chart measuring?</li>
+                    <li>Which historical policies do you want to feature as the core chain of causes?</li>
+                    <li>Do you want this section to compare Washington to the U.S. in every graphic, or only in one anchor graphic?</li>
+                  </ul>
+                </ExpandableSection>
+              </SectionSpacing>
             </div>
           </section>
 
@@ -746,7 +772,35 @@ export default function WacefePage() {
                 </p>
               </div>
               {/* {characterSectionIntro} */}
-              <ComparisonTool />
+              <SectionSpacing>
+                {/* <div className="stack-sm" style={{ paddingTop: '0.5rem', paddingBottom: '0.5rem' }}>
+                  <p className="section-copy compact-copy">
+                    Through analyzing data and looking at historical policies and practices, we have seen how someone&apos;s demographic and socioeconomic positioning can uniquely impact their financial opportunities in ways that could be more positive or negative than another.
+                  </p>
+
+                  <p className="section-copy compact-copy">
+                    But what do these impacts look like on a daily basis? How does this dynamic show up in real life? <strong>Let&apos;s find out.</strong>
+                  </p>
+
+                  <div className="stack-sm" style={{ paddingTop: '0.5rem' }}>
+                    <p className="eyebrow">how this works</p>
+
+                    <p className="section-copy compact-copy">
+                      <strong>Step 1:</strong> Choose one of the 3 Washington-state residents below. Each one includes a short introduction, along with a few economic opportunities or challenges they could potentially face.
+                    </p>
+
+                    <p className="section-copy compact-copy">
+                      <strong>Step 2:</strong> Pick your character and navigate their economic world. Imagine yourself as this person, empathize with the situation, and identify the path that you think you would realistically take.
+                    </p>
+
+                    <p className="section-copy compact-copy">
+                      <strong>Step 3:</strong> Do not worry about choosing the most responsible answer. <strong>Choose what you are drawn to.</strong>
+                    </p>
+                  </div>
+                </div> */}
+
+                <ComparisonTool />
+              </SectionSpacing>
             </div>
           </section>
 
@@ -759,7 +813,9 @@ export default function WacefePage() {
                   The toolkit now splits into two clearer parts: policies and programs that support wealth-building, and a student-facing resource table built around real worries instead of generic "learn more" buttons.
                 </p>
               </div>
-              <Toolkit />
+              <SectionSpacing>
+                <Toolkit />
+              </SectionSpacing>
             </div>
           </section>
         </main>

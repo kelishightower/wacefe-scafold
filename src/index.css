@@ -752,6 +752,10 @@ h3 {
   gap: 1rem;
 }
 
+.wealth-reveal-panel {
+  margin-top: 2rem;
+}
+
 .transfer-card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

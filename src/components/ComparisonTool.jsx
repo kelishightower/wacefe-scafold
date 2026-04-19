@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DefinitionTooltip from './DefinitionTooltip';
 
 const wealthTransferIntro = [
   'The Great Wealth Transfer refers to the large amount of money and property that older generations, especially the Baby Boomer generation, are expected to pass down to younger generations over the next several years.'
@@ -24,6 +25,14 @@ const wealthTransferSteps = [
 
 const wealthTransferReflection =
   'What are some ways in which the Great Wealth Transfer might worsen gaps between different communities?';
+
+const definedTerms = {
+  demographic: 'Relating to the characteristics of a population, such as age, race, income, education, or location.',
+  socioeconomic: 'Related to both social and economic factors combined, showing how income, education, and background affect opportunities.',
+  positioning: 'The place or status someone holds in society based on their background, resources, and circumstances.',
+  financial_opportunities: 'Chances to earn money, build wealth, invest, or gain access to resources that improve financial stability.',
+  empathize: 'To understand and share the feelings of another person; to put yourself in their situation.'
+};
 
 const characterSectionIntro = [
   'Through analyzing data and looking at historical policies and practices, we have seen how someone\'s demographic and socioeconomic positioning can uniquely impact their financial opportunities in ways that could be more positive and or negative than another.',
@@ -439,13 +448,51 @@ function ParagraphGroup(props) {
   });
 }
 
+function CharacterSectionIntroWithDefinitions() {
+  return (
+    <div className="section-copy" style={{ maxWidth: '65ch', lineHeight: 1.6 }}>
+      <p>
+        Through analyzing data and looking at historical policies and practices, we have seen how someone's{' '}
+        <DefinitionTooltip term="demographic" definition={definedTerms.demographic} /> and{' '}
+        <DefinitionTooltip term="socioeconomic positioning" definition={definedTerms.socioeconomic} /> can
+        uniquely impact their{' '}
+        <DefinitionTooltip term="financial opportunities" definition={definedTerms.financial_opportunities} /> in
+        ways that could be more positive and or negative than another.
+      </p>
+      <p>
+        But what do these impacts look like on a daily basis? How does this dynamic show up in real life? Let's find
+        out.
+      </p>
+    </div>
+  );
+}
+
+function CharacterPickerPromptWithDefinitions() {
+  return (
+    <div className="section-copy" style={{ maxWidth: '65ch', lineHeight: 1.6 }}>
+      <p>
+        Below are 3 representations of a Washington-state resident. Included are brief introductions, as well as
+        descriptions of some economic opportunities or challenges they could potentially face.
+      </p>
+      <p>
+        Pick your character and navigate their economic world. Imagine yourself as this person,{' '}
+        <DefinitionTooltip term="empathize" definition={definedTerms.empathize} /> with the situation, and identify
+        the path that you think you would realistically take.
+      </p>
+      <p>Your choices do not need to feel like the responsible ones. Choose what you are drawn to.</p>
+    </div>
+  );
+}
+
 function CharacterPicker(props) {
   return (
     <div
         className="scenario-panel stack-sm"
         style={{ width: '100%', maxWidth: '100%', display: 'block', marginLeft: 0 }}
       >
-      <p className="scenario-prompt">Pick a character to step into their economic world.</p>
+      <p className="scenario-prompt" style={{ marginBottom: '1.25rem', maxWidth: '60ch' }}>
+        Pick a character to step into their economic world.
+      </p>
       <div
         className="scenario-option-list scenario-option-list-characters"
         style={{
@@ -493,7 +540,7 @@ function CharacterPicker(props) {
 function ScenarioStep(props) {
   return (
     <div className="scenario-panel stack-sm" style={{ width: '100%' }}>
-      <p className="scenario-prompt">{props.prompt}</p>
+      <p className="scenario-prompt" style={{ maxWidth: '70ch', lineHeight: 1.6, marginBottom: '1rem' }}>{props.prompt}</p>
       <div
         className="scenario-option-list scenario-option-list-choices"
         style={{
@@ -616,7 +663,7 @@ export default function ComparisonTool() {
   }
 
   return (
-    <section className="comparison-stack">
+    <section className="comparison-stack" style={{ gap: '2.5rem' }}>
       <div className="stack-sm">
         <div className="panel">
           <div className="stack-sm">
@@ -629,15 +676,28 @@ export default function ComparisonTool() {
         </div>
 
         <div className="transfer-card-grid">
-          {wealthTransferSteps.map(function (step) {
-            return (
-              <article key={step.title} className="panel transfer-step-card">
-                <span className="transfer-step-label">{step.title}</span>
-                <p>{step.text}</p>
-              </article>
-            );
-          })}
-        </div>
+  {wealthTransferSteps.map(function (step, index) {
+    const backgroundColors = [
+      ' #fff6d5', // soft yellow
+      '#d5fbf4', // soft blue
+      '#ebe1fa'  // soft purple
+    ];
+
+    return (
+      <article
+        key={step.title}
+        className="panel transfer-step-card"
+        style={{
+          background: backgroundColors[index],
+          border: '1px solid rgba(255,255,255,0.05)'
+        }}
+      >
+        <span className="transfer-step-label">{step.title}</span>
+        <p>{step.text}</p>
+      </article>
+    );
+  })}
+</div>
 
         <div className="panel">
           <p className="section-copy compact-copy">
@@ -690,20 +750,18 @@ export default function ComparisonTool() {
         )}
       </div>
 
-      <div className="panel stack-lg">
-        <div className="intro-section stack-lg">
+      <div className="stack-lg" style={{ paddingTop: '1.25rem', paddingBottom: '2.5rem' }}>
+        <div className="intro-section stack-lg" style={{ marginBottom: '1.75rem' }}>
           <p className="eyebrow">who benefits and who is left out</p>
           <h3 className="panel-title">Character-based decision paths</h3>
-          <div className="section-copy">
-            <ParagraphGroup items={characterSectionIntro} />
-          </div>
+          <CharacterSectionIntroWithDefinitions />
         </div>
 
-        <div className="character-cards-section stack-lg">
-          <div className="section-copy">
-            <ParagraphGroup items={characterPickerPrompt} />
-          </div>
+        <div className="character-cards-section stack-lg" style={{ marginBottom: '2rem' }}>
+          <CharacterPickerPromptWithDefinitions />
         </div>
+
+        <div style={{ height: '1px', background: 'rgba(255,255,255,0.05)', margin: '1rem 0 1.25rem' }} />
 
         <div
           className="scenario-layout scenario-layout-linear"
@@ -711,7 +769,7 @@ export default function ComparisonTool() {
         >
           <div
             className="scenario-flow stack-sm"
-            style={{ width: '100%', maxWidth: '100%', display: 'block' }}
+            style={{ width: '100%', maxWidth: '100%', display: 'block', gap: '1.75rem' }}
           >
             <div
               className="scenario-flow-actions"
@@ -719,7 +777,8 @@ export default function ComparisonTool() {
                 display: 'flex',
                 justifyContent: 'flex-end',
                 gap: '0.75rem',
-                width: '100%'
+                width: '100%',
+                marginBottom: '1.5rem'
               }}
             >
               {(selectedCharacterId || history.length || outcomeData) && (
