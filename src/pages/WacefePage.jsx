@@ -12,6 +12,14 @@ const studentPrompts = [
   'When a statistic looks abstract, who in real life could be affected by that number?'
 ];
 
+const characterSectionIntro = [
+  'Through analyzing data and looking at historical policies and practices, we have seen how someone’s demographic and socioeconomic positioning can uniquely impact their financial opportunities in ways that could be more positive and or negative than another.',
+  'But what do these impacts look like on a daily basis? How does this dynamic show up in real life? Let’s find out.',
+  'Below are 3 representations of a Washington-state resident. Included are brief introductions, as well as descriptions of some economic opportunities or challenges they could potentially face.',
+  'Pick your character and navigate their economic world. Imagine yourself as this person, empathize with the situation, and identify the path that you think you would realistically take.',
+  'Your choices do not need to feel like the responsible ones. Choose what you are drawn to.'
+];
+
 const expandableVisuals = [
   {
     id: 'rent-burden',
@@ -734,10 +742,10 @@ export default function WacefePage() {
                 <p className="eyebrow">our future reality</p>
                 <h2>the great wealth transfer</h2>
                 <p className="section-copy">
-                  The logic here is broken into three pieces: explain what it is, reveal the projected scale, and let students test how different backgrounds and decisions can change who benefits.
+                  Why do today’s inequities matter for the future? Wealth in Washington-state is going to shift dramatically to different people and in different ways. This shift is called the Great Wealth Transfer. It is important that we know when this transfer will happen, how it will happen, and what we should do when it does. Especially because, if the power associated with this wealth falls in your hands, you have the responsibility to do good on the part of your peers.
                 </p>
               </div>
-
+              {/* {characterSectionIntro} */}
               <ComparisonTool />
             </div>
           </section>
