@@ -12,4 +12,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/wacefe-scafold/', // ← MUST match repo name EXACTLY
+  resolve: {
+    dedupe: ['react', 'react-dom'],  // forces a single copy of React
+  },
 })
