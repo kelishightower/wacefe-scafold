@@ -697,6 +697,11 @@ export default function WacefePage() {
                     <p className="section-copy compact-copy">
                       Before students move the sliders, invite them to explain what they think a high-income household and a more typical household in Washington might earn. Once both estimates are on the screen, ask what surprised them, what assumptions shaped their guesses, and what this gap could mean for housing, savings, and everyday stability.
                     </p>
+                    <img 
+                        src="public/WACEFE-circle.png" 
+                        alt="WACEFE circle" 
+                        style={{ maxWidth: '100%', height: 'auto', padding: '2rem', marginLeft: '-50%' }}
+                      />
                   </div>
 
                   <div className="estimate-card-stack">

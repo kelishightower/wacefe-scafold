@@ -846,15 +846,21 @@ export default function ComparisonTool() {
           )}
         </div>
 
-        <div className="stack-lg" style={{ paddingTop: '1.25rem', paddingBottom: '2.5rem' }}>
-          <div className="intro-section stack-lg" style={{ marginBottom: '1.75rem' }}>
-            <p className="eyebrow">who benefits and who is left out</p>
-            <h3 className="panel-title">Character-based decision paths</h3>
-            <CharacterSectionIntroWithDefinitions />
-          </div>
-
-          <div className="character-cards-section stack-lg" style={{ marginBottom: '2rem' }}>
-            <CharacterPickerPromptWithDefinitions />
+        <div className="stack-lg" style={{ paddingTop: '1.25rem', paddingBottom: '1rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'start' }}>
+            <div className="intro-section stack-lg">
+              <p className="eyebrow">who benefits and who is left out</p>
+              <h3 className="panel-title">Character-based decision paths</h3>
+              <CharacterSectionIntroWithDefinitions />
+              <CharacterPickerPromptWithDefinitions />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <img 
+                src="public/WACEFE-circle.png" 
+                alt="WACEFE circle" 
+                style={{ maxWidth: '100%', height: 'auto', padding: '1rem', marginRight: '-50%', }}
+              />
+            </div>
           </div>
 
           <div style={{ height: '1px', background: 'rgba(255,255,255,0.05)', margin: '1rem 0 1.25rem' }} />
