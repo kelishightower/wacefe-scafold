@@ -411,10 +411,6 @@ h3 {
   min-height: 260px;
 }
 
-.showcase-panel .simple-placeholder-map {
-  min-height: 320px;
-}
-
 .history-showcase .showcase-panel .simple-placeholder {
   min-height: 240px;
 }
@@ -685,7 +681,7 @@ h3 {
 }
 
 .disclaimer-panel {
-  background: var(--bg-light);
+  background: var(--surface);
   border-color: var(--accent-yellow);
 }
 
