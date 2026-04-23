@@ -9,7 +9,7 @@ const sections = [
 ];
 
 export default function Navbar() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   function handleClick(id) {
     const element = document.getElementById(id);

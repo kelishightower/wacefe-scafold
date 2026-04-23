@@ -690,6 +690,7 @@ function OutcomeStep(props) {
 
 export default function ComparisonTool() {
   const [showTransferValue, setShowTransferValue] = useState(false);
+  const [activeTransferStep, setActiveTransferStep] = useState(0);
   const [selectedCharacterId, setSelectedCharacterId] = useState(null);
   const [currentNodeId, setCurrentNodeId] = useState(null);
   const [outcomeData, setOutcomeData] = useState(null);
@@ -703,6 +704,9 @@ export default function ComparisonTool() {
 
   const currentScenarioNode =
       selectedCharacterId && currentNodeId ? scenarioTree[selectedCharacterId][currentNodeId] : null;
+
+  const activeTransferCard = wealthTransferSteps[activeTransferStep];
+  const transferCardBackgrounds = ['#fff1b8', '#c8f3ec', '#e1d2fb'];
 
   function chooseCharacter(characterId) {
     setSelectedCharacterId(characterId);
@@ -771,28 +775,33 @@ export default function ComparisonTool() {
             </div>
           </div>
 
-          <div className="transfer-card-grid">
-            {wealthTransferSteps.map(function (step, index) {
-              const backgroundColors = [
-                ' #fff6d5',
-                '#d5fbf4',
-                '#ebe1fa'
-              ];
-
-              return (
-                  <article
-                      key={step.title}
-                      className="panel transfer-step-card"
-                      style={{
-                        background: backgroundColors[index],
-                        border: '1px solid rgba(255,255,255,0.05)'
-                      }}
+          <div className="transfer-explainer-layout">
+            <div className="transfer-card-grid">
+              {wealthTransferSteps.map(function (step, index) {
+                return (
+                  <button
+                    key={step.title}
+                    type="button"
+                    className={activeTransferStep === index ? 'panel transfer-step-card is-active' : 'panel transfer-step-card'}
+                    onClick={function () {
+                      setActiveTransferStep(index);
+                    }}
                   >
                     <span className="transfer-step-label">{step.title}</span>
-                    <p>{step.text}</p>
-                  </article>
-              );
-            })}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div
+              className="panel transfer-step-reveal"
+              style={{ background: transferCardBackgrounds[activeTransferStep] }}
+            >
+              <div className="stack-sm">
+                <span className="transfer-step-label">{activeTransferCard.title}</span>
+                <p>{activeTransferCard.text}</p>
+              </div>
+            </div>
           </div>
 
           <div className="panel">
@@ -829,18 +838,13 @@ export default function ComparisonTool() {
                   To help visualize how large this number is, each icon below represents $10 million, adding up to the total projection of transferred wealth.
                 </p>
                 <div className="money-stack-row" aria-hidden="true">
-                  <span className="money-stack" />
-                  <span className="money-stack" />
-                  <span className="money-stack" />
-                  <span className="money-stack" />
-                  <span className="money-stack" />
-                  <span className="money-stack" />
-                  <span className="money-stack" />
-                  <span className="money-stack" />
-                  <span className="money-stack" />
-                  <span className="money-stack" />
-                  <span className="money-stack" />
-                  <span className="money-stack" />
+                  {Array.from({ length: 12 }).map(function (_, index) {
+                    return (
+                      <span key={index} className="money-stack">
+                        💸
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
           )}
@@ -850,7 +854,7 @@ export default function ComparisonTool() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'start' }}>
             <div className="intro-section stack-lg">
               <p className="eyebrow">who benefits and who is left out</p>
-              <h3 className="panel-title">Character-based decision paths</h3>
+              <h3 className="panel-title">Choose your own economic adventure</h3>
               <CharacterSectionIntroWithDefinitions />
               <CharacterPickerPromptWithDefinitions />
             </div>

@@ -22,21 +22,21 @@ const characterSectionIntro = [
 
 const expandableVisuals = [
   {
-    id: 'rent-burden',
+    id: 'wa-homeowners-share',
     eyebrow: 'quick expand',
-    title: 'County rent burden snapshot',
-    summary: 'A fast look at how housing pressure might vary across places.',
+    title: 'Share of All Homeowners in Washington (2024)',
+    summary: 'A bar chart showing how different groups make up the overall pool of Washington homeowners.',
     note:
-      'Teachers could use this graphic to ask where cost pressure seems highest and what that might mean for saving, moving, or staying in one community.',
+      'This view can help students ask who is most represented among homeowners in Washington today and what barriers might shape those differences.',
     thumbnail: function Thumbnail() {
       return (
         <svg viewBox="0 0 240 120" aria-hidden="true">
-          <rect x="20" y="72" width="26" height="28" rx="6" fill="#bcc8e8" />
-          <rect x="58" y="54" width="26" height="46" rx="6" fill="#9fe6dc" />
-          <rect x="96" y="40" width="26" height="60" rx="6" fill="#ffd08c" />
-          <rect x="134" y="30" width="26" height="70" rx="6" fill="#79bfe3" />
-          <rect x="172" y="18" width="26" height="82" rx="6" fill="#1fb5a2" />
-          <line x1="18" y1="100" x2="210" y2="100" stroke="rgba(31,22,51,0.18)" strokeWidth="2" />
+          <line x1="18" y1="100" x2="224" y2="100" stroke="rgba(31,22,51,0.18)" strokeWidth="2" />
+          <rect x="24" y="22" width="30" height="78" rx="4" fill="#27a0c8" />
+          <rect x="70" y="86" width="30" height="14" rx="4" fill="#27a0c8" />
+          <rect x="116" y="92" width="30" height="8" rx="4" fill="#27a0c8" />
+          <rect x="162" y="72" width="30" height="28" rx="4" fill="#27a0c8" />
+          <rect x="208" y="78" width="20" height="22" rx="4" fill="#27a0c8" />
         </svg>
       );
     },
@@ -44,91 +44,122 @@ const expandableVisuals = [
       return (
         <svg viewBox="0 0 520 260" aria-hidden="true">
           <g stroke="rgba(31,22,51,0.12)" strokeWidth="1">
-            <line x1="48" y1="48" x2="480" y2="48" />
-            <line x1="48" y1="96" x2="480" y2="96" />
-            <line x1="48" y1="144" x2="480" y2="144" />
-            <line x1="48" y1="192" x2="480" y2="192" />
-            <line x1="48" y1="228" x2="480" y2="228" />
+            <line x1="54" y1="58" x2="482" y2="58" />
+            <line x1="54" y1="118" x2="482" y2="118" />
+            <line x1="54" y1="178" x2="482" y2="178" />
+            <line x1="54" y1="228" x2="482" y2="228" />
           </g>
-          <rect x="74" y="164" width="46" height="64" rx="8" fill="#bcc8e8" />
-          <rect x="144" y="132" width="46" height="96" rx="8" fill="#9fe6dc" />
-          <rect x="214" y="104" width="46" height="124" rx="8" fill="#ffd08c" />
-          <rect x="284" y="82" width="46" height="146" rx="8" fill="#79bfe3" />
-          <rect x="354" y="52" width="46" height="176" rx="8" fill="#1fb5a2" />
-          <text x="72" y="246" className="mini-chart-label">Yakima</text>
-          <text x="139" y="246" className="mini-chart-label">Spokane</text>
-          <text x="208" y="246" className="mini-chart-label">Pierce</text>
-          <text x="282" y="246" className="mini-chart-label">King</text>
-          <text x="344" y="246" className="mini-chart-label">Whatcom</text>
+          <text x="24" y="62" className="mini-chart-label">60</text>
+          <text x="24" y="122" className="mini-chart-label">40</text>
+          <text x="24" y="182" className="mini-chart-label">20</text>
+          <rect x="78" y="18" width="52" height="210" rx="8" fill="#27a0c8" />
+          <rect x="166" y="220" width="52" height="8" rx="8" fill="#27a0c8" />
+          <rect x="254" y="224" width="52" height="4" rx="8" fill="#27a0c8" />
+          <rect x="342" y="202" width="52" height="26" rx="8" fill="#27a0c8" />
+          <rect x="430" y="208" width="52" height="20" rx="8" fill="#27a0c8" />
+          <text x="84" y="244" className="mini-chart-label mini-chart-label-small">White</text>
+          <text x="172" y="244" className="mini-chart-label mini-chart-label-small">Black</text>
+          <text x="220" y="244" className="mini-chart-label mini-chart-label-xsmall">American Indian /</text>
+          <text x="228" y="255" className="mini-chart-label mini-chart-label-xsmall">Alaska Native</text>
+          <text x="350" y="244" className="mini-chart-label mini-chart-label-small">Asian</text>
+          <text x="410" y="244" className="mini-chart-label mini-chart-label-xsmall">Hispanic/Latino</text>
         </svg>
       );
     }
   },
   {
-    id: 'wealth-ladder',
+    id: 'generation-net-worth',
     eyebrow: 'quick expand',
-    title: 'Wealth-building ladder',
-    summary: 'A simple staircase view of what helps families move from income to assets.',
+    title: 'Net Worth of Each Generation (Trillions)',
+    summary: 'A horizontal bar comparison of total net worth held by Baby Boomers, Gen X, and Millennials.',
     note:
-      'This could help students talk through which steps are easier when a family already has support, savings, or inherited stability.',
+      'This chart can help students see how much more wealth older generations currently hold, and why the Great Wealth Transfer matters.',
     thumbnail: function Thumbnail() {
       return (
         <svg viewBox="0 0 240 120" aria-hidden="true">
-          <rect x="26" y="78" width="34" height="22" rx="6" fill="#ffd08c" />
-          <rect x="66" y="62" width="34" height="38" rx="6" fill="#bcc8e8" />
-          <rect x="106" y="46" width="34" height="54" rx="6" fill="#9fe6dc" />
-          <rect x="146" y="30" width="34" height="70" rx="6" fill="#79bfe3" />
-          <rect x="186" y="14" width="34" height="86" rx="6" fill="#1fb5a2" />
+          <rect x="52" y="20" width="166" height="20" rx="5" fill="#e9edf2" />
+          <rect x="52" y="50" width="166" height="20" rx="5" fill="#e9edf2" />
+          <rect x="52" y="80" width="166" height="20" rx="5" fill="#e9edf2" />
+          <rect x="52" y="20" width="150" height="20" rx="5" fill="#43b0e6" />
+          <rect x="52" y="50" width="88" height="20" rx="5" fill="#ffaf98" />
+          <rect x="52" y="80" width="40" height="20" rx="5" fill="#afc954" />
         </svg>
       );
     },
     expanded: function Expanded() {
       return (
         <svg viewBox="0 0 520 260" aria-hidden="true">
-          <rect x="38" y="180" width="72" height="46" rx="10" fill="#ffd08c" />
-          <rect x="124" y="148" width="72" height="78" rx="10" fill="#bcc8e8" />
-          <rect x="210" y="116" width="72" height="110" rx="10" fill="#9fe6dc" />
-          <rect x="296" y="84" width="72" height="142" rx="10" fill="#79bfe3" />
-          <rect x="382" y="52" width="72" height="174" rx="10" fill="#1fb5a2" />
-          <text x="54" y="206" className="mini-chart-label">income</text>
-          <text x="131" y="174" className="mini-chart-label">savings</text>
-          <text x="224" y="142" className="mini-chart-label">credit</text>
-          <text x="304" y="110" className="mini-chart-label">ownership</text>
-          <text x="399" y="78" className="mini-chart-label">assets</text>
+          <text x="36" y="82" className="mini-chart-label">Baby Boomer</text>
+          <text x="36" y="142" className="mini-chart-label">Gen X</text>
+          <text x="36" y="202" className="mini-chart-label">Millennial</text>
+          <rect x="170" y="54" width="294" height="30" rx="7" fill="#edf1f5" />
+          <rect x="170" y="114" width="294" height="30" rx="7" fill="#edf1f5" />
+          <rect x="170" y="174" width="294" height="30" rx="7" fill="#edf1f5" />
+          <rect x="170" y="54" width="294" height="30" rx="7" fill="#43b0e6" />
+          <rect x="170" y="114" width="150" height="30" rx="7" fill="#ffaf98" />
+          <rect x="170" y="174" width="96" height="30" rx="7" fill="#afc954" />
+          <text x="182" y="74" className="mini-chart-label mini-chart-label-small">88,478,233</text>
+          <text x="182" y="134" className="mini-chart-label mini-chart-label-small">45,422,187</text>
+          <text x="182" y="194" className="mini-chart-label mini-chart-label-small">18,252,845</text>
         </svg>
       );
     }
   },
   {
-    id: 'savings-gap',
+    id: 'homeownership-over-time',
     eyebrow: 'quick expand',
-    title: 'Emergency savings comparison',
-    summary: 'A quick visual for how many months of cushion families may have.',
+    title: 'Homeownership Rates Over Time',
+    summary: 'A two-line chart comparing Washington and the United States across the twentieth century.',
     note:
-      'Students could use this to discuss how one unexpected bill feels different when a household has no buffer versus a few months of savings.',
+      'Students can use this chart to compare how Washington and U.S. homeownership changed over time and where those paths diverged.',
     thumbnail: function Thumbnail() {
       return (
         <svg viewBox="0 0 240 120" aria-hidden="true">
-          <circle cx="54" cy="62" r="18" fill="#ffd08c" />
-          <circle cx="104" cy="62" r="18" fill="#ffd08c" />
-          <circle cx="154" cy="62" r="18" fill="#bcc8e8" />
-          <circle cx="204" cy="62" r="18" fill="#1fb5a2" />
+          <g stroke="rgba(31,22,51,0.12)" strokeWidth="1">
+            <line x1="18" y1="30" x2="220" y2="30" />
+            <line x1="18" y1="60" x2="220" y2="60" />
+            <line x1="18" y1="90" x2="220" y2="90" />
+          </g>
+          <polyline fill="none" stroke="#2ba4d6" strokeWidth="3" points="24,72 58,88 92,56 126,74 160,24 194,38 224,60" />
+          <polyline fill="none" stroke="#0e5d8b" strokeWidth="3" points="24,98 58,100 92,84 126,110 160,46 194,38 224,28" />
         </svg>
       );
     },
     expanded: function Expanded() {
       return (
         <svg viewBox="0 0 520 260" aria-hidden="true">
-          <g>
-            <circle cx="86" cy="132" r="30" fill="#ffd08c" />
-            <circle cx="158" cy="132" r="30" fill="#ffd08c" />
-            <circle cx="278" cy="132" r="30" fill="#bcc8e8" />
-            <circle cx="350" cy="132" r="30" fill="#9fe6dc" />
-            <circle cx="422" cy="132" r="30" fill="#1fb5a2" />
+          <g stroke="rgba(31,22,51,0.12)" strokeWidth="1">
+            <line x1="44" y1="44" x2="470" y2="44" />
+            <line x1="44" y1="84" x2="470" y2="84" />
+            <line x1="44" y1="124" x2="470" y2="124" />
+            <line x1="44" y1="164" x2="470" y2="164" />
+            <line x1="44" y1="204" x2="470" y2="204" />
           </g>
-          <text x="60" y="196" className="mini-chart-label">1 month</text>
-          <text x="238" y="196" className="mini-chart-label">2 months</text>
-          <text x="382" y="196" className="mini-chart-label">3+ months</text>
+          <polyline
+            fill="none"
+            stroke="#2ba4d6"
+            strokeWidth="4"
+            points="60,152 98,176 136,120 174,156 212,56 250,28 288,46 326,62 364,78 402,112 440,88"
+          />
+          <polyline
+            fill="none"
+            stroke="#0e5d8b"
+            strokeWidth="4"
+            points="60,198 98,200 136,180 174,226 212,140 250,82 288,72 326,62 364,48 402,50 440,26"
+          />
+          <text x="18" y="208" className="mini-chart-label mini-chart-label-small">44</text>
+          <text x="18" y="168" className="mini-chart-label mini-chart-label-small">52</text>
+          <text x="18" y="128" className="mini-chart-label mini-chart-label-small">60</text>
+          <text x="18" y="88" className="mini-chart-label mini-chart-label-small">64</text>
+          <text x="18" y="48" className="mini-chart-label mini-chart-label-small">68</text>
+          <text x="48" y="242" className="mini-chart-label mini-chart-label-small">1910</text>
+          <text x="124" y="242" className="mini-chart-label mini-chart-label-small">1930</text>
+          <text x="200" y="242" className="mini-chart-label mini-chart-label-small">1950</text>
+          <text x="276" y="242" className="mini-chart-label mini-chart-label-small">1970</text>
+          <text x="352" y="242" className="mini-chart-label mini-chart-label-small">1990</text>
+          <text x="428" y="242" className="mini-chart-label mini-chart-label-small">2000</text>
+          <text x="430" y="30" className="mini-chart-label mini-chart-label-small">United States</text>
+          <text x="420" y="108" className="mini-chart-label mini-chart-label-small">Washington</text>
         </svg>
       );
     }
@@ -303,6 +334,21 @@ function IncomeGuessCard() {
           <span className="mini-stat-label">top 10%</span>
           <strong>${actualTopTenIncome.toLocaleString()}</strong>
           <p>placeholder value for the higher-income group</p>
+          <div className="slider-container slider-container-static">
+            <input
+              type="range"
+              min="0"
+              max="500000"
+              step="5000"
+              value={actualTopTenIncome}
+              className="slider slider-static"
+              aria-label="Actual top 10 percent income"
+              disabled
+            />
+            <span className="slider-value" style={{ left: ((actualTopTenIncome / 500000) * 100) + '%' }}>
+              ${actualTopTenIncome.toLocaleString()}
+            </span>
+          </div>
         </div>
       )}
     </div>
@@ -369,6 +415,21 @@ function OtherNinetyGuessCard() {
           <span className="mini-stat-label">other 90%</span>
           <strong>${actualOtherIncome.toLocaleString()}</strong>
           <p>placeholder value for the broader group</p>
+          <div className="slider-container slider-container-static">
+            <input
+              type="range"
+              min="0"
+              max="200000"
+              step="2500"
+              value={actualOtherIncome}
+              className="slider slider-static"
+              aria-label="Actual other 90 percent income"
+              disabled
+            />
+            <span className="slider-value" style={{ left: ((actualOtherIncome / 200000) * 100) + '%' }}>
+              ${actualOtherIncome.toLocaleString()}
+            </span>
+          </div>
         </div>
       )}
     </div>
@@ -640,6 +701,33 @@ export default function WacefePage() {
     };
   }, []);
 
+  useEffect(function () {
+    const nodes = document.querySelectorAll('.reveal-on-scroll');
+
+    if (!nodes.length) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      { threshold: 0.18, rootMargin: '0px 0px -6% 0px' }
+    );
+
+    nodes.forEach(function (node) {
+      observer.observe(node);
+    });
+
+    return function cleanupObserver() {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className="wacefe-page">
       <div className="scroll-progress" aria-hidden="true">
@@ -690,12 +778,15 @@ export default function WacefePage() {
               </div>
 
               <SectionSpacing>
-                <div className="estimate-activity-grid">
+                <div className="estimate-activity-grid reveal-on-scroll reveal-left">
                   <div className="stack-sm estimate-guide-copy">
                     <p className="eyebrow">teacher setup</p>
                     <h3 className="panel-title">Ask students to predict the gap before they see the answer</h3>
                     <p className="section-copy compact-copy">
                       Before students move the sliders, invite them to explain what they think a high-income household and a more typical household in Washington might earn. Once both estimates are on the screen, ask what surprised them, what assumptions shaped their guesses, and what this gap could mean for housing, savings, and everyday stability.
+                    </p>
+                    <p className="section-copy compact-copy">
+                      This teacher setup stays here for now even though the header also links to the teacher guide, so user testing can show which format educators prefer.
                     </p>
                     <img 
                         src="public/WACEFE-circle.png" 
@@ -712,27 +803,39 @@ export default function WacefePage() {
               </SectionSpacing>
 
               <SectionSpacing>
-                <SmallStatsRow />
+                <div className="reveal-on-scroll reveal-up">
+                  <SmallStatsRow />
+                </div>
               </SectionSpacing>
 
               <SectionSpacing>
-                <DataDisclaimer />
+                <div className="reveal-on-scroll reveal-right">
+                  <DataDisclaimer />
+                </div>
               </SectionSpacing>
 
               <SectionSpacing>
-                <RacialIncomeComparison />
+                <div className="reveal-on-scroll reveal-left">
+                  <RacialIncomeComparison />
+                </div>
               </SectionSpacing>
 
               <SectionSpacing>
-                <Map />
+                <div className="reveal-on-scroll reveal-right">
+                  <Map />
+                </div>
               </SectionSpacing>
 
               <SectionSpacing>
-                <QuickExpandVisualGallery />
+                <div className="reveal-on-scroll reveal-up">
+                  <QuickExpandVisualGallery />
+                </div>
               </SectionSpacing>
 
               <SectionSpacing>
-                <ReflectionPrompts />
+                <div className="reveal-on-scroll reveal-left">
+                  <ReflectionPrompts />
+                </div>
               </SectionSpacing>
             </div>
           </section>
@@ -748,21 +851,27 @@ export default function WacefePage() {
               </div>
 
               <SectionSpacing>
-                <HistoryTimeline />
+                <div className="reveal-on-scroll reveal-right">
+                  <HistoryTimeline />
+                </div>
               </SectionSpacing>
 
               <SectionSpacing>
-                <QuickFactsFlow />
+                <div className="reveal-on-scroll reveal-up">
+                  <QuickFactsFlow />
+                </div>
               </SectionSpacing>
 
               <SectionSpacing>
-                <ExpandableSection title="questions to answer before this section is final">
-                  <ul className="simple-list">
-                    <li>What exact unit is the existing inequality chart measuring?</li>
-                    <li>Which historical policies do you want to feature as the core chain of causes?</li>
-                    <li>Do you want this section to compare Washington to the U.S. in every graphic, or only in one anchor graphic?</li>
-                  </ul>
-                </ExpandableSection>
+                <div className="reveal-on-scroll reveal-left">
+                  <ExpandableSection title="questions to answer before this section is final">
+                    <ul className="simple-list">
+                      <li>What exact unit is the existing inequality chart measuring?</li>
+                      <li>Which historical policies do you want to feature as the core chain of causes?</li>
+                      <li>Do you want this section to compare Washington to the U.S. in every graphic, or only in one anchor graphic?</li>
+                    </ul>
+                  </ExpandableSection>
+                </div>
               </SectionSpacing>
             </div>
           </section>
@@ -803,8 +912,9 @@ export default function WacefePage() {
                     </p>
                   </div>
                 </div> */}
-
-                <ComparisonTool />
+                <div className="reveal-on-scroll reveal-up">
+                  <ComparisonTool />
+                </div>
               </SectionSpacing>
             </div>
           </section>
@@ -815,7 +925,7 @@ export default function WacefePage() {
                 <p className="eyebrow">your toolkit for an equitable future</p>
                 <h2>what students can do with this information</h2>
                 <p className="section-copy">
-                  The toolkit now splits into two clearer parts: policies and programs that support wealth-building, and a student-facing resource table built around real worries instead of generic "learn more" buttons.
+                  This toolkit now combines eight clickable strategy cards, a student-facing concerns section, and a few short explainer notes that help define key ideas like equity, wealth, and systems.
                 </p>
               </div>
               <SectionSpacing>
