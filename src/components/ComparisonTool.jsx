@@ -768,7 +768,7 @@ export default function ComparisonTool() {
           <div className="panel">
             <div className="stack-sm">
               <p className="eyebrow">short explanation flow</p>
-              <h3 className="panel-title">A simple way to explain the Great Wealth Transfer</h3>
+              <h3 className="panel-title">a simple way to explain the great wealth transfer</h3>
               <div className="section-copy compact-copy">
                 <ParagraphGroup items={wealthTransferIntro} />
               </div>
@@ -814,7 +814,7 @@ export default function ComparisonTool() {
         <div className="panel wealth-reveal-panel">
           <div className="stack-sm">
             <p className="eyebrow">projected scale</p>
-            <h3 className="panel-title">How much wealth may transfer over the next 20 to 30 years?</h3>
+            <h3 className="panel-title">how much wealth may transfer over the next 20 to 30 years?</h3>
           </div>
           <button
               type="button"
@@ -854,7 +854,7 @@ export default function ComparisonTool() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'start' }}>
             <div className="intro-section stack-lg">
               <p className="eyebrow">who benefits and who is left out</p>
-              <h3 className="panel-title">Choose your own economic adventure</h3>
+              <h3 className="panel-title">choose your own economic adventure</h3>
               <CharacterSectionIntroWithDefinitions />
               <CharacterPickerPromptWithDefinitions />
             </div>

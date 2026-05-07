@@ -5,84 +5,84 @@ import React, { useMemo, useState } from 'react';
 // here without touching any rendering logic.
 const factMap = {
   slavery: {
-    label: 'Slavery',
+    label: 'slavery',
     quickFact:
       'The wealth created through enslaved labor established long-term economic advantages that were inherited across generations.',
     whyItMatters:
       'This helps explain why present-day wealth gaps are rooted in structural history, not individual choices alone.'
   },
   landOwnership: {
-    label: 'Land Ownership',
+    label: 'land ownership',
     quickFact:
       'Policy and legal access to land ownership strongly shaped who could accumulate intergenerational wealth.',
     whyItMatters:
       'Home and land equity are key wealth engines, so unequal access compounds over decades.'
   },
   systemicRacism: {
-    label: 'Systemic Racism',
+    label: 'systemic racism',
     quickFact:
       'Institutional rules across housing, labor, education, and lending have produced unequal outcomes at scale.',
     whyItMatters:
       'The issue is system-level, so long-term solutions also need policy and institutional change.'
   },
   housing: {
-    label: 'Unequal Housing Policies',
+    label: 'unequal housing policies',
     quickFact:
       'Redlining, exclusionary zoning, and unequal mortgage access limited where families could buy or build equity.',
     whyItMatters:
       'Housing policy directly impacts neighborhood opportunity, school quality, and wealth growth.'
   },
   neoliberalism: {
-    label: 'Neoliberalism',
+    label: 'neoliberalism',
     quickFact:
       'Privatization and reduced public safety nets shifted risk to households with fewer financial protections.',
     whyItMatters:
       'When basic costs rise and supports shrink, existing wealth gaps expand faster.'
   },
   votingBarriers: {
-    label: 'Voting Barriers',
+    label: 'voting barriers',
     quickFact:
       'Restrictions on participation have historically reduced representation for communities most impacted by inequity.',
     whyItMatters:
       'Lower policy voice often leads to fewer protections and fewer public investments.'
   },
   culturalOppression: {
-    label: 'Cultural Oppression',
+    label: 'cultural oppression',
     quickFact:
       'Bias in social norms and institutions influences who gets believed, hired, promoted, or funded.',
     whyItMatters:
       'Cultural narratives shape real economic outcomes through daily decisions and institutional gatekeeping.'
   },
   hiring: {
-    label: 'Racist Hiring Processes',
+    label: 'racist hiring processes',
     quickFact:
       'Bias in recruitment, interviews, and promotions contributes to wage and leadership disparities.',
     whyItMatters:
       'Income inequality today becomes wealth inequality tomorrow through savings and asset ownership gaps.'
   },
   schools: {
-    label: 'Racism in Schools',
+    label: 'racism in schools',
     quickFact:
       'Uneven school funding and disciplinary bias affect long-term educational and economic pathways.',
     whyItMatters:
       'Education access strongly predicts earning potential and mobility across generations.'
   },
   homeownership: {
-    label: 'Barriers to Homeownership',
+    label: 'barriers to homeownership',
     quickFact:
       'Credit barriers, appraisal bias, and cost burdens reduce entry to homeownership for many families.',
     whyItMatters:
       'Without home equity, families miss one of the most common paths to intergenerational wealth.'
   },
   justice: {
-    label: 'Criminal Justice System',
+    label: 'criminal justice system',
     quickFact:
       'Disproportionate policing and sentencing create employment, housing, and income barriers.',
     whyItMatters:
       'System involvement can reduce lifetime earnings and limit wealth transfer opportunities.'
   },
   outcome: {
-    label: 'Wealth Disparities in WA',
+    label: 'wealth disparities in wa',
     quickFact:
       'These combined systems produce measurable disparities in income, savings, homeownership, and assets.',
     whyItMatters:
@@ -155,7 +155,7 @@ export default function QuickFactsFlow() {
         <div className="quickfacts-main">
           <div className="quickfacts-header">
             <h3 id="quickfacts-title" className="panel-title">
-              How Has Our System Shaped Inequalities?
+              how has our system shaped inequalities?
             </h3>
             <span className="quickfacts-badge">Quick Facts</span>
           </div>

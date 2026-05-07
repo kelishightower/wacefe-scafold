@@ -339,25 +339,25 @@ const concernRows = [
 const additionalInfoSections = [
   {
     eyebrow: 'additional information',
-    title: 'Equality vs Equity in Real Life',
+    title: 'equality vs equity in real life',
     body:
       'Equality means everyone is given the same resources or opportunities. Equity means people are given different levels of support based on what they need to have a fair chance.'
   },
   {
     eyebrow: 'additional information',
-    title: 'Why This Matters in Policy and Law',
+    title: 'what this matters in policy and law',
     body:
       'In real life, this matters in policies and laws. For example, a law or program that treats everyone the same might sound fair, but it can still lead to unequal outcomes if some groups have faced more barriers in the past. Equity-focused policies try to recognize these differences and provide extra support where it is needed most. As future voters, students will help shape these decisions. Understanding equity helps you think about whether a policy truly creates fairness, or whether it simply treats everyone the same without addressing the underlying social and economic conditions that shape people’s different starting points. Fairness is not always about giving everyone the same thing. It is about making sure everyone has a real chance to succeed.'
   },
   {
     eyebrow: 'additional information',
-    title: 'What Does it Mean to Make Informed Choices in an Unequal System?',
+    title: 'what does it mean to make informed choices in an unequal system?',
     body:
       'Making informed choices in an unequal system means knowing that your decisions matter, but not everyone starts with the same access to opportunities or resources. Schools, jobs, and financial systems can affect what options are available and how risky a choice feels for different people. Because of this, the “best” choice is not the same for everyone. It also means using what you do have, your knowledge, community, and culture to guide your decisions. Advice from loved ones, and mentors can help you see options you might not notice on your own and make choices that fit your life and values. Ask yourself: What resources do I have right now? What risks can I handle? What goals matter most to me?'
   },
   {
     eyebrow: 'additional information',
-    title: 'How Can Community and Culture Help Guide Your Choices?',
+    title: 'how can community and culture help guide your choices?',
     body:
       'You don’t have to navigate everything on your own. Your community and culture can help guide you. Community and culture help guide financial decisions by shaping what people value and how they think about money. The people around you influence what feels normal, like saving, spending, or helping family. Your culture can also shape priorities, such as supporting relatives, avoiding debt, or focusing on long-term stability instead of quick spending. Friends, family, and community members can share advice, resources, and real examples that help you learn what works in real life. Because of this, financial decisions are not made alone, they are shaped by the experiences, values, and support of the communities you are part of. This can help you make choices that fit your life and also reflect what matters to you and the people you care about. Understanding how your family thinks about money, like debt or success, can help you decide which beliefs still work for you and which ones you want to change. These influences can help you make decisions that feel right for you, not just what others expect.'
   }
@@ -441,7 +441,7 @@ export default function Toolkit() {
         <p className="eyebrow">section numero uno</p>
         <div className="toolkit-resource-header">
           <div className="stack-sm">
-            <h3 className="panel-title">Resource cards for WA policies, programs, and investments</h3>
+            <h3 className="panel-title">resource cards for wa policies, programs, and investments</h3>
             <p className="section-copy compact-copy">
               Start with the first few, then open the rest when you want the full list.
             </p>
@@ -536,7 +536,7 @@ export default function Toolkit() {
 
         <div className="stack-sm showcase-copy">
           <p className="eyebrow">your feelings about money are valid</p>
-          <h3 className="panel-title">Many students feel stressed or unsure about money and the future</h3>
+          <h3 className="panel-title">many students feel stressed or unsure about money and the future</h3>
           <p className="section-copy compact-copy">
             You are not alone in these concerns. These feelings are common, especially when thinking about life after high school and an unequal economy.
           </p>

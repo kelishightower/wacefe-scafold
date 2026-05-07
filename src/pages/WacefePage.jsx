@@ -197,7 +197,7 @@ function QuickExpandVisualGallery() {
       <div className="panel-header align-start">
         <div className="stack-sm">
           <p className="eyebrow">more quick visuals</p>
-          <h3 className="panel-title">Tap a small chart to open a larger classroom discussion view</h3>
+          <h3 className="panel-title">tap a small chart to open a larger classroom discussion view</h3>
           <p className="section-copy compact-copy">
             This section can hold lightweight graph cards that expand when teachers or students want a closer look without crowding the main page.
           </p>
@@ -287,12 +287,12 @@ function IncomeGuessCard() {
   return (
     <div className="panel guess-panel estimate-card estimate-card-high">
       <div className="stack-sm">
-        <p className="eyebrow">student estimate</p>
+        <p className="eyebrow">estimate</p>
         <h3 className="panel-title">
-          What do you think the average income is for the top 10% of Washington residents?
+          what do you think the average income is for the top 10% of washington residents?
         </h3>
         <p className="section-copy compact-copy">
-          Let students guess first, then reveal the real comparison. Placeholder numbers are here so you can swap in confirmed data later.
+           Let students guess first, then reveal the real comparison. laceholder numbers are here so you can swap in confirmed data later.
         </p>
       </div>
 
@@ -368,9 +368,9 @@ function OtherNinetyGuessCard() {
   return (
     <div className="panel guess-panel align-right estimate-card estimate-card-low">
       <div className="stack-sm">
-        <p className="eyebrow">student estimate</p>
+        <p className="eyebrow">estimate</p>
         <h3 className="panel-title">
-          What do you think the average income is for the other 90% of Washington residents?
+          what do you think the average income is for the other 90% of washington residents?
         </h3>
         <p className="section-copy compact-copy">
           This interaction is separate from the top 10% slider so each estimate and reveal stands on its own.
@@ -451,7 +451,7 @@ function SmallStatsRow() {
   return (
     <div className="small-stats-row">
       <div className="mini-stat-card highlight-teal">
-        <div className="stat-icon" aria-hidden="true">🛒</div>
+        <div className="stat-icon" aria-hidden="true">{/*🛒*/}</div>
         <span className="mini-stat-label">basic expenses</span>
         <strong>31%</strong>
         <p>Households reporting trouble covering essentials like food, utilities, or childcare.</p>
@@ -476,7 +476,7 @@ function RacialIncomeComparison() {
       <div className="panel showcase-panel">
         <div className="stack-sm">
           <p className="eyebrow">income by race and ethnicity</p>
-          <h3 className="panel-title">Washington and U.S. median income in one view</h3>
+          <h3 className="panel-title">washington and u.s. median income in one view</h3>
           <p className="section-copy compact-copy">
             This combined chart helps students compare the Washington numbers against the national pattern in the same frame.
           </p>
@@ -487,7 +487,7 @@ function RacialIncomeComparison() {
 
       <div className="stack-sm showcase-copy">
         <p className="eyebrow">what to notice</p>
-        <h3 className="panel-title">Guide students toward patterns before they jump to conclusions</h3>
+        <h3 className="panel-title">guide students toward patterns before they jump to conclusions</h3>
         <p className="section-copy compact-copy">
           This note could remind students to look for overall patterns, not just the highest or lowest bar. It is a useful place to ask which communities have historically had fewer opportunities to build wealth and what systems, policies, or barriers might be shaping the differences they see in the chart.
         </p>
@@ -663,7 +663,7 @@ function HistoryTimeline() {
 
       <div className="stack-sm showcase-copy">
         <p className="eyebrow">why this matters over time</p>
-        <h3 className="panel-title">Use this space to connect past decisions to present outcomes</h3>
+        <h3 className="panel-title">use this space to connect past decisions to present outcomes</h3>
         <p className="section-copy compact-copy">
           A filled version of this text could introduce the timeline by explaining that wealth gaps are not random or recent. As students scroll, they should be watching for how housing policy, school access, labor systems, and public investment build on each other across generations.
         </p>
@@ -742,7 +742,7 @@ export default function WacefePage() {
             <div className="container hero-simple">
               <div className="stack-sm">
                 {/* <p className="eyebrow">wacefe dashboard</p> */}
-                <h1>Foundations of wealth</h1>
+                <h1>foundations of wealth</h1>
                 <p className="lead">
                   Empowering students to understand not just money—but the systems that shape it.                </p>
               </div>
@@ -750,7 +750,7 @@ export default function WacefePage() {
               <div className="teacher-guide-callout">
                 <div className="stack-sm">
                   <p className="eyebrow">for teachers</p>
-                  <h3 className="panel-title">How to implement this in the classroom</h3>
+                  <h3 className="panel-title">how to implement this in the classroom</h3>
                   <p className="section-copy compact-copy">
                     A short step-by-step guide for using the dashboard before, during, and after class.
                   </p>
@@ -781,7 +781,7 @@ export default function WacefePage() {
                 <div className="estimate-activity-grid reveal-on-scroll reveal-left">
                   <div className="stack-sm estimate-guide-copy">
                     <p className="eyebrow">teacher setup</p>
-                    <h3 className="panel-title">Ask students to predict the gap before they see the answer</h3>
+                    <h3 className="panel-title">ask students to predict the gap before they see the answer</h3>
                     <p className="section-copy compact-copy">
                       Before students move the sliders, invite them to explain what they think a high-income household and a more typical household in Washington might earn. Once both estimates are on the screen, ask what surprised them, what assumptions shaped their guesses, and what this gap could mean for housing, savings, and everyday stability.
                     </p>

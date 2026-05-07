@@ -65,7 +65,7 @@ export default function WashingtonCountyMap({ onCountyClick }) {
   // Legend data for each layer
   const legendData = {
     income: {
-      title: 'Median Income',
+      title: 'median income',
       items: [
         { color: '#084594', label: '>$90,000' },
         { color: '#2171b5', label: '$75,000 - $90,000' },
