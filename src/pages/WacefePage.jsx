@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Navbar from '../components/Navbar';
 import Map from '../components/Map';
 import ComparisonTool from '../components/ComparisonTool';
 import Toolkit from '../components/Toolkit';
-import ExpandableSection from '../components/ExpandableSection';
 import QuickFactsFlow from '../components/QuickFactsFlow';
+import ReflectionQuestion from '../components/ReflectionQuestion';
 
-const studentPrompts = [
-  'What becomes easier for a family when they have savings, home equity, or inherited wealth?',
-  'If two counties have very different school funding and incomes, what opportunities might students experience differently?',
-  'When a statistic looks abstract, who in real life could be affected by that number?'
+const sections = [
+  { id: 'current-state', label: 'Current State', description: 'Income, costs, county data, and visual comparisons' },
+  { id: 'history', label: 'Economic Histories', description: 'Historical and systemic roots of wealth gaps' },
+  { id: 'comparison', label: 'Future Reality', description: 'The Great Wealth Transfer and economic adventure paths' },
+  { id: 'toolkit', label: 'Resources', description: 'Policies, supports, explainers, and action steps' },
+  { id: 'teacher-guide', label: 'Teacher Guide', description: 'Setup notes, objectives, facilitation moves, and PDF guide' }
 ];
 
-const characterSectionIntro = [
-  'Through analyzing data and looking at historical policies and practices, we have seen how someone’s demographic and socioeconomic positioning can uniquely impact their financial opportunities in ways that could be more positive and or negative than another.',
-  'But what do these impacts look like on a daily basis? How does this dynamic show up in real life? Let’s find out.',
-  'Below are 3 representations of a Washington-state resident. Included are brief introductions, as well as descriptions of some economic opportunities or challenges they could potentially face.',
-  'Pick your character and navigate their economic world. Imagine yourself as this person, empathize with the situation, and identify the path that you think you would realistically take.',
-  'Your choices do not need to feel like the responsible ones. Choose what you are drawn to.'
+const reflectionPrompts = [
+  'What becomes easier for a family when they have savings, home equity, or inherited wealth?',
+  'If two counties have very different school funding and incomes, what opportunities might people experience differently?',
+  'When a statistic looks abstract, who in real life could be affected by that number?'
 ];
 
 const expandableVisuals = [
   {
     id: 'wa-homeowners-share',
-    eyebrow: 'quick expand',
+    eyebrow: 'click to explore',
     title: 'Share of All Homeowners in Washington (2024)',
     summary: 'A bar chart showing how different groups make up the overall pool of Washington homeowners.',
     note:
-      'This view can help students ask who is most represented among homeowners in Washington today and what barriers might shape those differences.',
+      'This view helps show who is most represented among homeowners in Washington today and what barriers might shape those differences.',
     thumbnail: function Thumbnail() {
       return (
         <svg viewBox="0 0 240 120" aria-hidden="true">
@@ -69,11 +70,11 @@ const expandableVisuals = [
   },
   {
     id: 'generation-net-worth',
-    eyebrow: 'quick expand',
+    eyebrow: 'click to explore',
     title: 'Net Worth of Each Generation (Trillions)',
     summary: 'A horizontal bar comparison of total net worth held by Baby Boomers, Gen X, and Millennials.',
     note:
-      'This chart can help students see how much more wealth older generations currently hold, and why the Great Wealth Transfer matters.',
+      'This chart shows how much more wealth older generations currently hold, and why the Great Wealth Transfer matters.',
     thumbnail: function Thumbnail() {
       return (
         <svg viewBox="0 0 240 120" aria-hidden="true">
@@ -98,20 +99,20 @@ const expandableVisuals = [
           <rect x="170" y="54" width="294" height="30" rx="7" fill="#43b0e6" />
           <rect x="170" y="114" width="150" height="30" rx="7" fill="#ffaf98" />
           <rect x="170" y="174" width="96" height="30" rx="7" fill="#afc954" />
-          <text x="182" y="74" className="mini-chart-label mini-chart-label-small">88,478,233</text>
-          <text x="182" y="134" className="mini-chart-label mini-chart-label-small">45,422,187</text>
-          <text x="182" y="194" className="mini-chart-label mini-chart-label-small">18,252,845</text>
+          <text x="182" y="74" className="mini-chart-label mini-chart-label-small" fontSize="16" fontWeight="bold">88,478,233</text>
+          <text x="182" y="134" className="mini-chart-label mini-chart-label-small" fontSize="16" fontWeight="bold">45,422,187</text>
+          <text x="182" y="194" className="mini-chart-label mini-chart-label-small" fontSize="16" fontWeight="bold">18,252,845</text>
         </svg>
       );
     }
   },
   {
     id: 'homeownership-over-time',
-    eyebrow: 'quick expand',
+    eyebrow: 'click to explore',
     title: 'Homeownership Rates Over Time',
     summary: 'A two-line chart comparing Washington and the United States across the twentieth century.',
     note:
-      'Students can use this chart to compare how Washington and U.S. homeownership changed over time and where those paths diverged.',
+      'Use this chart to compare how Washington and U.S. homeownership changed over time and where those paths diverged.',
     thumbnail: function Thumbnail() {
       return (
         <svg viewBox="0 0 240 120" aria-hidden="true">
@@ -158,8 +159,8 @@ const expandableVisuals = [
           <text x="276" y="242" className="mini-chart-label mini-chart-label-small">1970</text>
           <text x="352" y="242" className="mini-chart-label mini-chart-label-small">1990</text>
           <text x="428" y="242" className="mini-chart-label mini-chart-label-small">2000</text>
-          <text x="430" y="30" className="mini-chart-label mini-chart-label-small">United States</text>
-          <text x="420" y="108" className="mini-chart-label mini-chart-label-small">Washington</text>
+          <text x="435" y="20" className="mini-chart-label mini-chart-label-small">United States</text>
+          <text x="445" y="100" className="mini-chart-label mini-chart-label-small">Washington</text>
         </svg>
       );
     }
@@ -170,19 +171,99 @@ function ReflectionPrompts() {
   return (
     <div className="panel reflection-panel">
       <div className="panel-header">
-        <h3 className="panel-title">reflection questions</h3>
+        <div className="stack-sm">
+          <p className="eyebrow">reflection</p>
+          <h3 className="panel-title">pause and connect the data to real life</h3>
+        </div>
       </div>
       <div className="prompt-list">
-        {studentPrompts.map(function (prompt) {
+        {reflectionPrompts.map(function (prompt) {
           return (
-            <div key={prompt} className="prompt-card">
-              <span className="prompt-label">think about this</span>
-              <p>{prompt}</p>
-            </div>
+            <ReflectionQuestion key={prompt}>{prompt}</ReflectionQuestion>
           );
         })}
       </div>
     </div>
+  );
+}
+
+function ChartZoomModal({ title, children, onClose }) {
+  return createPortal(
+    <div className="modal-overlay" onClick={onClose}>
+      <div
+        className="modal-content chart-expanded-modal"
+        onClick={function (event) {
+          event.stopPropagation();
+        }}
+      >
+        <div className="modal-header">
+          <div className="stack-sm">
+            <p className="eyebrow">expanded chart</p>
+            <h3>{title}</h3>
+          </div>
+          <button type="button" className="modal-close" onClick={onClose}>
+            ×
+          </button>
+        </div>
+        <div className="modal-body chart-expanded-body">
+          <div className="chart-modal-graphic">{children}</div>
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+}
+
+function TableOfContents() {
+  function scrollToSection(id) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  return (
+    <nav className="toc-panel" aria-labelledby="toc-title">
+      <div className="stack-sm">
+        <p className="eyebrow">dashboard navigation</p>
+        <h2 id="toc-title">choose where to begin</h2>
+        <p className="section-copy compact-copy">
+          Not sure where to start? Use these jump links to move between the dashboard sections.
+        </p>
+      </div>
+      <div className="toc-grid">
+        {sections.map(function (section) {
+          return (
+            <button
+              key={section.id}
+              type="button"
+              className="toc-link"
+              onClick={function () {
+                scrollToSection(section.id);
+              }}
+            >
+              <span>{section.label}</span>
+              <small>{section.description}</small>
+            </button>
+          );
+        })}
+      </div>
+    </nav>
+  );
+}
+
+function BackToTop() {
+  function scrollToTop() {
+    const element = document.getElementById('introduction');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  return (
+    <button type="button" className="back-to-top" onClick={scrollToTop}>
+      Back to top
+    </button>
   );
 }
 
@@ -197,9 +278,9 @@ function QuickExpandVisualGallery() {
       <div className="panel-header align-start">
         <div className="stack-sm">
           <p className="eyebrow">more quick visuals</p>
-          <h3 className="panel-title">tap a small chart to open a larger classroom discussion view</h3>
+          <h3 className="panel-title">tap a small chart to zoom in</h3>
           <p className="section-copy compact-copy">
-            This section can hold lightweight graph cards that expand when teachers or students want a closer look without crowding the main page.
+            Click to explore each lightweight graph card without crowding the main page.
           </p>
         </div>
       </div>
@@ -225,6 +306,7 @@ function QuickExpandVisualGallery() {
                   <p className="eyebrow">{visual.eyebrow}</p>
                   <h4>{visual.title}</h4>
                   <p className="section-copy compact-copy">{visual.summary}</p>
+                  <span className="click-label">Open expanded chart</span>
                 </div>
               </button>
             );
@@ -291,9 +373,9 @@ function IncomeGuessCard() {
         <h3 className="panel-title">
           what do you think the average income is for the top 10% of washington residents?
         </h3>
-        <p className="section-copy compact-copy">
-           Let students guess first, then reveal the real comparison. laceholder numbers are here so you can swap in confirmed data later.
-        </p>
+          <p className="section-copy compact-copy">
+           Make a guess first, then reveal the comparison. Placeholder numbers are here so the size of the gap can be discussed before using final source data.
+          </p>
       </div>
 
       <div className="slider-container">
@@ -443,6 +525,9 @@ function DataDisclaimer() {
       <p className="section-copy">
         Some of these figures may undercount people and communities who are less visible in standard surveys or public data. Treat the visuals as a directional view while source details are being finalized.
       </p>
+      <p className="key-takeaway">
+        Key takeaway: a chart can show a pattern without explaining every cause. Use the historical context below to ask why the pattern exists.
+      </p>
     </div>
   );
 }
@@ -471,6 +556,8 @@ function SmallStatsRow() {
 }
 
 function RacialIncomeComparison() {
+  const [isChartOpen, setIsChartOpen] = useState(false);
+
   return (
     <div className="showcase-item racial-income-showcase">
       <div className="panel showcase-panel">
@@ -478,20 +565,50 @@ function RacialIncomeComparison() {
           <p className="eyebrow">income by race and ethnicity</p>
           <h3 className="panel-title">washington and u.s. median income in one view</h3>
           <p className="section-copy compact-copy">
-            This combined chart helps students compare the Washington numbers against the national pattern in the same frame.
+            This combined chart compares the Washington numbers against the national pattern in the same frame.
           </p>
         </div>
 
-        <RacialIncomeComparisonGraphic />
+        <button
+          type="button"
+          className="chart-expand-trigger"
+          onClick={function () {
+            setIsChartOpen(true);
+          }}
+          aria-label="Zoom in on median income chart"
+        >
+          <RacialIncomeComparisonGraphic />
+          <span className="chart-expand-hint">Zoom in</span>
+        </button>
+        <p className="chart-caption">
+          Caption: This chart compares median household income by race and ethnicity in Washington State and across the United States. While Washington incomes are often higher than the national average, the same racial wealth gaps still appear. The chart highlights how historical and systemic inequalities continue to shape access to income and economic opportunity today.
+        </p>
       </div>
 
       <div className="stack-sm showcase-copy">
-        <p className="eyebrow">what to notice</p>
-        <h3 className="panel-title">guide students toward patterns before they jump to conclusions</h3>
+        <p className="eyebrow">side explanation blurb</p>
+        <h3 className="panel-title">look beyond the highest bar</h3>
         <p className="section-copy compact-copy">
-          This note could remind students to look for overall patterns, not just the highest or lowest bar. It is a useful place to ask which communities have historically had fewer opportunities to build wealth and what systems, policies, or barriers might be shaping the differences they see in the chart.
+          This chart compares median household income in Washington State with the United States overall across different racial and ethnic groups. At first glance, Washington may appear to be doing better because most income levels in the state are higher than the national average. However, the chart also shows that Washington still follows many of the same patterns seen across the country.
+        </p>
+        <p className="section-copy compact-copy">
+          Some communities consistently earn less than others, even when the numbers improve overall. Groups such as Black or African American, Native American, and Hispanic or Latino households continue to have lower median incomes compared to White and Asian households. These differences are not simply the result of individual choices or effort. They connect to long histories of unequal access to education, housing, healthcare, higher-paying jobs, and financial opportunities.
+        </p>
+        <p className="section-copy compact-copy">
+          Looking at the chart this way helps us move beyond asking “Who earns the most?” and instead ask deeper questions about opportunity, fairness, and access. The data reminds us that economic inequality is not evenly experienced and that progress for a state does not always mean equity for all communities living within it.
         </p>
       </div>
+
+      {isChartOpen && (
+        <ChartZoomModal
+          title="Washington and U.S. median income"
+          onClose={function () {
+            setIsChartOpen(false);
+          }}
+        >
+          <RacialIncomeComparisonGraphic />
+        </ChartZoomModal>
+      )}
     </div>
   );
 }
@@ -549,40 +666,42 @@ function RacialIncomeComparisonGraphic() {
           <rect x="964" y="377" width="38" height="183" fill="#ffd08c" rx="6" />
         </g>
 
-        <g className="income-value-labels">
-          <text x="112" y="276">100.2K</text>
-          <text x="158" y="310">87.6K</text>
+        <g className="income-value-labels" textAnchor="middle">
+          <text x="137" y="276">100.2K</text>
+          <text x="183" y="310">87.6K</text>
 
-          <text x="272" y="344">75.9K</text>
-          <text x="318" y="386">56.7K</text>
+          <text x="297" y="344">75.9K</text>
+          <text x="343" y="386">56.7K</text>
 
-          <text x="432" y="360">69.3K</text>
-          <text x="478" y="373">63.6K</text>
+          <text x="457" y="360">69.3K</text>
+          <text x="503" y="373">63.6K</text>
 
-          <text x="594" y="128">143K</text>
-          <text x="636" y="202">117.3K</text>
+          <text x="617" y="128">143K</text>
+          <text x="663" y="202">117.3K</text>
 
-          <text x="748" y="274">100.8K</text>
-          <text x="798" y="315">82.7K</text>
+          <text x="777" y="274">100.8K</text>
+          <text x="823" y="315">82.7K</text>
 
-          <text x="908" y="333">79.5K</text>
-          <text x="956" y="365">72.6K</text>
+          <text x="937" y="333">79.5K</text>
+          <text x="983" y="365">72.6K</text>
         </g>
 
-        <g className="timeline-axis-labels">
-          <text x="106" y="592">White</text>
-          <text x="252" y="592">Black or African American</text>
-          <text x="444" y="592">Native American</text>
-          <text x="606" y="592">Asian</text>
-          <text x="730" y="592">Native Hawaiian / Pacific Islander</text>
-          <text x="914" y="592">Hispanic or Latino</text>
+        <g className="timeline-axis-labels" textAnchor="middle">
+          <text x="160" y="594">White</text>
+          <text x="320" y="594">Black or</text>
+          <text x="320" y="610">African American</text>
+          <text x="480" y="594">Native American</text>
+          <text x="640" y="594">Asian</text>
+          <text x="800" y="594">Native Hawaiian /</text>
+          <text x="800" y="610">Pacific Islander</text>
+          <text x="960" y="594">Hispanic or Latino</text>
         </g>
 
         <g className="income-legend">
-          <rect x="740" y="32" width="18" height="18" rx="4" fill="#1fb5a2" />
+          <rect x="740" y="32" width="18" height="18" rx="4" fill="#4f4f56" />
           <text x="766" y="46">Washington</text>
-          <rect x="860" y="32" width="18" height="18" rx="4" fill="#9fe6dc" />
-          <text x="886" y="46">United States</text>
+          <rect x="860" y="32" width="18" height="18" rx="4" fill="#c7c7ce" />
+          <text x="886" y="46">U.S.</text>
         </g>
       </svg>
     </div>
@@ -648,32 +767,123 @@ function InequalityTimelineGraphic() {
 
         <text x="785" y="198" className="timeline-series-label">United</text>
         <text x="785" y="222" className="timeline-series-label">States</text>
-        <text x="785" y="180" className="timeline-series-label timeline-series-label-secondary">Washington</text>
+        <text x="785" y="160" className="timeline-series-label timeline-series-label-secondary">Washington</text>
       </svg>
     </div>
   );
 }
 
 function HistoryTimeline() {
+  const [isChartOpen, setIsChartOpen] = useState(false);
+
   return (
     <div className="showcase-item showcase-item-reverse history-showcase">
       <div className="panel showcase-panel">
-        <InequalityTimelineGraphic />
+        <button
+          type="button"
+          className="chart-expand-trigger"
+          onClick={function () {
+            setIsChartOpen(true);
+          }}
+          aria-label="Zoom in on income inequality over time chart"
+        >
+          <InequalityTimelineGraphic />
+          <span className="chart-expand-hint">Zoom in</span>
+        </button>
+        <p className="chart-caption">
+          Caption: This graph uses the Gini coefficient to compare income inequality in Washington State and the United States over time. Higher values mean income is distributed less evenly across the population. Although the changes between years may appear large because of the narrow scale, the graph mainly shows that economic inequality has continued to persist over time rather than disappearing.
+        </p>
       </div>
 
       <div className="stack-sm showcase-copy">
-        <p className="eyebrow">why this matters over time</p>
-        <h3 className="panel-title">use this space to connect past decisions to present outcomes</h3>
+        <p className="eyebrow">side explanation blurb</p>
+        <h3 className="panel-title">what the gini coefficient shows</h3>
         <p className="section-copy compact-copy">
-          A filled version of this text could introduce the timeline by explaining that wealth gaps are not random or recent. As students scroll, they should be watching for how housing policy, school access, labor systems, and public investment build on each other across generations.
+          This graph shows how income inequality in Washington State has changed over time compared to the United States overall using something called the Gini coefficient. The Gini coefficient is a number used to measure how evenly or unevenly income is shared across a population. A lower number means income is more evenly distributed, while a higher number means wealth is concentrated among fewer people.
+        </p>
+        <p className="section-copy compact-copy">
+          In this graph, both Washington State and the United States stay at relatively high levels over time, showing that income inequality has remained a continuing issue rather than disappearing. Even though the lines move up and down slightly from year to year, the overall trend suggests that wealth is still unevenly distributed.
+        </p>
+        <p className="section-copy compact-copy">
+          Washington’s line has increased over time and in recent years has become very close to, and sometimes even slightly higher than, the national average. This can reflect growing gaps between higher-income and lower-income households, especially in areas experiencing rapid economic growth, rising housing costs, and expanding tech industries.
+        </p>
+        <p className="section-copy compact-copy">
+          It is also important to understand that graphs like this can sometimes make small changes look bigger than they are because of the narrow vertical scale. The goal of the graph is not to suggest sudden dramatic shifts, but to help us notice that inequality has remained consistently present over many years. By learning how to read data like the Gini coefficient, we can better understand how wealth and opportunity are shared differently across society.
         </p>
       </div>
+
+      {isChartOpen && (
+        <ChartZoomModal
+          title="Income inequality over time"
+          onClose={function () {
+            setIsChartOpen(false);
+          }}
+        >
+          <InequalityTimelineGraphic />
+        </ChartZoomModal>
+      )}
     </div>
   );
 }
 
 function SectionSpacing({ children }) {
   return <div style={{ paddingTop: '1.75rem', paddingBottom: '1.75rem' }}>{children}</div>;
+}
+
+function TeacherToolkitSection() {
+  const guideUrl = `${import.meta.env.BASE_URL}teacher-classroom-guide.pdf`;
+
+  return (
+    <section id="teacher-guide" className="section-teacher section-pad section-boundary">
+      <div className="container stack-lg">
+        <div className="section-heading-card">
+          <p className="eyebrow">teacher guide</p>
+          <h2>teacher toolkit</h2>
+          <p className="section-copy">
+            This area keeps facilitation support separate from the student-facing dashboard so students can focus on the activities while educators can quickly find setup notes.
+          </p>
+        </div>
+
+        <div className="teacher-toolkit-grid">
+          <div className="panel teacher-toolkit-card">
+            <p className="eyebrow">setup instructions</p>
+            <h3 className="panel-title">before students use the sliders</h3>
+            <p>
+              Ask students to privately predict what a high-income household and a more typical household in Washington might earn. After the reveal, invite them to name what surprised them and what the gap could mean for housing, savings, and everyday stability.
+            </p>
+          </div>
+          <div className="panel teacher-toolkit-card">
+            <p className="eyebrow">facilitation guidance</p>
+            <h3 className="panel-title">keep discussion evidence-based</h3>
+            <p>
+              Encourage students to describe patterns before making claims. When a chart shows unequal outcomes, connect the observation to policy, local history, institutional access, and lived experience.
+            </p>
+          </div>
+          <div className="panel teacher-toolkit-card">
+            <p className="eyebrow">learning objectives</p>
+            <h3 className="panel-title">students will be able to</h3>
+            <ul className="simple-list">
+              <li>Explain how wealth differs from income.</li>
+              <li>Use data visuals to ask clearer questions about opportunity.</li>
+              <li>Connect current outcomes to historical and systemic conditions.</li>
+              <li>Reflect on choices people face inside unequal systems.</li>
+            </ul>
+          </div>
+          <div className="panel teacher-toolkit-card">
+            <p className="eyebrow">implementation notes</p>
+            <h3 className="panel-title">classroom guide PDF</h3>
+            <p>
+              Use the PDF guide for a printable sequence before, during, and after the dashboard activity.
+            </p>
+            <a className="accent-button teacher-guide-link" href={guideUrl} target="_blank" rel="noreferrer">
+              Open Teacher Guide PDF
+            </a>
+          </div>
+        </div>
+        <BackToTop />
+      </div>
+    </section>
+  );
 }
 
 export default function WacefePage() {
@@ -741,57 +951,66 @@ export default function WacefePage() {
           <section id="introduction" className="hero section-pad">
             <div className="container hero-simple">
               <div className="stack-sm">
-                {/* <p className="eyebrow">wacefe dashboard</p> */}
                 <h1>foundations of wealth</h1>
                 <p className="lead">
-                  Empowering students to understand not just money—but the systems that shape it.                </p>
+                  Explore not just money, but the systems that shape it.
+                </p>
+                <p className="section-copy">
+                  This dashboard explores how income, assets, history, place, and policy shape financial opportunity in Washington.
+                </p>
               </div>
 
               <div className="teacher-guide-callout">
                 <div className="stack-sm">
-                  <p className="eyebrow">for teachers</p>
-                  <h3 className="panel-title">how to implement this in the classroom</h3>
+                  <p className="eyebrow">teacher guide</p>
+                  <h3 className="panel-title">classroom setup and facilitation support</h3>
                   <p className="section-copy compact-copy">
-                    A short step-by-step guide for using the dashboard before, during, and after class.
+                    Teacher-facing instructions are collected in the Teacher Toolkit at the end of the dashboard.
                   </p>
                 </div>
-                <a
-                  className="ghost-button teacher-guide-link"
-                  href="/teacher-classroom-guide.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  open pdf guide
-                </a>
+                <button type="button" className="ghost-button teacher-guide-link" onClick={function () {
+                  const element = document.getElementById('teacher-guide');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}>
+                  Open Teacher Toolkit
+                </button>
               </div>
             </div>
           </section>
 
-          <section id="current-state" className="section-surface section-pad section-align-left">
+          <section className="toc-section section-pad">
+            <div className="container">
+              <TableOfContents />
+            </div>
+          </section>
+
+          <section id="current-state" className="section-surface section-pad section-align-left section-boundary">
             <div className="container stack-lg">
-              <div className="stack-sm">
+              <div className="section-heading-card">
                 <p className="eyebrow">the current state</p>
-                <h2>what students should notice right now</h2>
+                <h2>what current data can show</h2>
                 <p className="section-copy">
-                  This section shows how current income gaps, basic costs, and access to resources are linked. A mix of interactions, stats, and visuals helps students follow the story.
+                  Use this section to explore how current income gaps, basic costs, and access to resources are linked through interactions, stats, and visuals.
                 </p>
               </div>
 
               <SectionSpacing>
                 <div className="estimate-activity-grid reveal-on-scroll reveal-left">
                   <div className="stack-sm estimate-guide-copy">
-                    <p className="eyebrow">teacher setup</p>
-                    <h3 className="panel-title">ask students to predict the gap before they see the answer</h3>
+                    <p className="eyebrow">interactive estimate</p>
+                    <h3 className="panel-title">guess the income gap before you reveal it</h3>
                     <p className="section-copy compact-copy">
-                      Before students move the sliders, invite them to explain what they think a high-income household and a more typical household in Washington might earn. Once both estimates are on the screen, ask what surprised them, what assumptions shaped their guesses, and what this gap could mean for housing, savings, and everyday stability.
+                      Move each slider to make a prediction. Then reveal the comparison and ask what the difference could mean for housing, savings, and everyday stability.
                     </p>
                     <p className="section-copy compact-copy">
-                      This teacher setup stays here for now even though the header also links to the teacher guide, so user testing can show which format educators prefer.
+                      Try it yourself before looking at the answer. Your first guess is part of the learning.
                     </p>
                     <img 
-                        src="public/WACEFE-circle.png" 
+                        src={`${import.meta.env.BASE_URL}WACEFE-circle.png`} 
                         alt="WACEFE circle" 
-                        style={{ maxWidth: '100%', height: 'auto', padding: '2rem', marginLeft: '-50%' }}
+                        className="wacefe-circle-art"
                       />
                   </div>
 
@@ -828,7 +1047,7 @@ export default function WacefePage() {
 
               <SectionSpacing>
                 <div className="reveal-on-scroll reveal-up">
-                  <QuickExpandVisualGallery />
+                  {/* <QuickExpandVisualGallery /> */}
                 </div>
               </SectionSpacing>
 
@@ -837,16 +1056,17 @@ export default function WacefePage() {
                   <ReflectionPrompts />
                 </div>
               </SectionSpacing>
+              <BackToTop />
             </div>
           </section>
 
-          <section id="history" className="section-tinted section-pad">
+          <section id="history" className="section-tinted section-pad section-boundary">
             <div className="container stack-lg">
-              <div className="stack-sm">
+              <div className="section-heading-card">
                 <p className="eyebrow">economic and social histories</p>
                 <h2>how the past shaped the present</h2>
                 <p className="section-copy">
-                  This area now has two distinct jobs: show change over time, and explain the systems that created those changes. Both are still lightweight so your team can swap in the final evidence later.
+                  Use this section to look at change over time and connect present-day patterns to the systems, policies, and decisions that helped create them.
                 </p>
               </div>
 
@@ -864,75 +1084,66 @@ export default function WacefePage() {
 
               <SectionSpacing>
                 <div className="reveal-on-scroll reveal-left">
-                  <ExpandableSection title="questions to answer before this section is final">
-                    <ul className="simple-list">
-                      <li>What exact unit is the existing inequality chart measuring?</li>
-                      <li>Which historical policies do you want to feature as the core chain of causes?</li>
-                      <li>Do you want this section to compare Washington to the U.S. in every graphic, or only in one anchor graphic?</li>
-                    </ul>
-                  </ExpandableSection>
+                  <div className="panel reflection-panel">
+                    <div className="panel-header">
+                      <div className="stack-sm">
+                        <p className="eyebrow">reflection</p>
+                        <h3 className="panel-title">connect history to the patterns you noticed</h3>
+                      </div>
+                    </div>
+                    <div className="prompt-list">
+                      <ReflectionQuestion>
+                        Which policy, system, or historical event from this section seems most connected to wealth gaps today?
+                      </ReflectionQuestion>
+                      <ReflectionQuestion>
+                        How can a decision made many years ago still affect housing, schools, jobs, or family wealth now?
+                      </ReflectionQuestion>
+                      <ReflectionQuestion>
+                        What would you want to learn more about before deciding what solutions would be fair?
+                      </ReflectionQuestion>
+                    </div>
+                  </div>
                 </div>
               </SectionSpacing>
+              <BackToTop />
             </div>
           </section>
 
-          <section id="comparison" className="section-surface section-pad">
+          <section id="comparison" className="section-surface section-pad section-boundary">
             <div className="container stack-lg">
-              <div className="stack-sm">
+              <div className="section-heading-card">
                 <p className="eyebrow">our future reality</p>
                 <h2>the great wealth transfer</h2>
                 <p className="section-copy">
                   Why do today’s inequities matter for the future? Wealth in Washington-state is going to shift dramatically to different people and in different ways. This shift is called the Great Wealth Transfer. It is important that we know when this transfer will happen, how it will happen, and what we should do when it does. Especially because, if the power associated with this wealth falls in your hands, you have the responsibility to do good on the part of your peers.
                 </p>
               </div>
-              {/* {characterSectionIntro} */}
               <SectionSpacing>
-                {/* <div className="stack-sm" style={{ paddingTop: '0.5rem', paddingBottom: '0.5rem' }}>
-                  <p className="section-copy compact-copy">
-                    Through analyzing data and looking at historical policies and practices, we have seen how someone&apos;s demographic and socioeconomic positioning can uniquely impact their financial opportunities in ways that could be more positive or negative than another.
-                  </p>
-
-                  <p className="section-copy compact-copy">
-                    But what do these impacts look like on a daily basis? How does this dynamic show up in real life? <strong>Let&apos;s find out.</strong>
-                  </p>
-
-                  <div className="stack-sm" style={{ paddingTop: '0.5rem' }}>
-                    <p className="eyebrow">how this works</p>
-
-                    <p className="section-copy compact-copy">
-                      <strong>Step 1:</strong> Choose one of the 3 Washington-state residents below. Each one includes a short introduction, along with a few economic opportunities or challenges they could potentially face.
-                    </p>
-
-                    <p className="section-copy compact-copy">
-                      <strong>Step 2:</strong> Pick your character and navigate their economic world. Imagine yourself as this person, empathize with the situation, and identify the path that you think you would realistically take.
-                    </p>
-
-                    <p className="section-copy compact-copy">
-                      <strong>Step 3:</strong> Do not worry about choosing the most responsible answer. <strong>Choose what you are drawn to.</strong>
-                    </p>
-                  </div>
-                </div> */}
                 <div className="reveal-on-scroll reveal-up">
                   <ComparisonTool />
                 </div>
               </SectionSpacing>
+              <BackToTop />
             </div>
           </section>
 
-          <section id="toolkit" className="section-tinted section-pad">
+          <section id="toolkit" className="section-tinted section-pad section-boundary">
             <div className="container stack-lg">
-              <div className="stack-sm">
-                <p className="eyebrow">your toolkit for an equitable future</p>
-                <h2>what students can do with this information</h2>
+              <div className="section-heading-card">
+                <p className="eyebrow">resources</p>
+                <h2>what this information can help with</h2>
                 <p className="section-copy">
-                  This toolkit now combines eight clickable strategy cards, a student-facing concerns section, and a few short explainer notes that help define key ideas like equity, wealth, and systems.
+                  This toolkit combines clickable strategy cards, practical money concerns, and short explainers that define key ideas like equity, wealth, and systems.
                 </p>
               </div>
               <SectionSpacing>
                 <Toolkit />
               </SectionSpacing>
+              <BackToTop />
             </div>
           </section>
+
+          <TeacherToolkitSection />
         </main>
       </div>
     </div>

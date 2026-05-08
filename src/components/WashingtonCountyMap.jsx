@@ -58,7 +58,11 @@ export default function WashingtonCountyMap({ onCountyClick }) {
     layer.on({
       mouseover: (e) => e.target.setStyle({ fillOpacity: 1, weight: 2 }),
       mouseout:  (e) => geoJsonRef.current?.resetStyle(e.target),
-      click:     ()  => onCountyClick(feature.properties), // ← sends data up
+      click:     ()  => {
+        if (onCountyClick) {
+          onCountyClick(feature.properties);
+        }
+      },
     });
   }
 
@@ -97,54 +101,35 @@ export default function WashingtonCountyMap({ onCountyClick }) {
   };
 
   return (
-    <div style={{ position: 'relative', display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
-      {/* Left sidebar with toggle buttons and legend */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', flexShrink: 0 }}>
-        {/* Toggle buttons stacked vertically */}
-        <div className="layer-toggle" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    <div className="county-map-layout">
+      <div className="county-map-sidebar">
+        <div className="layer-toggle">
           {['income', 'poverty', 'gini'].map(layer => (
             <button
               key={layer}
               className={activeLayer === layer ? 'toggle active' : 'toggle'}
               onClick={() => setActiveLayer(layer)}
-              style={{ width: '100%', padding: '10px', textAlign: 'left' }}
             >
               {{ income: 'Median income', poverty: 'Poverty rate', gini: 'Gini index' }[layer]}
             </button>
           ))}
         </div>
 
-        {/* Legend */}
-        <div style={{
-          background: 'white',
-          padding: '15px',
-          borderRadius: '5px',
-          boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-          fontSize: '12px',
-          minWidth: '200px'
-        }}>
-          <h4 style={{ margin: '0 0 10px 0', fontSize: '14px', fontWeight: 'bold' }}>
+        <div className="county-map-legend">
+          <h4>
             {legendData[activeLayer].title}
           </h4>
           {legendData[activeLayer].items.map((item, index) => (
-            <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '6px' }}>
-              <div style={{
-                width: '18px',
-                height: '18px',
-                backgroundColor: item.color,
-                marginRight: '8px',
-                border: '1px solid #ccc',
-                flexShrink: 0
-              }}></div>
+            <div key={index} className="county-map-legend-row">
+              <span className="county-map-swatch" style={{ backgroundColor: item.color }} />
               <span>{item.label}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Map on the right */}
-      <div style={{ flex: 1, position: 'relative' }}>
-        <MapContainer center={[47.4, -120.5]} zoom={6} style={{ height: '350px', width: '100%', zIndex: 200 }}>
+      <div className="county-map-canvas">
+        <MapContainer center={[47.4, -120.5]} zoom={6} className="leaflet-map">
           <TileLayer
             attribution="© OpenStreetMap"
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

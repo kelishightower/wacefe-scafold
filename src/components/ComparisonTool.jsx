@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DefinitionTooltip from './DefinitionTooltip';
+import ReflectionQuestion from './ReflectionQuestion';
 
 const wealthTransferIntro = [
   'The Great Wealth Transfer refers to the large amount of money and property that older generations, especially the Baby Boomer generation, are expected to pass down to younger generations over the next several years.'
@@ -33,17 +34,6 @@ const definedTerms = {
   financial_opportunities: 'Chances to earn money, build wealth, invest, or gain access to resources that improve financial stability.',
   empathize: 'To understand and share the feelings of another person; to put yourself in their situation.'
 };
-
-const characterSectionIntro = [
-  'Through analyzing data and looking at historical policies and practices, we have seen how someone\'s demographic and socioeconomic positioning can uniquely impact their financial opportunities in ways that could be more positive and or negative than another.',
-  'But what do these impacts look like on a daily basis? How does this dynamic show up in real life? Let\'s find out.'
-];
-
-const characterPickerPrompt = [
-  'Below are 3 representations of a Washington-state resident. Included are brief introductions, as well as descriptions of some economic opportunities or challenges they could potentially face.',
-  'Pick your character and navigate their economic world. Imagine yourself as this person, empathize with the situation, and identify the path that you think you would realistically take.',
-  'Your choices do not need to feel like the responsible ones. Choose what you are drawn to.'
-];
 
 const characterCards = [
   {
@@ -115,7 +105,7 @@ const scenarioTree = {
           outcome:
               'Jasmine thought she was doing the right thing by going to UW and living on campus, but the loan never felt manageable and defaulting felt like the only way out, even though it caused even bigger problems.',
           reflection:
-              "When someone borrows money for college and then cannot pay it back, who should be blamed: the student for borrowing, the bank for lending, the college for being so expensive, or the system that does not help people like Jasmine?"
+              "When someone borrows money for college and then cannot pay it back, who should be blamed: the borrower, the bank for lending, the college for being so expensive, or the system that does not help people like Jasmine?"
         }
       ]
     },
@@ -126,7 +116,7 @@ const scenarioTree = {
         {
           label: 'Work multiple jobs to help support and take less classes per quarter at UW. This would delay the timeline of her graduation',
           outcome:
-              'Jasmine finishes her degree, but she is tired and older than her classmates when she graduates. She had to spend years helping her family survive instead of just being able to focus on school like some other students could.',
+              'Jasmine finishes her degree, but she is tired and older than her classmates when she graduates. She had to spend years helping her family survive instead of just being able to focus on school like some other people could.',
           reflection:
               'Jasmine did everything "right" by going to UW and saving money by commuting, but big companies moving into her neighborhood changed everything. How is that fair, and should the actions of big companies get to decide where someone can focus their life?'
         },
@@ -134,7 +124,7 @@ const scenarioTree = {
           label:
               'Prioritize her education, knowing that the faster she graduates the quicker she can get a full-time job and start helping her dad substantially',
           outcome:
-              'Jasmine graduates on time with a good job, but her family is in deeper trouble than before, and she has to spend her first few years of earnings trying to fix problems she could not solve while she was a student.',
+              'Jasmine graduates on time with a good job, but her family is in deeper trouble than before, and she has to spend her first few years of earnings trying to fix problems she could not solve while she was in school.',
           reflection:
               'Sometimes we are taught that education is the most important thing, but what if that means ignoring a family crisis? Is that really a choice, and something that systemic forces push you into? What tools can you use to navigate that dynamic?'
         }
@@ -486,93 +476,32 @@ function CharacterPickerPromptWithDefinitions() {
 
 function CharacterPicker(props) {
   return (
-      <div
-          className="scenario-panel stack-sm"
-          style={{ width: '100%', maxWidth: '100%', display: 'block', marginLeft: 0 }}
-      >
-        <p className="scenario-prompt" style={{ marginBottom: '1.25rem', maxWidth: '60ch' }}>
+      <div className="scenario-panel stack-sm scenario-panel-wide">
+        <p className="scenario-prompt">
           Pick a character to step into their economic world.
         </p>
-        <div
-            className="scenario-option-list scenario-option-list-characters"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-              gap: '1rem',
-              width: '100%',
-              maxWidth: '100%',
-              alignItems: 'stretch',
-              marginLeft: 0
-            }}
-        >
+        <div className="scenario-option-list scenario-option-list-characters">
           {props.characters.map(function (character) {
             return (
                 <button
                     key={character.id}
                     type="button"
                     className="scenario-option scenario-option-character"
-                    style={{
-                      width: '100%',
-                      minHeight: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      alignItems: 'flex-start',
-                      textAlign: 'left'
-                    }}
                     onClick={function () {
                       props.onChooseCharacter(character.id);
                     }}
                 >
-                  {/*<div className="scenario-option-copy stack-xs" style={{ width: '100%' }}>*/}
-                  {/*  <span className="scenario-option-title">{character.name}</span>*/}
-                  {/*  <p className="scenario-option-description">{character.summary}</p>*/}
-                  {/*  <div className="stack-xs" style={{ marginTop: '0.75rem' }}>*/}
-                  {/*    <p style={{ margin: 0 }}>*/}
-                  {/*      <strong>Who benefits:</strong> {character.benefit}*/}
-                  {/*    </p>*/}
-                  {/*    <p style={{ margin: 0 }}>*/}
-                  {/*      <strong>Who is left out:</strong> {character.risk}*/}
-                  {/*    </p>*/}
-                  {/*  </div>*/}
-                  {/*</div>*/}
-                  <div className="scenario-option-copy stack-xs" style={{ width: '100%' }}>
-  <span
-      className="scenario-option-title"
-      style={{
-        fontWeight: 700,
-        fontSize: '1.1rem',
-        marginBottom: '0.25rem'
-      }}
-  >
-    {character.name}
-  </span>
-
-                    <p
-                        className="scenario-option-description"
-                        style={{
-                          marginBottom: '0.75rem',
-                          lineHeight: 1.5
-                        }}
-                    >
+                  <div className="scenario-option-copy stack-sm">
+                    <span className="scenario-option-title">{character.name}</span>
+                    <p className="scenario-option-description">
                       {character.summary}
                     </p>
-
-                    {/* divider for visual separation */}
-                    <div
-                        style={{
-                          width: '100%',
-                          height: '1px',
-                          background: 'rgba(255,255,255,0.08)',
-                          margin: '0.5rem 0 0.75rem'
-                        }}
-                    />
-
-                    <div className="stack-xs" style={{ gap: '0.4rem' }}>
-                      <p style={{ margin: 0 }}>
+                    <div className="scenario-option-divider" />
+                    <div className="stack-sm">
+                      <p>
                         <strong>Who benefits:</strong> {character.benefit}
                       </p>
-                      <p style={{ margin: 0 }}>
+                      <p>
                         <strong>Who is left out:</strong> {character.risk}
                       </p>
                     </div>
@@ -594,37 +523,28 @@ function SelectedCharacterSummary(props) {
   }
 
   return (
-      <div
-          className="panel stack-sm"
-          style={{
-            width: '100%',
-            marginBottom: '1.5rem'
-          }}
-      >
-        <p className="eyebrow">selected character</p>
-        <h4 className="panel-title" style={{ marginBottom: '0.5rem' }}>
-          {character.name}
-        </h4>
-        <div className="section-copy" style={{ maxWidth: '70ch', lineHeight: 1.6 }}>
-          <p>{character.summary}</p>
-        </div>
-
-        <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-              gap: '1rem',
-              width: '100%'
-            }}
-        >
-          <div className="outcome-panel stack-sm" style={{ margin: 0 }}>
-            <p className="eyebrow">who benefits</p>
-            <p style={{ margin: 0 }}>{character.benefit}</p>
+      <div className="panel selected-character-panel">
+        <div className="selected-character-main">
+          <div className="stack-sm">
+            <p className="eyebrow">selected character</p>
+            <h4 className="panel-title">
+              {character.name}
+            </h4>
+            <div className="section-copy selected-character-copy">
+              <p>{character.summary}</p>
+            </div>
           </div>
 
-          <div className="outcome-panel stack-sm" style={{ margin: 0 }}>
-            <p className="eyebrow">who is left out</p>
-            <p style={{ margin: 0 }}>{character.risk}</p>
+          <div className="selected-character-context">
+            <div className="selected-character-note">
+              <p className="eyebrow">who benefits</p>
+              <p>{character.benefit}</p>
+            </div>
+
+            <div className="selected-character-note">
+              <p className="eyebrow">who is left out</p>
+              <p>{character.risk}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -633,35 +553,17 @@ function SelectedCharacterSummary(props) {
 
 function ScenarioStep(props) {
   return (
-      <div className="scenario-panel stack-sm" style={{ width: '100%' }}>
-        <p className="scenario-prompt" style={{ maxWidth: '70ch', lineHeight: 1.6, marginBottom: '1rem' }}>
+      <div className="scenario-panel stack-sm scenario-panel-wide">
+        <p className="scenario-prompt">
           {props.prompt}
         </p>
-        <div
-            className="scenario-option-list scenario-option-list-choices"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-              gap: '1rem',
-              width: '100%',
-              alignItems: 'stretch'
-            }}
-        >
+        <div className="scenario-option-list scenario-option-list-choices">
           {props.options.map(function (option) {
             return (
                 <button
                     key={option.label}
                     type="button"
                     className="scenario-option"
-                    style={{
-                      width: '100%',
-                      minHeight: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      alignItems: 'flex-start',
-                      textAlign: 'left'
-                    }}
                     onClick={function () {
                       props.onSelectOption(option);
                     }}
@@ -679,18 +581,16 @@ function ScenarioStep(props) {
 function OutcomeStep(props) {
   return (
       <div className="outcome-panel stack-sm">
-        <p className="eyebrow">outcome + reflection</p>
+        <p className="eyebrow">outcome</p>
         <p>{props.outcome}</p>
-        <p>
-          <strong>Reflection prompt:</strong> {props.reflection}
-        </p>
+        <ReflectionQuestion>{props.reflection}</ReflectionQuestion>
       </div>
   );
 }
 
 export default function ComparisonTool() {
   const [showTransferValue, setShowTransferValue] = useState(false);
-  const [activeTransferStep, setActiveTransferStep] = useState(0);
+  const [openTransferSteps, setOpenTransferSteps] = useState({ 0: true });
   const [selectedCharacterId, setSelectedCharacterId] = useState(null);
   const [currentNodeId, setCurrentNodeId] = useState(null);
   const [outcomeData, setOutcomeData] = useState(null);
@@ -705,7 +605,6 @@ export default function ComparisonTool() {
   const currentScenarioNode =
       selectedCharacterId && currentNodeId ? scenarioTree[selectedCharacterId][currentNodeId] : null;
 
-  const activeTransferCard = wealthTransferSteps[activeTransferStep];
   const transferCardBackgrounds = ['#fff1b8', '#c8f3ec', '#e1d2fb'];
 
   function chooseCharacter(characterId) {
@@ -775,39 +674,44 @@ export default function ComparisonTool() {
             </div>
           </div>
 
-          <div className="transfer-explainer-layout">
-            <div className="transfer-card-grid">
-              {wealthTransferSteps.map(function (step, index) {
-                return (
+          <div className="transfer-accordion">
+            {wealthTransferSteps.map(function (step, index) {
+              const isOpen = Boolean(openTransferSteps[index]);
+
+              return (
+                <div
+                  key={step.title}
+                  className={isOpen ? 'transfer-accordion-item is-open' : 'transfer-accordion-item'}
+                  style={{ '--transfer-accent': transferCardBackgrounds[index] }}
+                >
                   <button
-                    key={step.title}
                     type="button"
-                    className={activeTransferStep === index ? 'panel transfer-step-card is-active' : 'panel transfer-step-card'}
+                    className="transfer-accordion-trigger"
                     onClick={function () {
-                      setActiveTransferStep(index);
+                      setOpenTransferSteps(function (previousSteps) {
+                        return {
+                          ...previousSteps,
+                          [index]: !previousSteps[index]
+                        };
+                      });
                     }}
+                    aria-expanded={isOpen}
                   >
                     <span className="transfer-step-label">{step.title}</span>
+                    <small>{isOpen ? 'hide' : 'open'}</small>
                   </button>
-                );
-              })}
-            </div>
-
-            <div
-              className="panel transfer-step-reveal"
-              style={{ background: transferCardBackgrounds[activeTransferStep] }}
-            >
-              <div className="stack-sm">
-                <span className="transfer-step-label">{activeTransferCard.title}</span>
-                <p>{activeTransferCard.text}</p>
-              </div>
-            </div>
+                  {isOpen && (
+                    <div className="transfer-accordion-content">
+                      <p>{step.text}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           <div className="panel">
-            <p className="section-copy compact-copy">
-              <strong>Reflection question:</strong> {wealthTransferReflection}
-            </p>
+            <ReflectionQuestion>{wealthTransferReflection}</ReflectionQuestion>
           </div>
         </div>
 
@@ -850,55 +754,27 @@ export default function ComparisonTool() {
           )}
         </div>
 
-        <div className="stack-lg" style={{ paddingTop: '1.25rem', paddingBottom: '1rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'start' }}>
+        <div className="stack-lg comparison-adventure">
+          <div className="adventure-intro-grid">
             <div className="intro-section stack-lg">
               <p className="eyebrow">who benefits and who is left out</p>
               <h3 className="panel-title">choose your own economic adventure</h3>
               <CharacterSectionIntroWithDefinitions />
               <CharacterPickerPromptWithDefinitions />
             </div>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className="adventure-art-wrap">
               <img 
-                src="public/WACEFE-circle.png" 
+                src={`${import.meta.env.BASE_URL}WACEFE-circle.png`} 
                 alt="WACEFE circle" 
-                style={{ maxWidth: '100%', height: 'auto', padding: '1rem', marginRight: '-50%', }}
+                className="wacefe-circle-art"
               />
             </div>
           </div>
 
-          <div style={{ height: '1px', background: 'rgba(255,255,255,0.05)', margin: '1rem 0 1.25rem' }} />
+          <div className="soft-divider" />
 
-          <div
-              className="scenario-layout scenario-layout-linear"
-              style={{ width: '100%', maxWidth: '100%', display: 'block' }}
-          >
-            <div
-                className="scenario-flow stack-sm"
-                style={{ width: '100%', maxWidth: '100%', display: 'block', gap: '1.75rem' }}
-            >
-              <div
-                  className="scenario-flow-actions"
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    gap: '0.75rem',
-                    width: '100%',
-                    marginBottom: '1.5rem'
-                  }}
-              >
-                {(selectedCharacterId || history.length || outcomeData) && (
-                    <button type="button" className="ghost-button scenario-nav-button" onClick={goBack}>
-                      ← Back
-                    </button>
-                )}
-                {(selectedCharacterId || currentNodeId || outcomeData) && (
-                    <button type="button" className="ghost-button scenario-nav-button" onClick={restartScenario}>
-                      Restart
-                    </button>
-                )}
-              </div>
-
+          <div className="scenario-layout scenario-layout-linear">
+            <div className="scenario-flow stack-sm">
               {!selectedCharacterId && (
                   <CharacterPicker
                       characters={characterCards}
@@ -908,6 +784,21 @@ export default function ComparisonTool() {
 
               {selectedCharacterId && (
                   <SelectedCharacterSummary character={selectedCharacter} />
+              )}
+
+              {(selectedCharacterId || history.length || outcomeData) && (
+                <div className="scenario-flow-actions">
+                  {(selectedCharacterId || history.length || outcomeData) && (
+                      <button type="button" className="ghost-button scenario-nav-button" onClick={goBack}>
+                        Back
+                      </button>
+                  )}
+                  {(selectedCharacterId || currentNodeId || outcomeData) && (
+                      <button type="button" className="ghost-button scenario-nav-button" onClick={restartScenario}>
+                        Restart
+                      </button>
+                  )}
+                </div>
               )}
 
               {selectedCharacterId && currentScenarioNode && !outcomeData && (

@@ -5,7 +5,8 @@ const sections = [
   { id: 'current-state', label: 'current state' },
   { id: 'history', label: 'histories' },
   { id: 'comparison', label: 'future reality' },
-  { id: 'toolkit', label: 'toolkit' }
+  { id: 'toolkit', label: 'resources' },
+  { id: 'teacher-guide', label: 'teacher guide' }
 ];
 
 export default function Navbar() {
@@ -27,7 +28,7 @@ export default function Navbar() {
   return (
     <nav className={`wacefe-nav ${isCollapsed ? 'is-collapsed' : ''}`} aria-label="Section navigation">
       <div className="wacefe-nav-header">
-        {!isCollapsed && <span className="wacefe-nav-label">Nav</span>}
+        {!isCollapsed && <span className="wacefe-nav-label">Table of Contents</span>}
         <button
           type="button"
           className="wacefe-nav-toggle"

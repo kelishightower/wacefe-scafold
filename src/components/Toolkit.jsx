@@ -13,7 +13,7 @@ const resourceCards = [
     communityImpact:
       'Helps more families buy homes, start businesses, and build savings. This can increase long-term wealth in communities that were previously left out. WA’s $200M CRP investment is projected to generate $1.6B in long-term economic benefit.',
     studentSupport:
-      'Students can learn about where this funding goes and support community organizations that receive these resources.',
+      'Learn about where this funding goes and support community organizations that receive these resources.',
     links: [
       {
         label: 'CRP Legislative Report',
@@ -37,7 +37,7 @@ const resourceCards = [
     communityImpact:
       'Helps lower poverty rates and reduce gaps in income and opportunity across different communities.',
     studentSupport:
-      'Students can learn about these strategies and vote for policies that invest in housing, education, and community services.',
+      'Learn about these strategies and vote for policies that invest in housing, education, and community services.',
     links: [
       {
         label: '10 year plan',
@@ -61,7 +61,7 @@ const resourceCards = [
     communityImpact:
       'Supports two major ways families build wealth: owning a home and owning a business. It also helps people access financial coaching, savings tools, and resources that support long-term financial growth.',
     studentSupport:
-      'Students can research who qualifies and think about how these programs could be expanded to reach more people; They can also learn about and support local organizations that receive this funding.',
+      'Research who qualifies and think about how these programs could be expanded to reach more people. You can also learn about and support local organizations that receive this funding.',
     links: [
       {
         label: 'The Seattle Medium',
@@ -85,7 +85,7 @@ const resourceCards = [
     communityImpact:
       'Improves housing stability and helps families save money and build financial security over time. Stable housing can also support long-term wealth building.',
     studentSupport:
-      'Students can learn how housing policies affect their communities and support affordable housing efforts.',
+      'Learn how housing policies affect communities and support affordable housing efforts.',
     links: [
       {
         label: 'Housing Trust Fund Program (HTF)',
@@ -109,7 +109,7 @@ const resourceCards = [
     communityImpact:
       'Create jobs, support small businesses, and improve access to economic opportunities by building the infrastructure communities need to grow.',
     studentSupport:
-      'Students can learn how infrastructure affects job access and support local development projects.',
+      'Learn how infrastructure affects job access and support local development projects.',
     links: [
       {
         label: 'CERB',
@@ -133,7 +133,7 @@ const resourceCards = [
     communityImpact:
       'Helps people find jobs, access childcare, and increase their income over time. By reducing barriers to work, it supports long-term earning potential and creates a pathway toward financial stability and future wealth building.',
     studentSupport:
-      'Students can learn about support systems that help families and advocate for programs that reduce barriers to work.',
+      'Learn about support systems that help families and advocate for programs that reduce barriers to work.',
     links: [
       {
         label: 'WorkFirst',
@@ -157,7 +157,7 @@ const resourceCards = [
     communityImpact:
       'Helps people build savings faster and invest in long-term goals like homeownership and small businesses. This supports first-generation wealth building and long-term financial stability.',
     studentSupport:
-      'Students can learn how savings programs work and support policies that make these opportunities more available to more people.',
+      'Learn how savings programs work and support policies that make these opportunities more available to more people.',
     links: [
       {
         label: 'Dept. of Commerce IDA Program Info',
@@ -181,7 +181,7 @@ const resourceCards = [
     communityImpact:
       'Creates jobs, increases income, and supports essential services like schools and healthcare. These investments help reduce poverty and build long-term economic strength in Tribal communities.',
     studentSupport:
-      'Students can learn about Tribal economies and support policies that respect and invest in Tribal sovereignty and development.',
+      'Learn about Tribal economies and support policies that respect and invest in Tribal sovereignty and development.',
     links: [
       {
         label: 'Washington Indian Gaming Association',
@@ -205,7 +205,7 @@ const resourceCards = [
     communityImpact:
       'Expands internet access, which helps people find jobs, start businesses, learn new skills, and access services online. This supports long-term economic growth and wealth-building by reducing the digital divide.',
     studentSupport:
-      'Students can learn how internet access affects opportunity and support policies that expand broadband to more communities, especially those that have been historically left out.',
+      'Learn how internet access affects opportunity and support policies that expand broadband to more communities, especially those that have been historically left out.',
     links: [
       {
         label: 'Washington State Broadband Office',
@@ -223,7 +223,7 @@ const concernRows = [
   {
     worry: 'I am concerned about paying for college or trade school.',
     feeling:
-      'Paying for school can feel overwhelming, especially when you don’t know how much it will cost or how to afford it. Many students feel this way, and the system can be confusing because there are many steps and options. College costs have gone up over time, and not everyone has similar access to money or guidance. Financial aid rules can also be hard to understand, which makes planning feel uncertain.',
+      'Paying for school can feel overwhelming, especially when you don’t know how much it will cost or how to afford it. Many people feel this way, and the system can be confusing because there are many steps and options. College costs have gone up over time, and not everyone has similar access to money or guidance. Financial aid rules can also be hard to understand, which makes planning feel uncertain.',
     actions: [
       'Create a simple list of schools or programs you’re interested in',
       'Fill out the FAFSA as early as possible (with a parent/guardian or counselor if needed)',
@@ -232,13 +232,13 @@ const concernRows = [
       'Search for 1–2 scholarships each week (start small)'
     ],
     reassurance:
-      'There are many ways to pay for school, and most students do not pay the full price. Financial aid, scholarships, and lower-cost pathways can make education more affordable over time.',
+      'There are many ways to pay for school, and many people do not pay the full price. Financial aid, scholarships, and lower-cost pathways can make education more affordable over time.',
     resources: ['Federal Student Aid (FAFSA)', 'College Scorecard', 'CFPB']
   },
   {
     worry: 'I am concerned about supporting my family while simultaneously planning for myself.',
     feeling:
-      'Many students feel this pressure. It can be hard to think about your own future while also wanting to help your family. In many families, money is shared, and costs like housing, food, and bills can be high. Some students feel expected to help, especially when wages are low or opportunities are unequal.',
+      'Many people feel this pressure. It can be hard to think about your own future while also wanting to help your family. In many families, money is shared, and costs like housing, food, and bills can be high. Some people feel expected to help, especially when wages are low or opportunities are unequal.',
     actions: [
       'Create a basic budget that includes both personal and family needs',
       'Research for support programs or financial aid resources',
@@ -254,7 +254,7 @@ const concernRows = [
   {
     worry: 'I am nervous that I will never be able to buy a home.',
     feeling:
-      'Many students feel this way. Buying a home can seem out of reach, especially with rising prices and high rent. Home prices and rent have gone up faster than wages nationally. This makes it harder to save money for a down payment, especially if you are already helping with other expenses.',
+      'Many people feel this way. Buying a home can seem out of reach, especially with rising prices and high rent. Home prices and rent have gone up faster than wages nationally. This makes it harder to save money for a down payment, especially if you are already helping with other expenses.',
     actions: [
       'Learn how credit scores work and why they matter for renting and buying',
       'Start saving small amounts regularly (even $5–$10 helps build the habit)',
@@ -274,7 +274,7 @@ const concernRows = [
     actions: [
       'Learn how compound interest works and why starting early matters',
       'Start saving small amounts regularly, even if you are not investing yet',
-      'Ask a teacher, counselor, or trusted adult about basic investing terms',
+      'Ask an educator, counselor, or trusted adult about basic investing terms',
       'Focus on learning first, not investing large amounts'
     ],
     reassurance:
@@ -347,7 +347,7 @@ const additionalInfoSections = [
     eyebrow: 'additional information',
     title: 'what this matters in policy and law',
     body:
-      'In real life, this matters in policies and laws. For example, a law or program that treats everyone the same might sound fair, but it can still lead to unequal outcomes if some groups have faced more barriers in the past. Equity-focused policies try to recognize these differences and provide extra support where it is needed most. As future voters, students will help shape these decisions. Understanding equity helps you think about whether a policy truly creates fairness, or whether it simply treats everyone the same without addressing the underlying social and economic conditions that shape people’s different starting points. Fairness is not always about giving everyone the same thing. It is about making sure everyone has a real chance to succeed.'
+      'In real life, this matters in policies and laws. For example, a law or program that treats everyone the same might sound fair, but it can still lead to unequal outcomes if some groups have faced more barriers in the past. Equity-focused policies try to recognize these differences and provide extra support where it is needed most. As voters, workers, neighbors, and community members, people help shape these decisions. Understanding equity helps you think about whether a policy truly creates fairness, or whether it simply treats everyone the same without addressing the underlying social and economic conditions that shape people’s different starting points. Fairness is not always about giving everyone the same thing. It is about making sure everyone has a real chance to succeed.'
   },
   {
     eyebrow: 'additional information',
@@ -438,12 +438,12 @@ export default function Toolkit() {
   return (
     <div className="toolkit-stack">
       <div className="stack-sm">
-        <p className="eyebrow">section numero uno</p>
+        <p className="eyebrow">resources</p>
         <div className="toolkit-resource-header">
           <div className="stack-sm">
-            <h3 className="panel-title">resource cards for wa policies, programs, and investments</h3>
+            <h3 className="panel-title">resource cards for WA policies, programs, and investments</h3>
             <p className="section-copy compact-copy">
-              Start with the first few, then open the rest when you want the full list.
+              Click a card to open details, community impact, and learn-more links.
             </p>
           </div>
           <button
@@ -459,7 +459,7 @@ export default function Toolkit() {
           </button>
         </div>
         <div className="toolkit-grid">
-          {visibleResourceCards.map(function (card, index) {
+          {visibleResourceCards.map(function (card) {
             return (
               <button
                 key={card.title}
@@ -472,7 +472,7 @@ export default function Toolkit() {
                 }}
               >
                 <div className="tool-card-meta">
-                  <span className="tool-card-tag">open card</span>
+                  <span className="tool-card-tag">Open resource</span>
                   <p className="eyebrow">{card.number}</p>
                 </div>
                 <div className="tool-card-heading">
@@ -487,7 +487,7 @@ export default function Toolkit() {
 
       <div className="showcase-item showcase-item-reverse toolkit-resource-showcase">
         <div className="panel showcase-panel">
-          <div className="resource-table" role="table" aria-label="Student concerns and tools">
+          <div className="resource-table" role="table" aria-label="Money concerns and tools">
             {concernRows.map(function (row, index) {
               const isOpen = Boolean(expandedRows[index]);
 
@@ -535,8 +535,8 @@ export default function Toolkit() {
         </div>
 
         <div className="stack-sm showcase-copy">
-          <p className="eyebrow">your feelings about money are valid</p>
-          <h3 className="panel-title">many students feel stressed or unsure about money and the future</h3>
+          <p className="eyebrow">support</p>
+          <h3 className="panel-title">money and the future can feel stressful or uncertain</h3>
           <p className="section-copy compact-copy">
             You are not alone in these concerns. These feelings are common, especially when thinking about life after high school and an unequal economy.
           </p>
@@ -547,7 +547,7 @@ export default function Toolkit() {
               setShowSkillsTable(true);
             }}
           >
-            Financial Skills Behind These Concerns
+            Open Financial Skills Table
           </button>
           <p className="section-copy compact-copy">
             All of these worries connect to real financial skills. Open the table to see what skills help build understanding and long-term financial stability.
@@ -614,7 +614,7 @@ export default function Toolkit() {
               <p><strong>What it is:</strong> {resourceCards[openModal].summary}</p>
               <p><strong>Intended for:</strong> {resourceCards[openModal].intendedFor}</p>
               <p><strong>Community impact:</strong> {resourceCards[openModal].communityImpact}</p>
-              <p><strong>How students can support it:</strong> {resourceCards[openModal].studentSupport}</p>
+              <p><strong>How people can support it:</strong> {resourceCards[openModal].studentSupport}</p>
               <div>
                 <strong>Learn more here:</strong>
                 {resourceCards[openModal].links.map(function (link) {
