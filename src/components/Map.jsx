@@ -5,10 +5,10 @@ export default function MapComponent() {
   return (
     <section className="showcase-item stacked">
       <div className="stack-sm showcase-copy">
-        <p className="eyebrow">county data</p>
+        <p className="eyebrow">interactive map</p>
         <h3 className="panel-title">compare place, opportunity, and access</h3>
         <p className="section-copy compact-copy">
-          Use the map to compare counties by income, housing pressure, or school-related opportunity. Nearby places can have very different outcomes, so ask what local history, policy, or access to investment might help explain the pattern.
+          Geographical data helps us see patterns that are hard to notice in our everyday lives as Washington residents. We can see where incomes are higher or lower, where home ownership is common and rare, and where educational opportunities vary. What local history, policy, or access to resources might help explain the patterns?
         </p>
       </div>
 
@@ -18,7 +18,7 @@ export default function MapComponent() {
             <p className="eyebrow">county map + data</p>
             <h3 className="panel-title">washington county map</h3>
             <p className="section-copy compact-copy">
-              Click a county to explore the available data. Use the layer controls to compare more than one kind of opportunity at a time.
+              Over the WA counties compare: income, poverty, school funding, and the gini index. What do you notice?
             </p>
           </div>
         </div>

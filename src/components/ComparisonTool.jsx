@@ -766,7 +766,7 @@ export default function ComparisonTool() {
               <img 
                 src={`${import.meta.env.BASE_URL}WACEFE-circle.png`} 
                 alt="WACEFE circle" 
-                className="wacefe-circle-art"
+                className="wacefe-circle-art is-right"
               />
             </div>
           </div>

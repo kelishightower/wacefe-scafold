@@ -895,6 +895,7 @@ h3 {
 
 .layer-toggle {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
 }
 
@@ -1445,9 +1446,17 @@ h3 {
 }
 
 .wacefe-circle-art {
-  max-width: min(100%, 360px);
+  max-width: min(100%);
   height: auto;
   padding: 1rem;
+}
+
+.wacefe-circle-art.is-right {
+  margin-right: -50%;
+}
+
+.wacefe-circle-art.is-left {
+  margin-left: -50%;
 }
 
 .soft-divider {
@@ -2279,7 +2288,7 @@ h3 {
   }
 
   .layer-toggle {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

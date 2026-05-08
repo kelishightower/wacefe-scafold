@@ -19,6 +19,12 @@ function getColor(value, layer) {
            value > 13   ? '#fb6a4a' :
            value > 10   ? '#fcae91' : '#fee5d9';
   }
+  if (layer === 'schoolFunding') {
+    return value > 12000 ? '#1b9e77' :
+           value > 11000 ? '#66c2a5' :
+           value > 10500 ? '#b3e2cd' :
+           value > 10000 ? '#e0f3db' : '#f7fcfd';
+  }
   return value > 0.46 ? '#a50f15' :
          value > 0.44 ? '#de2d26' :
          value > 0.43 ? '#fb6a4a' :
@@ -88,6 +94,16 @@ export default function WashingtonCountyMap({ onCountyClick }) {
         { color: '#fee5d9', label: '<10%' }
       ]
     },
+    schoolFunding: {
+      title: 'Per-Pupil School Funding',
+      items: [
+        { color: '#1b9e77', label: '>$12,000' },
+        { color: '#66c2a5', label: '$11,000 - $12,000' },
+        { color: '#b3e2cd', label: '$10,500 - $11,000' },
+        { color: '#e0f3db', label: '$10,000 - $10,500' },
+        { color: '#f7fcfd', label: '<$10,000' }
+      ]
+    },
     gini: {
       title: 'Gini Index',
       items: [
@@ -104,13 +120,13 @@ export default function WashingtonCountyMap({ onCountyClick }) {
     <div className="county-map-layout">
       <div className="county-map-sidebar">
         <div className="layer-toggle">
-          {['income', 'poverty', 'gini'].map(layer => (
+          {['income', 'poverty', 'schoolFunding', 'gini'].map(layer => (
             <button
               key={layer}
               className={activeLayer === layer ? 'toggle active' : 'toggle'}
               onClick={() => setActiveLayer(layer)}
             >
-              {{ income: 'Median income', poverty: 'Poverty rate', gini: 'Gini index' }[layer]}
+              {{ income: 'Median income', poverty: 'Poverty rate', schoolFunding: 'School funding', gini: 'Gini index' }[layer]}
             </button>
           ))}
         </div>

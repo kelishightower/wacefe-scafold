@@ -999,18 +999,18 @@ export default function WacefePage() {
               <SectionSpacing>
                 <div className="estimate-activity-grid reveal-on-scroll reveal-left">
                   <div className="stack-sm estimate-guide-copy">
-                    <p className="eyebrow">interactive estimate</p>
+                    <p className="eyebrow">initial thoughts </p>
                     <h3 className="panel-title">guess the income gap before you reveal it</h3>
                     <p className="section-copy compact-copy">
-                      Move each slider to make a prediction. Then reveal the comparison and ask what the difference could mean for housing, savings, and everyday stability.
+                      Before moving the sliders, take a moment to think about how much a high-income household and how much a more typical household in WA might earn. Adjust the slider accordingly. Once both of your estimates are on the screen, reveal the statistic!
                     </p>
                     <p className="section-copy compact-copy">
-                      Try it yourself before looking at the answer. Your first guess is part of the learning.
+                      What is surprising? Why did you make your assumptions? What do you think this gap means for everyday living?
                     </p>
                     <img 
                         src={`${import.meta.env.BASE_URL}WACEFE-circle.png`} 
                         alt="WACEFE circle" 
-                        className="wacefe-circle-art"
+                        className="wacefe-circle-art is-left"
                       />
                   </div>
 
