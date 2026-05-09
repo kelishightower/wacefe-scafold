@@ -666,7 +666,7 @@ export default function ComparisonTool() {
         <div className="stack-sm">
           <div className="panel">
             <div className="stack-sm">
-              <p className="eyebrow">short explanation flow</p>
+              {/* <p className="eyebrow">short explanation flow</p> */}
               <h3 className="panel-title">a simple way to explain the great wealth transfer</h3>
               <div className="section-copy compact-copy">
                 <ParagraphGroup items={wealthTransferIntro} />

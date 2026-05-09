@@ -369,12 +369,12 @@ function IncomeGuessCard() {
   return (
     <div className="panel guess-panel estimate-card estimate-card-high">
       <div className="stack-sm">
-        <p className="eyebrow">estimate</p>
+        {/* <p className="eyebrow">estimate</p> */}
         <h3 className="panel-title">
           what do you think the average income is for the top 10% of washington residents?
         </h3>
           <p className="section-copy compact-copy">
-           Make a guess first, then reveal the comparison. Placeholder numbers are here so the size of the gap can be discussed before using final source data.
+           Guess first, then reveal the comparison.
           </p>
       </div>
 
@@ -450,12 +450,12 @@ function OtherNinetyGuessCard() {
   return (
     <div className="panel guess-panel align-right estimate-card estimate-card-low">
       <div className="stack-sm">
-        <p className="eyebrow">estimate</p>
+        {/* <p className="eyebrow">estimate</p> */}
         <h3 className="panel-title">
           what do you think the average income is for the other 90% of washington residents?
         </h3>
         <p className="section-copy compact-copy">
-          This interaction is separate from the top 10% slider so each estimate and reveal stands on its own.
+          Guess first, then reveal the comparison.
         </p>
       </div>
 
@@ -586,7 +586,7 @@ function RacialIncomeComparison() {
       </div>
 
       <div className="stack-sm showcase-copy">
-        <p className="eyebrow">side explanation blurb</p>
+        {/*<p className="eyebrow">side explanation blurb</p>*/}
         <h3 className="panel-title">look beyond the highest bar</h3>
         <p className="section-copy compact-copy">
           This chart compares median household income in Washington State with the United States overall across different racial and ethnic groups. At first glance, Washington may appear to be doing better because most income levels in the state are higher than the national average. However, the chart also shows that Washington still follows many of the same patterns seen across the country.

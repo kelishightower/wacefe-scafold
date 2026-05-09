@@ -15,7 +15,7 @@ export default function MapComponent() {
       <div className="panel panel-map showcase-panel">
         <div className="panel-header align-start">
           <div className="stack-sm map-panel-intro">
-            <p className="eyebrow">county map + data</p>
+            {/*<p className="eyebrow">county data</p>*/}
             <h3 className="panel-title">washington county map</h3>
             <p className="section-copy compact-copy">
               Over the WA counties compare: income, poverty, school funding, and the gini index. What do you notice?

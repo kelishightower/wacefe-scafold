@@ -14,16 +14,16 @@ function getColor(value, layer) {
            value > 55000 ? '#9ecae1' : '#deebf7';
   }
   if (layer === 'poverty') {
-    return value > 20   ? '#a50f15' :
-           value > 16   ? '#de2d26' :
-           value > 13   ? '#fb6a4a' :
-           value > 10   ? '#fcae91' : '#fee5d9';
+    return value > 12   ? '#a50f15' :
+           value > 9   ? '#de2d26' :
+           value > 6   ? '#fb6a4a' :
+           value > 3   ? '#fcae91' : '#fee5d9';
   }
   if (layer === 'schoolFunding') {
-    return value > 12000 ? '#1b9e77' :
-           value > 11000 ? '#66c2a5' :
-           value > 10500 ? '#b3e2cd' :
-           value > 10000 ? '#e0f3db' : '#f7fcfd';
+    return value > 18000 ? '#1b9e77' :
+           value > 17000 ? '#66c2a5' :
+           value > 16000 ? '#b3e2cd' :
+           value > 15000 ? '#e0f3db' : '#f7fcfd';
   }
   return value > 0.46 ? '#a50f15' :
          value > 0.44 ? '#de2d26' :
@@ -46,6 +46,27 @@ const enrichedCounties = {
 export default function WashingtonCountyMap({ onCountyClick }) {
   const geoJsonRef = useRef();
   const [activeLayer, setActiveLayer] = useState('income');
+  const [selectedCounty, setSelectedCounty] = useState(null);
+
+  function getLayerLabel(layer) {
+    return {
+      income: 'Median income',
+      poverty: 'Poverty rate',
+      schoolFunding: 'School funding',
+      gini: 'Gini index'
+    }[layer] || layer;
+  }
+
+  function formatLayerValue(layer, value) {
+    if (value === null || value === undefined) return 'No data';
+    if (layer === 'income' || layer === 'schoolFunding') {
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+    }
+    if (layer === 'poverty') {
+      return `${value}%`;
+    }
+    return value.toFixed(2);
+  }
 
   function styleFeature(feature) {
     const val = feature.properties[activeLayer];
@@ -65,8 +86,10 @@ export default function WashingtonCountyMap({ onCountyClick }) {
       mouseover: (e) => e.target.setStyle({ fillOpacity: 1, weight: 2 }),
       mouseout:  (e) => geoJsonRef.current?.resetStyle(e.target),
       click:     ()  => {
+        const props = feature.properties;
+        setSelectedCounty(props);
         if (onCountyClick) {
-          onCountyClick(feature.properties);
+          onCountyClick(props);
         }
       },
     });
@@ -76,6 +99,10 @@ export default function WashingtonCountyMap({ onCountyClick }) {
   const legendData = {
     income: {
       title: 'median income',
+      source: {
+        text: 'United States Census Bureau - median household income',
+        url: 'https://data.census.gov/table/ACSDT5Y2023.B19013?q=B19013:+Median+Household+Income+in+the+Past+12+Months+(in+2024+Inflation-Adjusted+Dollars)&g=040XX00US53$0500000'
+      },
       items: [
         { color: '#084594', label: '>$90,000' },
         { color: '#2171b5', label: '$75,000 - $90,000' },
@@ -86,6 +113,10 @@ export default function WashingtonCountyMap({ onCountyClick }) {
     },
     poverty: {
       title: 'Poverty Rate (%)',
+      source: {
+        text: 'National Institute on Minority Health and Health Disparities - Washington poverty data',
+        url: 'https://hdpulse.nimhd.nih.gov/data-portal/social/table?age=001&age_options=ageall_1&demo=00007&demo_options=poverty_3&race=00&race_options=race_7&sex=0&sex_options=sexboth_1&socialtopic=080&socialtopic_options=social_6&statefips=53&statefips_options=area_states'
+      },
       items: [
         { color: '#a50f15', label: '>20%' },
         { color: '#de2d26', label: '16% - 20%' },
@@ -96,16 +127,24 @@ export default function WashingtonCountyMap({ onCountyClick }) {
     },
     schoolFunding: {
       title: 'Per-Pupil School Funding',
+      source: {
+        text: 'Washington Office of Superintendent of Public Instruction - per-pupil funding',
+        url: 'https://drive.google.com/file/d/1eTELTe5o-eexdYw-QX_C_cM3Qn1GD-UT/view'
+      },
       items: [
-        { color: '#1b9e77', label: '>$12,000' },
-        { color: '#66c2a5', label: '$11,000 - $12,000' },
-        { color: '#b3e2cd', label: '$10,500 - $11,000' },
-        { color: '#e0f3db', label: '$10,000 - $10,500' },
-        { color: '#f7fcfd', label: '<$10,000' }
+        { color: '#1b9e77', label: '>$18,000' },
+        { color: '#66c2a5', label: '$17,000 - $18,000' },
+        { color: '#b3e2cd', label: '$16,000 - $17,000' },
+        { color: '#e0f3db', label: '$15,000 - $16,000' },
+        { color: '#f7fcfd', label: '<$15,000' }
       ]
     },
     gini: {
       title: 'Gini Index',
+      source: {
+        text: 'United States Census Bureau - gini index',
+        url: 'https://data.census.gov/table?q=washington+state+county+gini'
+      },
       items: [
         { color: '#a50f15', label: '>0.46' },
         { color: '#de2d26', label: '0.44 - 0.46' },
@@ -142,6 +181,20 @@ export default function WashingtonCountyMap({ onCountyClick }) {
             </div>
           ))}
         </div>
+
+        <div className="county-map-selected">
+          <h4>selected county</h4>
+          {selectedCounty ? (
+            <>
+              <p className="selected-county-name">{selectedCounty.JURISDICT_LABEL_NM}</p>
+              <p className="selected-county-stat">
+                {getLayerLabel(activeLayer)}: {formatLayerValue(activeLayer, selectedCounty[activeLayer])}
+              </p>
+            </>
+          ) : (
+            <p className="selected-county-placeholder">Click a county to view its statistic.</p>
+          )}
+        </div>
       </div>
 
       <div className="county-map-canvas">
@@ -159,6 +212,9 @@ export default function WashingtonCountyMap({ onCountyClick }) {
             onEachFeature={onEachFeature}
           />
         </MapContainer>
+        <p className="county-map-source" style={{ marginTop: '0.75rem', fontSize: '0.9rem', color: 'var(--muted)' }}>
+          Data source: <a href={legendData[activeLayer].source.url} target="_blank" rel="noreferrer">{legendData[activeLayer].source.text}</a>.
+        </p>
       </div>
     </div>
   );
