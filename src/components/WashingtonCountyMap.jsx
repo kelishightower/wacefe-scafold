@@ -98,7 +98,7 @@ export default function WashingtonCountyMap({ onCountyClick }) {
   // Legend data for each layer
   const legendData = {
     income: {
-      title: 'median income',
+      title: 'median household income',
       source: {
         text: 'United States Census Bureau - median household income',
         url: 'https://data.census.gov/table/ACSDT5Y2023.B19013?q=B19013:+Median+Household+Income+in+the+Past+12+Months+(in+2024+Inflation-Adjusted+Dollars)&g=040XX00US53$0500000'
@@ -112,21 +112,21 @@ export default function WashingtonCountyMap({ onCountyClick }) {
       ]
     },
     poverty: {
-      title: 'Poverty Rate (%)',
+      title: 'poverty rate',
       source: {
         text: 'National Institute on Minority Health and Health Disparities - Washington poverty data',
         url: 'https://hdpulse.nimhd.nih.gov/data-portal/social/table?age=001&age_options=ageall_1&demo=00007&demo_options=poverty_3&race=00&race_options=race_7&sex=0&sex_options=sexboth_1&socialtopic=080&socialtopic_options=social_6&statefips=53&statefips_options=area_states'
       },
       items: [
-        { color: '#a50f15', label: '>20%' },
-        { color: '#de2d26', label: '16% - 20%' },
-        { color: '#fb6a4a', label: '13% - 16%' },
-        { color: '#fcae91', label: '10% - 13%' },
-        { color: '#fee5d9', label: '<10%' }
+        { color: '#a50f15', label: '>12%' },
+        { color: '#de2d26', label: '9% - 12%' },
+        { color: '#fb6a4a', label: '6% - 9%' },
+        { color: '#fcae91', label: '3% - 6%' },
+        { color: '#fee5d9', label: '<3%' }
       ]
     },
     schoolFunding: {
-      title: 'Per-Pupil School Funding',
+      title: 'per-pupil school funding',
       source: {
         text: 'Washington Office of Superintendent of Public Instruction - per-pupil funding',
         url: 'https://drive.google.com/file/d/1eTELTe5o-eexdYw-QX_C_cM3Qn1GD-UT/view'
@@ -140,7 +140,7 @@ export default function WashingtonCountyMap({ onCountyClick }) {
       ]
     },
     gini: {
-      title: 'Gini Index',
+      title: 'gini index',
       source: {
         text: 'United States Census Bureau - gini index',
         url: 'https://data.census.gov/table?q=washington+state+county+gini'
@@ -215,7 +215,24 @@ export default function WashingtonCountyMap({ onCountyClick }) {
         <p className="county-map-source" style={{ marginTop: '0.75rem', fontSize: '0.9rem', color: 'var(--muted)' }}>
           Data source: <a href={legendData[activeLayer].source.url} target="_blank" rel="noreferrer">{legendData[activeLayer].source.text}</a>.
         </p>
+        {activeLayer === 'gini' && (
+          <button
+            type="button"
+            className="ghost-button"
+            style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}
+            onClick={() => {
+              const target = document.getElementById('gini-section');
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+              }
+              window.location.hash = '#gini-section';
+            }}
+          >
+            What is the gini coefficient?
+          </button>
+        )}
       </div>
+
     </div>
   );
 }

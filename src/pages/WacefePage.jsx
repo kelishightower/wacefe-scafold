@@ -777,7 +777,7 @@ function HistoryTimeline() {
   const [isChartOpen, setIsChartOpen] = useState(false);
 
   return (
-    <div className="showcase-item showcase-item-reverse history-showcase">
+    <div id="gini-section" className="showcase-item showcase-item-reverse history-showcase">
       <div className="panel showcase-panel">
         <button
           type="button"
