@@ -13,7 +13,7 @@ const factMap = {
     whyItMatters:
       'The economic effects of slavery did not end when slavery was abolished. Generations of exclusion from land ownership, education, banking, and higher-paying jobs limited opportunities for many Black families to build wealth over time. These long-term disadvantages still influence modern wealth gaps seen in Washington and across the country today.',
     learnMore:
-      'https://nmaahc.si.edu/learn/talking-about-race/topics/historical-foundations-race'
+      'https://www.humanities.org/spark/a-little-known-story-of-slavery-in-washington-territory/'
   },
   landOwnership: {
     label: 'land ownership',
@@ -24,7 +24,7 @@ const factMap = {
     whyItMatters:
       'Many communities of color were historically denied equal access to land ownership through discriminatory laws, violence, and unfair lending practices. Because homes and property often grow in value over time, being excluded from ownership also meant being excluded from opportunities to build long-term financial stability and generational wealth.',
     learnMore:
-      'https://www.urban.org/policy-centers/housing-finance-policy-center/projects/reducing-racial-homeownership-gap'
+      'https://www.hillsdale.edu/educational-outreach/free-market-forum/2008-archive/property-rights-in-american-history/'
   },
   systemicRacism: {
     label: 'systemic racism',
@@ -35,7 +35,7 @@ const factMap = {
     whyItMatters:
       'Systemic racism can shape access to education, healthcare, housing, employment, and political power. Over time, these unequal systems compound and contribute to wealth disparities that continue across generations. The effects can still be seen today in differences in income, neighborhood resources, and economic opportunity throughout Washington State.',
     learnMore:
-      'https://www.apa.org/topics/racism-bias-discrimination/systemic-racism'
+      'https://www.raceforward.org/resources/video-series/what-systemic-racism'
   },
   housing: {
     label: 'unequal housing policies',
@@ -57,7 +57,7 @@ const factMap = {
     whyItMatters:
       'Supporters argue these policies encourage economic growth, but critics note they can widen inequality when access to resources is already uneven. Reductions in public support for housing, healthcare, education, and wages can disproportionately affect lower-income communities and make existing wealth gaps harder to close.',
     learnMore:
-      'https://www.britannica.com/topic/neoliberalism'
+      'https://www.investopedia.com/terms/n/neoliberalism.asp'
   },
   votingBarriers: {
     label: 'voting barriers',
@@ -68,7 +68,7 @@ const factMap = {
     whyItMatters:
       'Voting influences which communities receive political attention, funding, and policy support. When groups face barriers to political participation, they may also have less influence over decisions related to schools, housing, transportation, wages, and economic investment in their communities.',
     learnMore:
-      'https://www.brennancenter.org/issues/ensure-every-american-can-vote/voting-rights'
+      'https://nlihc.org/resource/history-voter-suppression'
   },
   culturalOppression: {
     label: 'cultural oppression',
@@ -79,7 +79,7 @@ const factMap = {
     whyItMatters:
       'Cultural oppression can affect confidence, representation, educational experiences, and access to opportunities. Over time, stereotypes and social exclusion can influence hiring, discipline in schools, media representation, and public policy in ways that contribute to unequal outcomes between communities.',
     learnMore:
-      'https://nationalequityproject.org/resources'
+      'https://www.youtube.com/watch?v=WKd3pmCaRGQ&themeRefresh=1'
   },
   hiring: {
     label: 'racist hiring processes',
@@ -90,7 +90,7 @@ const factMap = {
     whyItMatters:
       'Employment affects income, healthcare access, career advancement, and retirement savings. Even small patterns of discrimination in hiring or promotions can compound over time, limiting wealth-building opportunities for entire communities across generations.',
     learnMore:
-      'https://hbr.org/2021/07/research-how-bias-affects-hiring'
+      'https://www.aclu.org/news/racial-justice/the-long-history-of-discrimination-in-job-hiring-assessments'
   },
   schools: {
     label: 'racism in schools',
@@ -101,7 +101,7 @@ const factMap = {
     whyItMatters:
       'Education is closely tied to future job opportunities and income. When students face unequal educational resources or discriminatory treatment, those disadvantages can follow them into adulthood and contribute to broader economic inequality over time.',
     learnMore:
-      'https://edtrust.org/resource/equal-is-not-good-enough/'
+      'https://www.sophe.org/wp-content/uploads/2017/01/StealthInequities.pdf'
   },
   homeownership: {
     label: 'barriers to homeownership',
@@ -112,7 +112,7 @@ const factMap = {
     whyItMatters:
       'Communities that face discrimination in lending, appraisals, or banking may have more difficulty purchasing homes and building equity. Because homeownership is one of the main ways families accumulate wealth in the United States, these barriers can have long-term effects on generational wealth.',
     learnMore:
-      'https://www.consumerfinance.gov/fair-lending/'
+      'https://www.habitat.org/historic-housing-discrimination-us'
   },
   justice: {
     label: 'criminal justice system',
@@ -123,7 +123,7 @@ const factMap = {
     whyItMatters:
       'Communities that experience disproportionate policing, sentencing, or incarceration rates may also experience greater economic instability. Criminal records, legal fees, and lost income opportunities can create financial barriers that affect both individuals and families across generations.',
     learnMore:
-      'https://www.sentencingproject.org/research/criminal-justice-facts/'
+      'https://www.ncsl.org/civil-and-criminal-justice/racial-and-ethnic-disparities-in-the-criminal-justice-system'
   },
   outcome: {
     label: 'wealth disparities in wa',
@@ -133,7 +133,7 @@ const factMap = {
       'These combined systems produce measurable disparities in income, savings, homeownership, and assets.',
     whyItMatters:
       'Understanding the connected causes helps communities design solutions that target root conditions.',
-    learnMore: ''
+    learnMore: 'https://opportunityinstitute.org/research/post/income-inequality-in-washington/'
   }
 };
 

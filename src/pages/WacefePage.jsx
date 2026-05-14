@@ -796,19 +796,20 @@ function HistoryTimeline() {
       </div>
 
       <div className="stack-sm showcase-copy">
-        <p className="eyebrow">side explanation blurb</p>
+        <p className="eyebrow">what are we looking at</p>
         <h3 className="panel-title">what the gini coefficient shows</h3>
+        
+        <div className="panel" style={{ padding: '1rem', marginBottom: '1rem', backgroundColor: 'rgba(231, 185, 38, 0.08)', borderLeft: '4px solid #e7b926' }}>
+          <p><strong>What is a Gini coefficient?</strong> The Gini coefficient is a score from 0 to 1 that helps show how evenly income is shared in a place. A number closer to 0 means income is more evenly spread out, while a number closer to 1 means fewer people hold a larger share of the money.</p>
+        </div>
         <p className="section-copy compact-copy">
-          This graph shows how income inequality in Washington State has changed over time compared to the United States overall using something called the Gini coefficient. The Gini coefficient is a number used to measure how evenly or unevenly income is shared across a population. A lower number means income is more evenly distributed, while a higher number means wealth is concentrated among fewer people.
+          This graph shows that both Washington State and the United States have struggled with income inequality for many years. Even though the lines move up and down slightly over time, the overall pattern stays pretty similar: money and wealth are still not shared evenly across communities.
         </p>
         <p className="section-copy compact-copy">
-          In this graph, both Washington State and the United States stay at relatively high levels over time, showing that income inequality has remained a continuing issue rather than disappearing. Even though the lines move up and down slightly from year to year, the overall trend suggests that wealth is still unevenly distributed.
+          Washington’s line has slowly moved closer to the national average over time. This can connect to things like rising housing costs, rapid tech growth, and differences in access to higher-paying jobs, savings, and homeownership opportunities.
         </p>
         <p className="section-copy compact-copy">
-          Washington’s line has increased over time and in recent years has become very close to, and sometimes even slightly higher than, the national average. This can reflect growing gaps between higher-income and lower-income households, especially in areas experiencing rapid economic growth, rising housing costs, and expanding tech industries.
-        </p>
-        <p className="section-copy compact-copy">
-          It is also important to understand that graphs like this can sometimes make small changes look bigger than they are because of the narrow vertical scale. The goal of the graph is not to suggest sudden dramatic shifts, but to help us notice that inequality has remained consistently present over many years. By learning how to read data like the Gini coefficient, we can better understand how wealth and opportunity are shared differently across society.
+          While the graph may make the changes look dramatic because the scale is zoomed in closely, the bigger story is about how inequality has continued year after year. The chart helps us think about how long-term systems and opportunities can shape people’s financial futures differently.
         </p>
       </div>
 
