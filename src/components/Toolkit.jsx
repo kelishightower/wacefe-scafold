@@ -117,7 +117,7 @@ const resourceCards = [
       },
       {
         label: 'CERB Project Awards',
-        url: 'https://www.commerce.wa.gov/cerb/'
+        url: 'https://deptofcommerce.app.box.com/v/CERBJanuary2026Newsletter'
       }
     ]
   },
@@ -141,7 +141,7 @@ const resourceCards = [
       },
       {
         label: 'DSHS WorkFirst Plan Components',
-        url: 'https://www.dshs.wa.gov/esa/workfirst-handbook/about-workfirst-and-handbook'
+        url: 'https://workfirst.wa.gov/sites/default/files/public/Approved%20FINAL%20TANF%20State%20Plan.pdf'
       }
     ]
   },
@@ -161,7 +161,7 @@ const resourceCards = [
     links: [
       {
         label: 'Dept. of Commerce IDA Program Info',
-        url: 'https://www.commerce.wa.gov/crp/'
+        url: 'https://app.leg.wa.gov/ReportsToTheLegislature/Home/GetPDF?fileName=IDA%20report%202011-%20FINAL_2b179919-4616-4afa-9197-b35261bb3ca4.pdf'
       },
       {
         label: 'Washington Workforce Association (WWA)',
@@ -189,7 +189,7 @@ const resourceCards = [
       },
       {
         label: 'The Economic & Community Impact of Tribes in Washington',
-        url: 'https://www.washingtonindiangaming.org/issues/economic-impact/'
+        url: 'https://www.washingtontribes.org/wp-content/uploads/2025/06/WA-Tribal-Economic-Impact-Summary.pdf#:~:text=Page%202.%20Tribal%20governments%20in%20Washington%20generate,of%20all%20Washingtonians%2C%20Indian%20and%20non%2DIndian%20alike.'
       }
     ]
   },
@@ -212,8 +212,8 @@ const resourceCards = [
         url: 'https://www.commerce.wa.gov/wsbo/'
       },
       {
-        label: 'Washington State Broadband Office (WSBO)',
-        url: 'https://www.commerce.wa.gov/wsbo/'
+        label: 'Washington State Digital Equity and Internet Access for All',
+        url: 'https://broadband-wacommerce.hub.arcgis.com/'
       }
     ]
   }
@@ -233,7 +233,11 @@ const concernRows = [
     ],
     reassurance:
       'There are many ways to pay for school, and many people do not pay the full price. Financial aid, scholarships, and lower-cost pathways can make education more affordable over time.',
-    resources: ['Federal Student Aid (FAFSA)', 'College Scorecard', 'CFPB']
+    resources: [
+      { label: 'Federal Student Aid (FAFSA)', url: 'https://studentaid.gov/' },
+      { label: 'College Scorecard', url: 'https://collegescorecard.ed.gov/' },
+      { label: 'CFPB', url: 'https://www.consumerfinance.gov/ask-cfpb/what-are-the-different-ways-to-pay-for-college-or-graduate-school-en-545/' }
+    ]
   },
   {
     worry: 'I am concerned about supporting my family while simultaneously planning for myself.',
@@ -249,7 +253,16 @@ const concernRows = [
     ],
     reassurance:
       'Supporting your family and planning for yourself can happen at the same time, even if it’s slow. Small steps toward saving, learning, or earning still build your future over time.',
-    resources: ["U.S. Career Institute: A High Schooler's Guide to Budgeting", 'CareerOneStop GetMyFuture']
+    resources: [
+      {
+        label: "U.S. Career Institute: A High Schooler's Guide to Budgeting",
+        url: 'https://www.uscareerinstitute.edu/blog/high-schoolers-guide-to-budgeting'
+      },
+      {
+        label: 'CareerOneStop GetMyFuture',
+        url: 'https://www.careeronestop.org/GetMyFuture/default.aspx'
+      }
+    ]
   },
   {
     worry: 'I am nervous that I will never be able to buy a home.',
@@ -265,7 +278,16 @@ const concernRows = [
     ],
     reassurance:
       'Many people do not buy homes right away, and that’s okay. There are different paths to housing stability, and programs exist to help first-time buyers over time.',
-    resources: ['Washington State Housing Finance Commission', 'Khan Academy: Housing']
+    resources: [
+      {
+        label: 'Washington State Housing Finance Commission',
+        url: 'https://heretohome.org/'
+      },
+      {
+        label: 'Khan Academy: Housing',
+        url: 'https://www.khanacademy.org/college-careers-more/financial-literacy/xa6995ea67a8e9fdd:housing24'
+      }
+    ]
   },
   {
     worry: 'I am concerned that investing is only for rich people.',
@@ -279,7 +301,20 @@ const concernRows = [
     ],
     reassurance:
       'You do not need a lot of money to start learning about investing. Many people begin with small amounts over time. Starting early and being consistent matters more than starting big.',
-    resources: ['FINRA Investing Basics', 'What is Investing?', 'Khan Academy: Investing']
+    resources: [
+      {
+        label: 'FINRA Investing Basics',
+        url: 'https://www.finra.org/investors#/'
+      },
+      {
+        label: 'What is Investing?',
+        url: 'https://www.fidelity.com/learning-center/smart-money/what-is-investing'
+      },
+      {
+        label: 'Khan Academy: Investing',
+        url: 'https://www.khanacademy.org/college-careers-more/personal-finance/pf-investment-vehicles-insurance-and-retirement'
+      }
+    ]
   },
   {
     worry: 'I am anxious about making the wrong financial decision.',
@@ -294,9 +329,18 @@ const concernRows = [
     reassurance:
       'Most financial decisions are not permanent, and you can learn and adjust over time. Building knowledge step by step is more important than being perfect right away.',
     resources: [
-      'Washington State Department of Financial Institutions (DFI)',
-      'FDIC Money Smart for Young Adults',
-      'Khan Academy: Financial Goals'
+      {
+        label: 'Washington State Department of Financial Institutions (DFI)',
+        url: 'https://dfi.wa.gov/financial-education/financial-education-resources-high-school'
+      },
+      {
+        label: 'FDIC Money Smart for Young Adults',
+        url: 'https://www.fdic.gov/consumer-resource-center/money-smart-young-adults#table'
+      },
+      {
+        label: 'Khan Academy: Financial Goals',
+        url: 'https://www.khanacademy.org/college-careers-more/financial-literacy/xa6995ea67a8e9fdd:financial-goals'
+      }
     ]
   },
   {
@@ -313,7 +357,20 @@ const concernRows = [
     ],
     reassurance:
       'Even in an unequal system, your choices still matter. Small actions can build over time, and many people use knowledge, community, and support to create opportunities for themselves and others.',
-    resources: ['FDIC: How Money Smart Are You?', 'Intuit', 'Intuit: Interactive Curriculum']
+    resources: [
+      {
+        label: 'FDIC: How Money Smart Are You?',
+        url: 'https://playmoneysmart.fdic.gov/games'
+      },
+      {
+        label: 'Intuit',
+        url: 'https://www.intuit.com/blog/innovative-thinking/financial-tips/financial-literacy-teens-young-adults/'
+      },
+      {
+        label: 'Intuit: Interactive Curriculum',
+        url: 'https://education.intuit.com/home'
+      }
+    ]
   },
   {
     worry: "I'm worried about how I can responsibly spend money I receive from the government.",
@@ -329,9 +386,18 @@ const concernRows = [
     reassurance:
       'There is no single correct way to manage money. What matters most is making thoughtful choices and adjusting over time as your needs change.',
     resources: [
-      'Khan Academy: Financial Literacy',
-      'WA State Treasurer',
-      'WA State Department of Financial Institutions DFI'
+      {
+        label: 'Khan Academy: Financial Literacy',
+        url: 'https://www.khanacademy.org/college-careers-more/financial-literacy/xa6995ea67a8e9fdd:welcome-to-financial-literacy/xa6995ea67a8e9fdd:intro-to-financial-literacy/v/welcome-to-financial-literacy'
+      },
+      {
+        label: 'WA State Treasurer',
+        url: 'https://tre.wa.gov/policy-and-education/personal-finances/financial-education/upcoming-workshops-resources'
+      },
+      {
+        label: 'WA State Department of Financial Institutions DFI',
+        url: 'https://dfi.wa.gov/financial-education/financial-education-and-resources-dfi'
+      }
     ]
   }
 ];
@@ -522,7 +588,17 @@ export default function Toolkit() {
                         <p><strong>Helpful resources:</strong></p>
                         <ul>
                           {row.resources.map(function (resource) {
-                            return <li key={resource}>{resource}</li>;
+                            if (typeof resource === 'string') {
+                              return <li key={resource}>{resource}</li>;
+                            }
+
+                            return (
+                              <li key={resource.label}>
+                                <a href={resource.url} target="_blank" rel="noreferrer">
+                                  {resource.label}
+                                </a>
+                              </li>
+                            );
                           })}
                         </ul>
                       </div>
