@@ -358,7 +358,7 @@ function QuickExpandVisualGallery() {
 function IncomeGuessCard() {
   const [incomeEstimate, setIncomeEstimate] = useState(270000);
   const [showAnswer, setShowAnswer] = useState(false);
-  const actualTopTenIncome = 400000;
+  const actualTopTenIncome = 355973;
 
   const sliderPercent = (incomeEstimate / 500000) * 100;
 
@@ -415,7 +415,7 @@ function IncomeGuessCard() {
         <div className="mini-stat-card">
           <span className="mini-stat-label">top 10%</span>
           <strong>${actualTopTenIncome.toLocaleString()}</strong>
-          <p>placeholder value for the higher-income group</p>
+         
           <div className="slider-container slider-container-static">
             <input
               type="range"
@@ -440,7 +440,7 @@ function IncomeGuessCard() {
 function OtherNinetyGuessCard() {
   const [incomeEstimate, setIncomeEstimate] = useState(62000);
   const [showAnswer, setShowAnswer] = useState(false);
-  const actualOtherIncome = 62000;
+  const actualOtherIncome = 98141;
   const sliderPercent = (incomeEstimate / 200000) * 100;
 
   function handleIncomeChange(event) {
@@ -496,7 +496,7 @@ function OtherNinetyGuessCard() {
         <div className="mini-stat-card muted-card">
           <span className="mini-stat-label">other 90%</span>
           <strong>${actualOtherIncome.toLocaleString()}</strong>
-          <p>placeholder value for the broader group</p>
+         
           <div className="slider-container slider-container-static">
             <input
               type="range"
