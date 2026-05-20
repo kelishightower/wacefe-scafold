@@ -44,6 +44,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 button,
@@ -57,8 +58,10 @@ h2,
 h3,
 h4,
 p,
-ul {
+ul,
+li {
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 a {
@@ -2298,6 +2301,10 @@ h3 {
     padding-bottom: 3.5rem;
   }
 
+  .section-pad {
+    padding: 4.5rem 0;
+  }
+
   .section-heading-card {
     padding: 1.15rem;
   }
@@ -2339,6 +2346,18 @@ h3 {
     margin: 0 auto 1rem;
   }
 
+  .wacefe-nav.is-collapsed {
+    width: calc(100% - 2rem);
+  }
+
+  .wacefe-nav.is-collapsed .wacefe-nav-header {
+    justify-content: flex-end;
+  }
+
+  .wacefe-nav-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .adventure-art-wrap {
     justify-content: flex-start;
   }
@@ -2346,6 +2365,11 @@ h3 {
   .wacefe-circle-art {
     max-width: min(100%, 240px);
     padding: 0.5rem 0;
+  }
+
+  .wacefe-circle-art.is-right,
+  .wacefe-circle-art.is-left {
+    margin: 0;
   }
 
   .racial-income-graphic,
@@ -2359,7 +2383,15 @@ h3 {
   .racial-income-graphic svg,
   .timeline-graphic svg,
   .quick-expand-graphic svg {
-    min-width: 680px;
+    min-width: min(680px, 180vw);
+  }
+
+  .chart-expanded-modal {
+    width: min(100%, calc(100vw - 1rem));
+  }
+
+  .chart-modal-graphic {
+    min-width: 720px;
   }
 
   .scenario-flow-actions {
@@ -2380,6 +2412,7 @@ h3 {
   .layer-toggle {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
 }
 
 .scenario-nav-button {
@@ -2398,12 +2431,32 @@ h3 {
 
 @media (max-width: 640px) {
   .section-pad {
-    padding: 3.5rem 0;
+    padding: 3rem 0;
   }
 
   .container {
-    width: min(1180px, calc(100% - 1.2rem));
+    width: min(1180px, calc(100% - 1rem));
     padding-inline: 0;
+  }
+
+  .wacefe-content-shell {
+    padding-top: 0.75rem;
+  }
+
+  h1 {
+    font-size: clamp(2.1rem, 15vw, 4.4rem);
+    line-height: 0.95;
+  }
+
+  h2 {
+    font-size: clamp(1.9rem, 11vw, 3.1rem);
+    line-height: 1;
+  }
+
+  .lead,
+  .section-copy,
+  .compact-copy {
+    max-width: none;
   }
 
   .scroll-progress {
@@ -2416,9 +2469,55 @@ h3 {
   .teacher-guide-callout,
   .scenario-panel,
   .outcome-panel,
+  .selected-character-panel,
   .selected-character-summary {
     border-radius: 14px;
     padding: 1rem;
+  }
+
+  .panel-header,
+  .quickfacts-header,
+  .tool-card-meta,
+  .scenario-option,
+  .resource-row-trigger {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .toc-grid,
+  .toolkit-grid,
+  .teacher-toolkit-grid,
+  .small-stats-row,
+  .prompt-list,
+  .transfer-accordion,
+  .scenario-option-list-characters,
+  .scenario-option-list-choices {
+    grid-template-columns: 1fr;
+  }
+
+  .toc-panel {
+    gap: 1rem;
+  }
+
+  .toc-link {
+    padding: 0.85rem;
+  }
+
+  .teacher-guide-callout,
+  .teacher-guide-link,
+  .toolkit-toggle-button,
+  .skills-table-trigger,
+  .back-to-top,
+  .accent-button,
+  .ghost-button {
+    width: 100%;
+  }
+
+  .teacher-guide-link,
+  .toolkit-toggle-button,
+  .skills-table-trigger,
+  .back-to-top {
+    justify-self: stretch;
   }
 
   .accent-button,
@@ -2433,12 +2532,104 @@ h3 {
     min-height: 44px;
   }
 
+  .wacefe-nav,
+  .wacefe-nav.is-collapsed {
+    top: 8px;
+    width: calc(100% - 1rem);
+    border-radius: 14px;
+    padding: 0.5rem;
+  }
+
+  .wacefe-nav-links {
+    grid-template-columns: 1fr;
+  }
+
+  .wacefe-pill {
+    text-align: center;
+  }
+
+  .feature-split-card,
+  .feature-split-reverse,
+  .showcase-item,
+  .showcase-item-reverse,
+  .racial-income-showcase,
+  .history-showcase,
+  .toolkit-resource-showcase,
+  .adventure-intro-grid,
+  .selected-character-main,
+  .toolkit-mini-switcher {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .showcase-copy,
+  .showcase-item-reverse .showcase-copy {
+    padding-top: 0;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .adventure-art-wrap {
+    display: none;
+  }
+
+  .chart-caption,
+  .key-takeaway {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+
+  .racial-income-graphic svg,
+  .timeline-graphic svg,
+  .quick-expand-graphic svg {
+    min-width: 560px;
+  }
+
+  .chart-modal-graphic {
+    min-width: 620px;
+  }
+
+  .money-stack-row {
+    justify-content: flex-start;
+  }
+
   .quickfacts-tree {
     gap: 0.8rem;
   }
 
   .quickfacts-node {
-    min-height: 72px;
+    min-height: 56px;
+    padding: 0.75rem;
+  }
+
+  .quickfacts-popup {
+    min-height: auto;
+    padding: 1rem;
+  }
+
+  .resource-answer {
+    padding: 1rem;
+  }
+
+  .resource-answer-stack ul,
+  .simple-list {
+    padding-left: 1rem;
+  }
+
+  .toolkit-mini-panel-featured,
+  .toolkit-mini-switcher-panel,
+  .toolkit-mini-switcher-trigger {
+    border-radius: 14px;
+  }
+
+  .toolkit-mini-panel,
+  .toolkit-mini-panel-featured,
+  .toolkit-mini-switcher {
+    padding: 1rem;
+  }
+
+  .modal-header {
+    align-items: flex-start;
   }
 
   .modal-overlay {
@@ -2457,8 +2648,90 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .county-map-layout {
+    gap: 1rem;
+  }
+
+  .county-map-sidebar {
+    gap: 0.75rem;
+  }
+
+  .county-map-legend {
+    min-width: 0;
+  }
+
+  .county-map-canvas {
+    min-height: 0;
+    overflow-x: visible;
+  }
+
   .leaflet-map {
-    min-width: 520px;
-    height: 320px;
+    min-width: 0;
+    min-height: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 420px) {
+  .section-pad {
+    padding: 2.5rem 0;
+  }
+
+  .container {
+    width: calc(100% - 0.75rem);
+  }
+
+  .panel,
+  .toc-panel,
+  .section-heading-card,
+  .teacher-guide-callout,
+  .scenario-panel,
+  .outcome-panel,
+  .selected-character-panel,
+  .toolkit-mini-panel,
+  .toolkit-mini-panel-featured,
+  .toolkit-mini-switcher,
+  .toolkit-mini-switcher-panel {
+    padding: 0.85rem;
+  }
+
+  .section-heading-card {
+    border-left-width: 5px;
+  }
+
+  .transfer-accordion-trigger,
+  .resource-row-trigger,
+  .scenario-option {
+    padding: 0.8rem;
+  }
+
+  .modal-header,
+  .modal-body {
+    padding: 0.9rem;
+  }
+
+  .definition-tooltip-popover {
+    max-height: min(300px, 68vh);
+  }
+
+  .definition-tooltip-header,
+  .definition-tooltip-body {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .racial-income-graphic svg,
+  .timeline-graphic svg,
+  .quick-expand-graphic svg {
+    min-width: 500px;
+  }
+
+  .chart-modal-graphic {
+    min-width: 560px;
+  }
+
+  .leaflet-map {
+    height: 280px;
+    min-height: 280px;
   }
 }
