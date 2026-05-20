@@ -6,6 +6,7 @@ import ComparisonTool from '../components/ComparisonTool';
 import Toolkit from '../components/Toolkit';
 import QuickFactsFlow from '../components/QuickFactsFlow';
 import ReflectionQuestion from '../components/ReflectionQuestion';
+import { renderDefinedText } from '../components/GlossaryText';
 
 const sections = [
   { id: 'current-state', label: 'Current State', description: 'Income, costs, county data, and visual comparisons' },
@@ -523,10 +524,10 @@ function DataDisclaimer() {
     <div className="panel disclaimer-panel">
       <p className="eyebrow">data note</p>
       <p className="section-copy">
-        Some of these figures may undercount people and communities who are less visible in standard surveys or public data. Treat the visuals as a directional view while source details are being finalized.
+        {renderDefinedText('Some of these figures may undercount people and communities who are less visible in standard surveys or public data. Treat the visuals as a directional view while source details are being finalized.')}
       </p>
       <p className="key-takeaway">
-        Key takeaway: a chart can show a pattern without explaining every cause. Use the historical context below to ask why the pattern exists.
+        {renderDefinedText('Key takeaway: a chart can show a pattern without explaining every cause. Use the historical context below to ask why the pattern exists.')}
       </p>
     </div>
   );
@@ -544,7 +545,7 @@ function SmallStatsRow() {
       <div className="mini-stat-card highlight-yellow">
         <span className="mini-stat-label">housing access</span>
         <strong>45%</strong>
-        <p>Estimated share of families facing limited paths to stable homeownership.</p>
+        <p>{renderDefinedText('Estimated share of families facing limited paths to stable homeownership.')}</p>
       </div>
       <div className="mini-stat-card muted-card">
         <span className="mini-stat-label">savings buffer</span>
@@ -565,7 +566,7 @@ function RacialIncomeComparison() {
           <p className="eyebrow">income by race and ethnicity</p>
           <h3 className="panel-title">washington and u.s. median income in one view</h3>
           <p className="section-copy compact-copy">
-            This combined chart compares the Washington numbers against the national pattern in the same frame.
+            {renderDefinedText('This combined chart compares the Washington numbers against the national pattern in the same frame.')}
           </p>
         </div>
 
@@ -791,7 +792,7 @@ function HistoryTimeline() {
           <span className="chart-expand-hint">Zoom in</span>
         </button>
         <p className="chart-caption">
-          Caption: This graph uses the Gini coefficient to compare income inequality in Washington State and the United States over time. Higher values mean income is distributed less evenly across the population. Although the changes between years may appear large because of the narrow scale, the graph mainly shows that economic inequality has continued to persist over time rather than disappearing.
+          {renderDefinedText('Caption: This graph uses the Gini coefficient to compare income inequality in Washington State and the United States over time. Higher values mean income is distributed less evenly across the population. Although the changes between years may appear large because of the narrow scale, the graph mainly shows that economic inequality has continued to persist over time rather than disappearing.')}
         </p>
       </div>
 
@@ -800,16 +801,16 @@ function HistoryTimeline() {
         <h3 className="panel-title">what the gini coefficient shows</h3>
         
         <div className="panel" style={{ padding: '1rem', marginBottom: '1rem', backgroundColor: 'rgba(231, 185, 38, 0.08)', borderLeft: '4px solid #e7b926' }}>
-          <p><strong>What is a Gini coefficient?</strong> The Gini coefficient is a score from 0 to 1 that helps show how evenly income is shared in a place. A number closer to 0 means income is more evenly spread out, while a number closer to 1 means fewer people hold a larger share of the money.</p>
+          <p><strong>What is a Gini coefficient?</strong> {renderDefinedText('The Gini coefficient is a score from 0 to 1 that helps show how evenly income is shared in a place. A number closer to 0 means income is more evenly spread out, while a number closer to 1 means fewer people hold a larger share of the money.')}</p>
         </div>
         <p className="section-copy compact-copy">
-          This graph shows that both Washington State and the United States have struggled with income inequality for many years. Even though the lines move up and down slightly over time, the overall pattern stays pretty similar: money and wealth are still not shared evenly across communities.
+          {renderDefinedText('This graph shows that both Washington State and the United States have struggled with income inequality for many years. Even though the lines move up and down slightly over time, the overall pattern stays pretty similar: money and wealth are still not shared evenly across communities.')}
         </p>
         <p className="section-copy compact-copy">
-          Washington’s line has slowly moved closer to the national average over time. This can connect to things like rising housing costs, rapid tech growth, and differences in access to higher-paying jobs, savings, and homeownership opportunities.
+          {renderDefinedText('Washington’s line has slowly moved closer to the national average over time. This can connect to things like rising housing costs, rapid tech growth, and differences in access to higher-paying jobs, savings, and homeownership opportunities.')}
         </p>
         <p className="section-copy compact-copy">
-          While the graph may make the changes look dramatic because the scale is zoomed in closely, the bigger story is about how inequality has continued year after year. The chart helps us think about how long-term systems and opportunities can shape people’s financial futures differently.
+          {renderDefinedText('While the graph may make the changes look dramatic because the scale is zoomed in closely, the bigger story is about how inequality has continued year after year. The chart helps us think about how long-term systems and opportunities can shape people’s financial futures differently.')}
         </p>
       </div>
 
@@ -841,7 +842,7 @@ function TeacherToolkitSection() {
           <p className="eyebrow">teacher guide</p>
           <h2>teacher toolkit</h2>
           <p className="section-copy">
-            This area keeps facilitation support separate from the student-facing dashboard so students can focus on the activities while educators can quickly find setup notes.
+            {renderDefinedText('This area keeps facilitation support separate from the student-facing dashboard so students can focus on the activities while educators can quickly find setup notes.')}
           </p>
         </div>
 
@@ -850,23 +851,23 @@ function TeacherToolkitSection() {
             <p className="eyebrow">setup instructions</p>
             <h3 className="panel-title">before students use the sliders</h3>
             <p>
-              Ask students to privately predict what a high-income household and a more typical household in Washington might earn. After the reveal, invite them to name what surprised them and what the gap could mean for housing, savings, and everyday stability.
+              {renderDefinedText('Ask students to privately predict what a high-income household and a more typical household in Washington might earn. After the reveal, invite them to name what surprised them and what the gap could mean for housing, savings, and everyday stability.')}
             </p>
           </div>
           <div className="panel teacher-toolkit-card">
             <p className="eyebrow">facilitation guidance</p>
             <h3 className="panel-title">keep discussion evidence-based</h3>
             <p>
-              Encourage students to describe patterns before making claims. When a chart shows unequal outcomes, connect the observation to policy, local history, institutional access, and lived experience.
+              {renderDefinedText('Encourage students to describe patterns before making claims. When a chart shows unequal outcomes, connect the observation to policy, local history, institutional access, and lived experience.')}
             </p>
           </div>
           <div className="panel teacher-toolkit-card">
             <p className="eyebrow">learning objectives</p>
             <h3 className="panel-title">students will be able to</h3>
             <ul className="simple-list">
-              <li>Explain how wealth differs from income.</li>
+              <li>{renderDefinedText('Explain how wealth differs from income.')}</li>
               <li>Use data visuals to ask clearer questions about opportunity.</li>
-              <li>Connect current outcomes to historical and systemic conditions.</li>
+              <li>{renderDefinedText('Connect current outcomes to historical and systemic conditions.')}</li>
               <li>Reflect on choices people face inside unequal systems.</li>
             </ul>
           </div>
@@ -957,7 +958,7 @@ export default function WacefePage() {
                   Explore not just money, but the systems that shape it.
                 </p>
                 <p className="section-copy">
-                  This dashboard explores how income, assets, history, place, and policy shape financial opportunity in Washington.
+                  {renderDefinedText('This dashboard explores how income, assets, history, place, and policy shape financial opportunity in Washington.')}
                 </p>
               </div>
 
@@ -1067,7 +1068,7 @@ export default function WacefePage() {
                 <p className="eyebrow">economic and social histories</p>
                 <h2>how the past shaped the present</h2>
                 <p className="section-copy">
-                  Use this section to look at change over time and connect present-day patterns to the systems, policies, and decisions that helped create them.
+                  {renderDefinedText('Use this section to look at change over time and connect present-day patterns to the systems, policies, and decisions that helped create them.')}
                 </p>
               </div>
 
@@ -1116,7 +1117,7 @@ export default function WacefePage() {
                 <p className="eyebrow">our future reality</p>
                 <h2>the great wealth transfer</h2>
                 <p className="section-copy">
-                  Why do today’s inequities matter for the future? Wealth in Washington-state is going to shift dramatically to different people and in different ways. This shift is called the Great Wealth Transfer. It is important that we know when this transfer will happen, how it will happen, and what we should do when it does. Especially because, if the power associated with this wealth falls in your hands, you have the responsibility to do good on the part of your peers.
+                  {renderDefinedText('Why do today’s inequities matter for the future? Wealth in Washington-state is going to shift dramatically to different people and in different ways. This shift is called the Great Wealth Transfer. It is important that we know when this transfer will happen, how it will happen, and what we should do when it does. Especially because, if the power associated with this wealth falls in your hands, you have the responsibility to do good on the part of your peers.')}
                 </p>
               </div>
               <SectionSpacing>

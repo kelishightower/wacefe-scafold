@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { renderDefinedText } from './GlossaryText';
 
 const resourceCards = [
   {
@@ -571,18 +572,18 @@ export default function Toolkit() {
                   </button>
                   <div className={isOpen ? 'resource-answer is-open' : 'resource-answer'}>
                     <div className="resource-answer-stack">
-                      <p>{row.feeling}</p>
+                      <p>{renderDefinedText(row.feeling)}</p>
                       <div>
                         <p><strong>What you can do now:</strong></p>
                         <ul>
                           {row.actions.map(function (action) {
-                            return <li key={action}>{action}</li>;
+                            return <li key={action}>{renderDefinedText(action)}</li>;
                           })}
                         </ul>
                       </div>
                       <div>
                         <p><strong>Why you don’t need to panic:</strong></p>
-                        <p>{row.reassurance}</p>
+                        <p>{renderDefinedText(row.reassurance)}</p>
                       </div>
                       <div>
                         <p><strong>Helpful resources:</strong></p>
@@ -614,7 +615,7 @@ export default function Toolkit() {
           <p className="eyebrow">support</p>
           <h3 className="panel-title">money and the future can feel stressful or uncertain</h3>
           <p className="section-copy compact-copy">
-            You are not alone in these concerns. These feelings are common, especially when thinking about life after high school and an unequal economy.
+            {renderDefinedText('You are not alone in these concerns. These feelings are common, especially when thinking about life after high school and an unequal economy.')}
           </p>
           <button
             type="button"
@@ -626,7 +627,7 @@ export default function Toolkit() {
             Open Financial Skills Table
           </button>
           <p className="section-copy compact-copy">
-            All of these worries connect to real financial skills. Open the table to see what skills help build understanding and long-term financial stability.
+            {renderDefinedText('All of these worries connect to real financial skills. Open the table to see what skills help build understanding and long-term financial stability.')}
           </p>
         </div>
       </div>
@@ -635,7 +636,7 @@ export default function Toolkit() {
         <div className="panel plain-text-panel toolkit-mini-panel toolkit-mini-panel-featured">
           <p className="eyebrow">{featuredAdditionalSection.eyebrow}</p>
           <h3 className="panel-title">{featuredAdditionalSection.title}</h3>
-          <p>{featuredAdditionalSection.body}</p>
+          <p>{renderDefinedText(featuredAdditionalSection.body)}</p>
         </div>
 
         <div className="panel toolkit-mini-switcher">
@@ -663,7 +664,7 @@ export default function Toolkit() {
           <div className="toolkit-mini-switcher-panel">
             <p className="eyebrow">{activeAdditionalCard.eyebrow}</p>
             <h3 className="panel-title">{activeAdditionalCard.title}</h3>
-            <p>{activeAdditionalCard.body}</p>
+            <p>{renderDefinedText(activeAdditionalCard.body)}</p>
           </div>
         </div>
       </div>
@@ -687,10 +688,10 @@ export default function Toolkit() {
             </div>
             <div className="modal-body">
               <p><strong>{resourceCards[openModal].yearLabel}:</strong> {resourceCards[openModal].yearValue}</p>
-              <p><strong>What it is:</strong> {resourceCards[openModal].summary}</p>
-              <p><strong>Intended for:</strong> {resourceCards[openModal].intendedFor}</p>
-              <p><strong>Community impact:</strong> {resourceCards[openModal].communityImpact}</p>
-              <p><strong>How people can support it:</strong> {resourceCards[openModal].studentSupport}</p>
+              <p><strong>What it is:</strong> {renderDefinedText(resourceCards[openModal].summary)}</p>
+              <p><strong>Intended for:</strong> {renderDefinedText(resourceCards[openModal].intendedFor)}</p>
+              <p><strong>Community impact:</strong> {renderDefinedText(resourceCards[openModal].communityImpact)}</p>
+              <p><strong>How people can support it:</strong> {renderDefinedText(resourceCards[openModal].studentSupport)}</p>
               <div>
                 <strong>Learn more here:</strong>
                 {resourceCards[openModal].links.map(function (link) {
@@ -738,8 +739,7 @@ export default function Toolkit() {
             </div>
             <div className="modal-body">
               <p>
-                All of these worries connect to real financial skills. The table below shows what
-                skills help build understanding and long-term financial stability.
+                {renderDefinedText('All of these worries connect to real financial skills. The table below shows what skills help build understanding and long-term financial stability.')}
               </p>
               <div className="skills-table-wrap">
                 <table className="skills-table">
@@ -754,9 +754,9 @@ export default function Toolkit() {
                     {financialSkillsRows.map(function (row) {
                       return (
                         <tr key={row.area}>
-                          <td>{row.area}</td>
-                          <td>{row.skills}</td>
-                          <td>{row.why}</td>
+                          <td>{renderDefinedText(row.area)}</td>
+                          <td>{renderDefinedText(row.skills)}</td>
+                          <td>{renderDefinedText(row.why)}</td>
                         </tr>
                       );
                     })}

@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { renderDefinedText } from './GlossaryText';
 
 // Static map of content for each node in the flow diagram. Each key is an
 // identifier that is referenced in `flowRows` below. You can update the text
@@ -229,7 +230,7 @@ export default function QuickFactsFlow() {
         <p className="eyebrow">Selected Topic</p>
         <h4>{activeFact.label}</h4>
         <p>
-          <strong>Definition:</strong> {activeFact.definition}
+          <strong>Definition:</strong> {renderDefinedText(activeFact.definition)}
         </p>
         <button
           type="button"
@@ -269,10 +270,10 @@ export default function QuickFactsFlow() {
             </div>
             <div className="modal-body quick-expand-modal-body">
               <p>
-                <strong>Quick fact:</strong> {activeFact.quickFact}
+                <strong>Quick fact:</strong> {renderDefinedText(activeFact.quickFact)}
               </p>
               <p>
-                <strong>Why it matters today:</strong> {activeFact.whyItMatters}
+                <strong>Why it matters today:</strong> {renderDefinedText(activeFact.whyItMatters)}
               </p>
               {activeFact.learnMore && (
                 <p>

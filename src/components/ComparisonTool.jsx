@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DefinitionTooltip from './DefinitionTooltip';
+import { definedTerms, renderDefinedText } from './GlossaryText';
 import ReflectionQuestion from './ReflectionQuestion';
 
 const wealthTransferIntro = [
@@ -26,14 +27,6 @@ const wealthTransferSteps = [
 
 const wealthTransferReflection =
     'What are some ways in which the Great Wealth Transfer might worsen gaps between different communities?';
-
-const definedTerms = {
-  demographic: 'Relating to the characteristics of a population, such as age, race, income, education, or location.',
-  socioeconomic: 'Related to both social and economic factors combined, showing how income, education, and background affect opportunities.',
-  positioning: 'The place or status someone holds in society based on their background, resources, and circumstances.',
-  financial_opportunities: 'Chances to earn money, build wealth, invest, or gain access to resources that improve financial stability.',
-  empathize: 'To understand and share the feelings of another person; to put yourself in their situation.'
-};
 
 const characterCards = [
   {
@@ -434,7 +427,7 @@ const scenarioTree = {
 
 function ParagraphGroup(props) {
   return props.items.map(function (item) {
-    return <p key={item}>{item}</p>;
+    return <p key={item}>{renderDefinedText(item)}</p>;
   });
 }
 
@@ -531,19 +524,19 @@ function SelectedCharacterSummary(props) {
               {character.name}
             </h4>
             <div className="section-copy selected-character-copy">
-              <p>{character.summary}</p>
+              <p>{renderDefinedText(character.summary)}</p>
             </div>
           </div>
 
           <div className="selected-character-context">
             <div className="selected-character-note">
               <p className="eyebrow">who benefits</p>
-              <p>{character.benefit}</p>
+              <p>{renderDefinedText(character.benefit)}</p>
             </div>
 
             <div className="selected-character-note">
               <p className="eyebrow">who is left out</p>
-              <p>{character.risk}</p>
+              <p>{renderDefinedText(character.risk)}</p>
             </div>
           </div>
         </div>
@@ -555,7 +548,7 @@ function ScenarioStep(props) {
   return (
       <div className="scenario-panel stack-sm scenario-panel-wide">
         <p className="scenario-prompt">
-          {props.prompt}
+          {renderDefinedText(props.prompt)}
         </p>
         <div className="scenario-option-list scenario-option-list-choices">
           {props.options.map(function (option) {
@@ -582,8 +575,8 @@ function OutcomeStep(props) {
   return (
       <div className="outcome-panel stack-sm">
         <p className="eyebrow">outcome</p>
-        <p>{props.outcome}</p>
-        <ReflectionQuestion>{props.reflection}</ReflectionQuestion>
+        <p>{renderDefinedText(props.outcome)}</p>
+        <ReflectionQuestion>{renderDefinedText(props.reflection)}</ReflectionQuestion>
       </div>
   );
 }
@@ -702,7 +695,7 @@ export default function ComparisonTool() {
                   </button>
                   {isOpen && (
                     <div className="transfer-accordion-content">
-                      <p>{step.text}</p>
+                      <p>{renderDefinedText(step.text)}</p>
                     </div>
                   )}
                 </div>
@@ -736,10 +729,10 @@ export default function ComparisonTool() {
               <div className="wealth-reveal-content">
                 <p className="wealth-number">$104,000,000,000,000</p>
                 <p className="section-copy compact-copy">
-                  According to Federal Reserve data and industry research, anywhere between $90 trillion and $124 trillion are projected to transfer to younger generations by 2048. The number above is the median of this range. Generation Z is estimated to inherit $15 trillion of this total. Note that this is national data, though, and not specific to Washington-state.
+                  {renderDefinedText('According to Federal Reserve data and industry research, anywhere between $90 trillion and $124 trillion are projected to transfer to younger generations by 2048. The number above is the median of this range. Generation Z is estimated to inherit $15 trillion of this total. Note that this is national data, though, and not specific to Washington-state.')}
                 </p>
                 <p className="section-copy compact-copy">
-                  To help visualize how large this number is, each icon below represents $10 million, adding up to the total projection of transferred wealth.
+                  {renderDefinedText('To help visualize how large this number is, each icon below represents $10 million, adding up to the total projection of transferred wealth.')}
                 </p>
                 <div className="money-stack-row" aria-hidden="true">
                   {Array.from({ length: 12 }).map(function (_, index) {
